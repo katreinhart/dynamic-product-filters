@@ -73,16 +73,17 @@
 var data = __webpack_require__(2);
 
 var filterDiv = document.getElementById('filters');
+var filterDetailDiv = document.getElementById('filter-detail');
 var productDiv = document.getElementById('products');
 
 var keys = Object.keys(data.products[0]);
 var filtersList = document.createElement('ul');
 var filterNames = keys.filter(function (item) {
+  // we don't want to be able to filter by these. todo: tag them as filterable: false
   return item !== 'id' && item !== "name" && item !== "description" && item !== "image";
 });
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
-//
 var filters = {};
 filterNames.forEach(function (filterType) {
   filters[filterType] = [];
@@ -95,23 +96,41 @@ filterNames.forEach(function (filterType) {
 });
 
 // get tag list & count
-var tagList = {};
+var tagList = [];
 
 data.products.forEach(function (item) {
   item.tags.forEach(function (tag) {
-    if (!tagList[tag]) {
-      tagList[tag] = 1;
+    if (!tagList.includes(tag)) {
+      tagList.push([tag, 1]);
     } else {
-      tagList[tag]++;
+      var index = tagList.find(tag);
+      tagList[index][1]++;
     }
   });
 });
+
+filters.tags = tagList;
+
+console.log(filters);
+
+function displayOptions(filterItem) {
+  console.log('display options', filterItem);
+  filterDetailDiv.innerHTML = "";
+  var itemList = document.createElement('UL');
+  filterItem.forEach(function (item) {
+    var listItem = document.createElement('LI');
+    listItem.textContent = item;
+    itemList.append(listItem);
+  });
+  filterDetailDiv.append(itemList);
+}
 
 filterNames.forEach(function (name) {
   var listItem = document.createElement('LI');
   listItem.textContent = name;
   listItem.addEventListener('click', function (e) {
-    console.log(filters[name]);
+    // console.log(filters[name])
+    displayOptions(filters[name]);
   });
   filtersList.append(listItem);
 });
