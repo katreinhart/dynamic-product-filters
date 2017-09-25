@@ -1,5 +1,4 @@
-console.log('sanity check!');
-import data from '../data/products'
+const data = require ('../data/products.json')
 
 const filterDiv = document.getElementById('filters')
 const filtersList = document.createElement('ul')
