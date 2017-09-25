@@ -3,6 +3,7 @@
     {
       "id": "123",
       "name": "Heirloom Banana",
+      "type": "banana",
       "price": 1.29,
       "tags": ["fruit", "berry", "yellow", "tropical"],
       "description": "An artisinal heirloom banana from Williamsburg",
@@ -12,6 +13,7 @@
     },{
       "id": "124",
       "name": "Meggings vegan",
+      "type": "meggings",
       "price": 0.39,
       "tags": ["pitchfork", "neutra", "wayfarers"],
       "description": "Single-origin coffee squid hoodie raw denim",
@@ -21,6 +23,7 @@
     },{
       "id": "125",
       "name": "Vaporware iPhone",
+      "type": "iPhone",
       "price": 4.99,
       "tags": ["chicharrones", "small batch", "mumblecore", "cardigan"],
       "description": "Activated charcoal waistcoat seitan cred semiotics",
@@ -30,6 +33,7 @@
     },{
       "id": "126",
       "name": "Activated Charcoal Pabst",
+      "type": "beer",
       "price": 11.29,
       "tags": ["meggings", "selfies", "brunch", "cardigan"],
       "description": "Hella lomo chartreuse wayfarers readymade whatever hot chicken",
@@ -39,6 +43,7 @@
     },{
       "id": "127",
       "name": "Thundercats",
+      "type": "T-shirt",
       "price": 0.99,
       "tags": ["intelligentsia", "heirloom", "lumbersexual", "artisan"],
       "description": "Shabby chic taiyaki craft beer, vexillologist heirloom intelligentsia",
@@ -48,6 +53,7 @@
     },{
       "id": "128",
       "name": "Unicorn pour-over",
+      "type": "Coffee",
       "price": 0.29,
       "tags": ["actually", "affogato", "meh", "helvetica"],
       "description": "Adaptogen four loko cardigan, pitchfork art party neutra la croix.",
@@ -57,6 +63,7 @@
     },{
       "id": "129",
       "name": "snackwave air plant",
+      "type": "Decor",
       "price": 3.05,
       "tags": ["hella", "cred", "scenester", "kitsch"],
       "description": "Vinyl flexitarian dreamcatcher fashion axe.",
@@ -66,6 +73,7 @@
     },{
       "id": "130",
       "name": "Craft beer enamel pin",
+      "type": "Fashion",
       "price": 10.99,
       "tags": ["actually", "affogato", "activated charcoal", "sartorial"],
       "description": "Shoreditch schlitz selfies gochujang. Irony air plant mumblecore",
@@ -75,6 +83,7 @@
     },{
       "id": "131",
       "name": "gentrify fashion",
+      "type": "T-shirt",
       "price": 3.29,
       "tags": ["hella", "sartorial", "gastropub", "affogato"],
       "description": "Venmo offal twee, cliche post-ironic swag kitsch. ",
@@ -84,6 +93,7 @@
     },{
       "id": "132",
       "name": "bespoke heirloom coloring book ",
+      "type": "Literature",
       "price": 0.23,
       "tags": ["aesthetic", "snackwave", "actually", "raclette"],
       "description": "Chillwave +1 kogi, neutra slow-carb banjo humblebrag",
