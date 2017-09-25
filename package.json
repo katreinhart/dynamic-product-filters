@@ -1,0 +1,22 @@
+{
+  "name": "product-filter",
+  "version": "1.0.0",
+  "description": "Dynamically generated product filters for online shopping sites of all types.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katreinhart/dynamic-product-filters.git"
+  },
+  "author": "katreinhart <kat@reinhart.digital>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katreinhart/dynamic-product-filters/issues"
+  },
+  "homepage": "https://github.com/katreinhart/dynamic-product-filters#readme",
+  "dependencies": {
+    "webpack": "^3.6.0"
+  }
+}
