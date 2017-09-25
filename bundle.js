@@ -75,11 +75,22 @@ var data = __webpack_require__(2);
 var filterDiv = document.getElementById('filters');
 var filtersList = document.createElement('ul');
 
+var keys = Object.keys(data.products[0]);
+console.log(keys);
+
+var tagList = {};
+
 data.products.forEach(function (item) {
-    var newItem = document.createElement('li');
-    newItem.textContent = item.name;
-    filtersList.append(newItem);
+  item.tags.forEach(function (tag) {
+    if (!tagList[tag]) {
+      tagList[tag] = 1;
+    } else {
+      tagList[tag]++;
+    }
+  });
 });
+
+console.log(tagList);
 
 filterDiv.append(filtersList);
 
