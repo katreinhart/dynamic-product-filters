@@ -8,7 +8,7 @@ const productDiv = document.getElementById('products')
 const keys = Object.keys(data.products[0])
 const filtersList = document.createElement('ul')
 const filterNames = keys.filter(item => {
-  // we don't want to be able to filter by these. todo: tag them as filterable: false
+  // we don't need to be able to filter by these. todo: tag them as filterable: false?
   return ((item !== 'id') && (item !== "name") && (item !== "description") && (item !== "image"))
 })
 
