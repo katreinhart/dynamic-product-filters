@@ -14,15 +14,13 @@ const filterNames = keys.filter(item => {
 const filters = {}
 filterNames.forEach(filterType => {
   filters[filterType] = []
-  // console.log(item)
+
   data.products.forEach(item => {
-    // console.log(filterType)
-    // console.log(item[filterType])
-    filters[filterType].push(item[filterType])
+    if(!filters[filterType].includes(item[filterType])){
+      filters[filterType].push(item[filterType])
+    }
   })
 })
-
-console.log(filters)
 
 // get tag list & count
 const tagList = {}
@@ -37,11 +35,11 @@ data.products.forEach(item => {
   })
 })
 
-filterNames.forEach(filter => {
+filterNames.forEach(name => {
     const listItem = document.createElement('LI')
-    listItem.textContent = filter
+    listItem.textContent = name
     listItem.addEventListener('click', e => {
-
+      console.log(filters[name])
     })
     filtersList.append(listItem)
 })

@@ -86,15 +86,13 @@ var filterNames = keys.filter(function (item) {
 var filters = {};
 filterNames.forEach(function (filterType) {
   filters[filterType] = [];
-  // console.log(item)
+
   data.products.forEach(function (item) {
-    // console.log(filterType)
-    // console.log(item[filterType])
-    filters[filterType].push(item[filterType]);
+    if (!filters[filterType].includes(item[filterType])) {
+      filters[filterType].push(item[filterType]);
+    }
   });
 });
-
-console.log(filters);
 
 // get tag list & count
 var tagList = {};
@@ -109,10 +107,12 @@ data.products.forEach(function (item) {
   });
 });
 
-filterNames.forEach(function (filter) {
+filterNames.forEach(function (name) {
   var listItem = document.createElement('LI');
-  listItem.textContent = filter;
-  listItem.addEventListener('click', function (e) {});
+  listItem.textContent = name;
+  listItem.addEventListener('click', function (e) {
+    console.log(filters[name]);
+  });
   filtersList.append(listItem);
 });
 
