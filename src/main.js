@@ -1,4 +1,5 @@
 const data = require ('../data/products.json')
+const products = data.products
 
 const filterDiv = document.getElementById('filters')
 const filterDetailDiv = document.getElementById('filter-detail')
@@ -11,12 +12,14 @@ const filterNames = keys.filter(item => {
   return ((item !== 'id') && (item !== "name") && (item !== "description") && (item !== "image"))
 })
 
+let filteredProducts = products
+
 // Generate a filters object which contains the key-value pairs of all the available properties.
 const filters = {}
 filterNames.forEach(filterType => {
   filters[filterType] = []
 
-  data.products.forEach(item => {
+  products.forEach(item => {
     if(!filters[filterType].includes(item[filterType])){
       filters[filterType].push(item[filterType])
     }
@@ -26,7 +29,7 @@ filterNames.forEach(filterType => {
 // get tag list & count
 const tagList = []
 
-data.products.forEach(item => {
+products.forEach(item => {
   item.tags.forEach(tag => {
     if(!tagList.includes(tag)) {
       tagList.push([tag, 1])
@@ -39,32 +42,40 @@ data.products.forEach(item => {
 
 filters.tags = tagList
 
-console.log(filters)
-
 function displayOptions(filterItem) {
-  console.log('display options', filterItem)
   filterDetailDiv.innerHTML = ""
   const itemList = document.createElement('UL')
   filterItem.forEach(item => {
     const listItem = document.createElement('LI')
     listItem.textContent = item
+    listItem.addEventListener('click', e => {
+      filteredProducts = products.filter(product => {
+        //return product.hasProperty(filterItem, listItem)
+        console.log(product, filterItem, item)
+      })
+    })
     itemList.append(listItem)
   })
   filterDetailDiv.append(itemList)
 }
 
 filterNames.forEach(name => {
-    const listItem = document.createElement('LI')
-    listItem.textContent = name
-    listItem.addEventListener('click', e => {
-      // console.log(filters[name])
-      displayOptions(filters[name])
-    })
-    filtersList.append(listItem)
+  const listItem = document.createElement('LI')
+  listItem.textContent = name
+  listItem.addEventListener('click', e => {
+    displayOptions(filters[name])
+  })
+  filtersList.append(listItem)
 })
 
 filterDiv.append(filtersList)
 
 
-
 // apply products to page
+const productList = document.createElement('ul')
+products.forEach(item => {
+  const productItem = document.createElement('li')
+  productItem.textContent = item.name
+  productList.append(productItem)
+})
+productDiv.append(productList)

@@ -10,7 +10,7 @@ var customProduct = {
   "properties": {
     "id": {
       "type": "string",
-      "required": true
+      "required": true,
     },
     "name": {
       "type": "string"

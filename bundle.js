@@ -71,6 +71,7 @@
 
 
 var data = __webpack_require__(2);
+var products = data.products;
 
 var filterDiv = document.getElementById('filters');
 var filterDetailDiv = document.getElementById('filter-detail');
@@ -83,12 +84,14 @@ var filterNames = keys.filter(function (item) {
   return item !== 'id' && item !== "name" && item !== "description" && item !== "image";
 });
 
+var filteredProducts = products;
+
 // Generate a filters object which contains the key-value pairs of all the available properties.
 var filters = {};
 filterNames.forEach(function (filterType) {
   filters[filterType] = [];
 
-  data.products.forEach(function (item) {
+  products.forEach(function (item) {
     if (!filters[filterType].includes(item[filterType])) {
       filters[filterType].push(item[filterType]);
     }
@@ -98,7 +101,7 @@ filterNames.forEach(function (filterType) {
 // get tag list & count
 var tagList = [];
 
-data.products.forEach(function (item) {
+products.forEach(function (item) {
   item.tags.forEach(function (tag) {
     if (!tagList.includes(tag)) {
       tagList.push([tag, 1]);
@@ -111,15 +114,18 @@ data.products.forEach(function (item) {
 
 filters.tags = tagList;
 
-console.log(filters);
-
 function displayOptions(filterItem) {
-  console.log('display options', filterItem);
   filterDetailDiv.innerHTML = "";
   var itemList = document.createElement('UL');
   filterItem.forEach(function (item) {
     var listItem = document.createElement('LI');
     listItem.textContent = item;
+    listItem.addEventListener('click', function (e) {
+      filteredProducts = products.filter(function (product) {
+        //return product.hasProperty(filterItem, listItem)
+        console.log(product, filterItem, item);
+      });
+    });
     itemList.append(listItem);
   });
   filterDetailDiv.append(itemList);
@@ -129,7 +135,6 @@ filterNames.forEach(function (name) {
   var listItem = document.createElement('LI');
   listItem.textContent = name;
   listItem.addEventListener('click', function (e) {
-    // console.log(filters[name])
     displayOptions(filters[name]);
   });
   filtersList.append(listItem);
@@ -138,6 +143,13 @@ filterNames.forEach(function (name) {
 filterDiv.append(filtersList);
 
 // apply products to page
+var productList = document.createElement('ul');
+products.forEach(function (item) {
+  var productItem = document.createElement('li');
+  productItem.textContent = item.name;
+  productList.append(productItem);
+});
+productDiv.append(productList);
 
 /***/ }),
 /* 1 */,
