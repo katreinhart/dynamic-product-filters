@@ -73,15 +73,51 @@
 var data = __webpack_require__(2);
 
 var filterDiv = document.getElementById('filters');
+var productDiv = document.getElementById('products');
+
+var keys = Object.keys(data.products[0]);
 var filtersList = document.createElement('ul');
+var filterNames = keys.filter(function (item) {
+  // don't filter by these types
+  return item !== 'id' && item !== "name" && item !== "description" && item !== "image";
+});
+
+var filters = {};
+filterNames.forEach(function (filterType) {
+  filters[filterType] = [];
+
+  data.products.forEach(function (item) {
+    if (!filters[filterType].includes(item[filterType])) {
+      filters[filterType].push(item[filterType]);
+    }
+  });
+});
+
+// get tag list & count
+var tagList = {};
 
 data.products.forEach(function (item) {
-    var newItem = document.createElement('li');
-    newItem.textContent = item.name;
-    filtersList.append(newItem);
+  item.tags.forEach(function (tag) {
+    if (!tagList[tag]) {
+      tagList[tag] = 1;
+    } else {
+      tagList[tag]++;
+    }
+  });
+});
+
+filterNames.forEach(function (name) {
+  var listItem = document.createElement('LI');
+  listItem.textContent = name;
+  listItem.addEventListener('click', function (e) {
+    console.log(filters[name]);
+  });
+  filtersList.append(listItem);
 });
 
 filterDiv.append(filtersList);
+
+// apply products to page
 
 /***/ }),
 /* 1 */,
