@@ -1,16 +1,26 @@
 const data = require ('../data/products.json')
+const productSchema = require('../model/validator')
+const detectAllFields = require('../detectCustomFields')
 
 const products = data.products
 
 const filterDiv = document.getElementById('filters')
 const filterDetailDiv = document.getElementById('filter-detail')
 const productDiv = document.getElementById('products')
+const clearButton = document.getElementById('clearButton')
 
-const keys = Object.keys(data.products[0])
+const keys = detectAllFields(productSchema, products)
+
 const filtersList = document.createElement('ul')
 const filterNames = keys.filter(item => {
   // we don't need to be able to filter by these. todo: tag them as filterable: false?
   return ((item !== 'id') && (item !== "name") && (item !== "description") && (item !== "image"))
+})
+
+clearButton.addEventListener('click', e => {
+  filteredProducts = []
+  activeFilter = ""
+  displayProducts(products)
 })
 
 let filteredProducts = []

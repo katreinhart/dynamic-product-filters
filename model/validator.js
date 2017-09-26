@@ -48,7 +48,7 @@ var customProduct = {
 
 var productSchema = {
   "$schema": "http://json-schema.org/schema#",
-  "id": "/product-schema",
+  "id": "/productSchema",
   "type": "object",
   "properties": {
     "products": {
@@ -61,6 +61,10 @@ var productSchema = {
 }
 
 
-v.addSchema(productSchema, '/product-schema')
+v.addSchema(productSchema, '/productSchema')
 v.addSchema(customProduct, '/customProduct')
-console.log(v.validate(products, productSchema))
+// console.log(v.validate(products, productSchema))
+
+module.exports = {
+  customProduct: customProduct
+}
