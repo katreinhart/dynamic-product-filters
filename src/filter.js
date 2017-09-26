@@ -1,5 +1,6 @@
 const Product = function () {
   // constructor function for a Product
+  // do I need this???
 }
 
 // Product has properties: name, id, description, price, tags, dimesnions....
@@ -9,7 +10,11 @@ const Product = function () {
 const Filter = function (data) {
   // validate data against schema
   // generate filters for the data and make them available
-  // 
+  // How many types of filters do we need?
+  // Single-match filters (i.e. item type)
+  // One of many filters (i.e. tags)
+  // Range filters (i.e. price)
+  // dimensional filters??? 
 
   this.filters = [] // would return ['price', 'tags', 'style', 'color'] e.g.
 

@@ -14,6 +14,7 @@ const filterNames = keys.filter(item => {
 })
 
 let filteredProducts = []
+let activeFilter = ""
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
 const filters = {}
@@ -52,8 +53,7 @@ function displayOptions(filterItem) {
     listItem.addEventListener('click', e => {
       filteredProducts = products.filter(product => {
         //return product.hasProperty(filterItem, listItem)
-        // console.log(product, filterItem, item)
-        return (product.type === item)
+        return (product[activeFilter] === item)
       })
       displayProducts(filteredProducts)
     })
@@ -67,6 +67,8 @@ filterNames.forEach(name => {
   listItem.textContent = name
   listItem.addEventListener('click', e => {
     displayOptions(filters[name])
+    activeFilter = name
+    console.log('active filter: ', activeFilter)
   })
   filtersList.append(listItem)
 })

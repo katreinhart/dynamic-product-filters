@@ -86,6 +86,7 @@ var filterNames = keys.filter(function (item) {
 });
 
 var filteredProducts = [];
+var activeFilter = "";
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
 var filters = {};
@@ -124,8 +125,7 @@ function displayOptions(filterItem) {
     listItem.addEventListener('click', function (e) {
       filteredProducts = products.filter(function (product) {
         //return product.hasProperty(filterItem, listItem)
-        // console.log(product, filterItem, item)
-        return product.type === item;
+        return product[activeFilter] === item;
       });
       displayProducts(filteredProducts);
     });
@@ -139,6 +139,8 @@ filterNames.forEach(function (name) {
   listItem.textContent = name;
   listItem.addEventListener('click', function (e) {
     displayOptions(filters[name]);
+    activeFilter = name;
+    console.log('active filter: ', activeFilter);
   });
   filtersList.append(listItem);
 });
