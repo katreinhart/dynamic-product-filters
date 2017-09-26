@@ -64,10 +64,15 @@ function roundUpToNearest25(number) {
 }
 
 function generatePriceBuckets() {
-  let min = Infinity, max = 0
+  let min = Infinity
+  let max = 0
   products.forEach(item => {
-    if(item.price < min) min = item.price
-    if(item.price > max) max = item.price
+    if(parseFloat(item.price) < min) {
+      min = parseFloat(item.price)
+    }
+    if(parseFloat(item.price) > max) {
+      max = parseFloat(item.price)
+    }
   })
 
   let bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4))
@@ -87,7 +92,7 @@ function generatePriceBuckets() {
                     { "label": `Over \$${bucket3}`,
                       "bucket": [bucket3, bucket4] }
                   ]
-  // console.log(filters.price)
+  console.log(filters.price)
 }
 generatePriceBuckets()
 
