@@ -39,7 +39,7 @@ filterNames.forEach(filterType => {
   })
 })
 
-// get tag list & count
+// TAGS
 const tagList = []
 
 products.forEach(item => {
@@ -55,30 +55,71 @@ products.forEach(item => {
 
 filters.tags = tagList
 
-function displayOptions(filterItem) {
+// PRICE
+// dynamically generate buckets based on range of prices in data.
+
+// helper function
+function roundUpToNearest25(number) {
+  return (Math.ceil(number/25) * 25)
+}
+
+function generatePriceBuckets() {
+  let min = Infinity, max = 0
+  products.forEach(item => {
+    if(item.price < min) min = item.price
+    if(item.price > max) max = item.price
+  })
+
+  let bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4))
+  let bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2))
+  let bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4))
+
+  filters.price = [`Under \$${bucket1}`, `\$${bucket1} to \$${bucket2}`, `\$${bucket2} to \$${bucket3}`, `Over \$${bucket3}`]
+  // console.log(filters.price)
+}
+
+function displayFilterDetails(filterDetail) {
   filterDetailDiv.innerHTML = ""
   const itemList = document.createElement('UL')
-  filterItem.forEach(item => {
-    const listItem = document.createElement('LI')
-    listItem.textContent = item
-    listItem.addEventListener('click', e => {
-      filteredProducts = products.filter(product => {
-        //return product.hasProperty(filterItem, listItem)
-        return (product[activeFilter] === item)
+
+  if(activeFilter === 'price') {
+    console.log('price')
+    generatePriceBuckets()
+    filters.price.forEach(bucket => {
+      console.log(bucket)
+      const listItem = document.createElement('LI')
+      listItem.textContent = bucket
+      listItem.addEventListener('click', e => {
+        console.log(`${bucket} clicked`)
       })
-      displayProducts(filteredProducts)
+      itemList.append(listItem)
     })
-    itemList.append(listItem)
-  })
+  } else {
+    filterDetail.forEach(detailedFilter => {
+      const listItem = document.createElement('LI')
+      listItem.textContent = detailedFilter
+      listItem.addEventListener('click', e => {
+        filteredProducts = products.filter(product => {
+          //return product.hasProperty(filterDetail, listItem)
+          return (product[activeFilter] === detailedFilter)
+        })
+        displayProducts(filteredProducts)
+      })
+      itemList.append(listItem)
+    })
+  }
+
   filterDetailDiv.append(itemList)
 }
 
 filterNames.forEach(name => {
   const listItem = document.createElement('LI')
   listItem.textContent = name
+
   listItem.addEventListener('click', e => {
-    displayOptions(filters[name])
+    displayFilterDetails(filters[name])
     activeFilter = name
+    console.log('active filter is', name)
   })
   filtersList.append(listItem)
 })

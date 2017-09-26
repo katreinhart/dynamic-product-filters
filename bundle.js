@@ -1188,7 +1188,7 @@ filterNames.forEach(function (filterType) {
   });
 });
 
-// get tag list & count
+// TAGS
 var tagList = [];
 
 products.forEach(function (item) {
@@ -1204,30 +1204,72 @@ products.forEach(function (item) {
 
 filters.tags = tagList;
 
-function displayOptions(filterItem) {
+// PRICE
+// dynamically generate buckets based on range of prices in data.
+
+// helper function
+function roundUpToNearest25(number) {
+  return Math.ceil(number / 25) * 25;
+}
+
+function generatePriceBuckets() {
+  var min = Infinity,
+      max = 0;
+  products.forEach(function (item) {
+    if (item.price < min) min = item.price;
+    if (item.price > max) max = item.price;
+  });
+
+  var bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4));
+  var bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2));
+  var bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4));
+
+  filters.price = ['Under $' + bucket1, '$' + bucket1 + ' to $' + bucket2, '$' + bucket2 + ' to $' + bucket3, 'Over $' + bucket3];
+  // console.log(filters.price)
+}
+
+function displayFilterDetails(filterDetail) {
   filterDetailDiv.innerHTML = "";
   var itemList = document.createElement('UL');
-  filterItem.forEach(function (item) {
-    var listItem = document.createElement('LI');
-    listItem.textContent = item;
-    listItem.addEventListener('click', function (e) {
-      filteredProducts = products.filter(function (product) {
-        //return product.hasProperty(filterItem, listItem)
-        return product[activeFilter] === item;
+
+  if (activeFilter === 'price') {
+    console.log('price');
+    generatePriceBuckets();
+    filters.price.forEach(function (bucket) {
+      console.log(bucket);
+      var listItem = document.createElement('LI');
+      listItem.textContent = bucket;
+      listItem.addEventListener('click', function (e) {
+        console.log(bucket + ' clicked');
       });
-      displayProducts(filteredProducts);
+      itemList.append(listItem);
     });
-    itemList.append(listItem);
-  });
+  } else {
+    filterDetail.forEach(function (detailedFilter) {
+      var listItem = document.createElement('LI');
+      listItem.textContent = detailedFilter;
+      listItem.addEventListener('click', function (e) {
+        filteredProducts = products.filter(function (product) {
+          //return product.hasProperty(filterDetail, listItem)
+          return product[activeFilter] === detailedFilter;
+        });
+        displayProducts(filteredProducts);
+      });
+      itemList.append(listItem);
+    });
+  }
+
   filterDetailDiv.append(itemList);
 }
 
 filterNames.forEach(function (name) {
   var listItem = document.createElement('LI');
   listItem.textContent = name;
+
   listItem.addEventListener('click', function (e) {
-    displayOptions(filters[name]);
+    displayFilterDetails(filters[name]);
     activeFilter = name;
+    console.log('active filter is', name);
   });
   filtersList.append(listItem);
 });
