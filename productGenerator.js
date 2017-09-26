@@ -1,8 +1,12 @@
 const request = require('request')
 const fs = require('fs')
 
-let styles = ["modern", "sartorial", "transitional", "traditional", "retro", "kitsch", "hella"]
-let types = ["jeans", "T-shirt", "chair", "table", "wall art", "coffee", "beer", "accessory"]
+// let styles = ["modern", "sartorial", "transitional", "traditional", "retro"]
+// let types = ["jeans", "T-shirt", "chair", "table", "wall art", "coffee", "beer", "accessory"]
+let itemTypes = ["shirt", "shorts", "socks", "pants", "jackets", "accessories"]
+let sizes = ["small", "medium", "large", "xl", "xs"]
+let ages = ["Under 2", "2-4", "4-6", "6-8", "8 and Up"]
+
 
 const products = []
 createProductsArray()
@@ -43,9 +47,11 @@ function createRandomProduct() {
         let index = Math.floor(Math.random() * text.length)
         product.tags.push(text[index])
       }
-      product.style = styles[Math.floor(Math.random() * styles.length)]
-      product.type = types[Math.floor(Math.random() * types.length)]
-      product.price = ((Math.random() * 10000)/100).toFixed(2)
+      // product.style = styles[Math.floor(Math.random() * styles.length)]
+      product.itemType = itemTypes[Math.floor(Math.random() * itemTypes.length)]
+      product.size = sizes[Math.floor(Math.random() * sizes.length)]
+      product.age = ages[Math.floor(Math.random() * ages.length)]
+      product.price = ((Math.random() * 20000)/100).toFixed(2)
       product.image = "https://unsplash.it/400/200?image=" + Math.floor(Math.random() * 1084)
       console.log(JSON.stringify(product))
       products.push(product)

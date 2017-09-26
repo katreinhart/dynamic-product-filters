@@ -1,4 +1,4 @@
-const data = require ('../data/products.json')
+const data = require ('../data/test-products.json')
 const products = data.products
 
 const productSchema = require('../model/validator')
@@ -110,9 +110,9 @@ function displayFilterDetails(filterDetail) {
     listItem.addEventListener('click', e => { // Add event listener to detail item
       filteredProducts = products.filter(product => {
         if(activeFilter === 'price') { // bucket filtering
-          return  ((parseFloat(product.price) > detailedFilter.bucket[0])
+          return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
                 && (parseFloat(product.price) <= detailedFilter.bucket[1]))
-        } else if (activeFilter === 'tags') { // one-of-many filtering
+        } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')) { // one-of-many filtering
           return product[activeFilter].includes(detailedFilter[0])
         } else { // exact-match filtering (easiest case)
           return (product[activeFilter] === detailedFilter)
