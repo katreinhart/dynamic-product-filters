@@ -1223,12 +1223,19 @@ function generatePriceBuckets() {
   var bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4));
   var bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2));
   var bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4));
+  var bucket4 = roundUpToNearest25(parseFloat(max));
 
-  filters.price = ['Under $' + bucket1, '$' + bucket1 + ' to $' + bucket2, '$' + bucket2 + ' to $' + bucket3, 'Over $' + bucket3];
+  // filters.price = { "labels": [`Under \$${bucket1}`, `\$${bucket1} to \$${bucket2}`, `\$${bucket2} to \$${bucket3}`, `Over \$${bucket3}`],
+  //                   "buckets": [bucket1, bucket2, bucket3] }
+
+  filters.price = [{ "label": 'Under $' + bucket1,
+    "bucket": [0, bucket1] }, { "label": '$' + bucket1 + ' to $' + bucket2,
+    "bucket": [bucket1, bucket2] }, { "label": '$' + bucket2 + ' to $' + bucket3,
+    "bucket": [bucket2, bucket3] }, { "label": 'Over $' + bucket3,
+    "bucket": [bucket3, bucket4] }];
   // console.log(filters.price)
 }
 generatePriceBuckets();
-console.log(filters);
 
 // Display Filter Details
 // Called on click of filter title
@@ -1241,22 +1248,18 @@ function displayFilterDetails(filterDetail) {
   filterDetail.forEach(function (detailedFilter) {
     // for each filter detail
     var listItem = document.createElement('LI'); // create a new LI
-    listItem.textContent = detailedFilter; // LI text content is name of detail
+    if (activeFilter === 'price') {
+      listItem.textContent = detailedFilter.label;
+    } else {
+      listItem.textContent = detailedFilter; // LI text content is name of detail
+    }
+
     listItem.addEventListener('click', function (e) {
       // Add event listener to detail item
       filteredProducts = products.filter(function (product) {
         if (activeFilter === 'price') {
           // bucket filtering
-          // hard coding this in right now, not the right way to do it
-          if (detailedFilter === 'Under $25') {
-            return parseFloat(product.price) < 25;
-          } else if (detailedFilter === '$25 to $50') {
-            return parseFloat(product.price) >= 25 && parseFloat(product.price) < 50;
-          } else if (detailedFilter === '$50 to $75') {
-            return parseFloat(product.price) >= 50 && parseFloat(product.price) < 75;
-          } else {
-            return parseFloat(product.price) >= 75;
-          }
+          return parseFloat(product.price) > detailedFilter.bucket[0] && parseFloat(product.price) <= detailedFilter.bucket[1];
         } else if (activeFilter === 'tags') {
           // one-of-many filtering
           return product[activeFilter].includes(detailedFilter[0]);
@@ -1278,9 +1281,8 @@ filterNames.forEach(function (name) {
   listItem.textContent = name;
 
   listItem.addEventListener('click', function (e) {
-    displayFilterDetails(filters[name]);
     activeFilter = name;
-    console.log('active filter is', name);
+    displayFilterDetails(filters[name]);
   });
   filtersList.append(listItem);
 });
