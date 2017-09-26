@@ -19,6 +19,7 @@
   "dependencies": {
     "babel-loader": "^7.1.2",
     "jsonschema": "^1.2.0",
+    "request": "^2.82.0",
     "webpack": "^3.6.0"
   },
   "devDependencies": {

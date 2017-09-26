@@ -13,12 +13,23 @@ var customProduct = {
       "required": true,
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "price": {
-      "type": "number"
+      "type": "string",
+      "required": true
     },
     "description": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "brand": {
       "type": "string"
     },
     "tags":  {

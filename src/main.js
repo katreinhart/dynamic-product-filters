@@ -1,4 +1,5 @@
 const data = require ('../data/products.json')
+console.log(data)
 const products = data.products
 
 const filterDiv = document.getElementById('filters')
@@ -72,10 +73,16 @@ filterDiv.append(filtersList)
 
 
 // apply products to page
-const productList = document.createElement('ul')
-products.forEach(item => {
-  const productItem = document.createElement('li')
-  productItem.textContent = item.name
-  productList.append(productItem)
+const productList = document.createElement('div')
+productList.className = "card-deck"
+products.forEach(product => {
+  const newEl = document.createElement('DIV')
+  newEl.innerHTML = `<div class="card" style="width: 20rem;">`
+      + `<img class="card-img-top" src="${product.image}" alt="an image of ${product.name}">`
+      + `<div class="card-block"><h3 class="card-title">${product.name} <span class="price">${product.price}</span></h3>`
+      + `<p class="card-text">${product.description}</p>`
+      + `<a href="#" class="btn btn-primary">Add to Cart</a>`
+      + `</div></div>`
+  productList.append(newEl)
 })
 productDiv.append(productList)
