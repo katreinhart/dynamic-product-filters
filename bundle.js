@@ -1227,37 +1227,48 @@ function generatePriceBuckets() {
   filters.price = ['Under $' + bucket1, '$' + bucket1 + ' to $' + bucket2, '$' + bucket2 + ' to $' + bucket3, 'Over $' + bucket3];
   // console.log(filters.price)
 }
+generatePriceBuckets();
+console.log(filters);
+
+// Display Filter Details
+// Called on click of filter title
+// Generates UL & LIs for the filter details & appends to FilterDetailDiv
 
 function displayFilterDetails(filterDetail) {
-  filterDetailDiv.innerHTML = "";
-  var itemList = document.createElement('UL');
+  filterDetailDiv.innerHTML = ""; // clear out the current contents
+  var itemList = document.createElement('UL'); // create a new UL
 
-  if (activeFilter === 'price') {
-    console.log('price');
-    generatePriceBuckets();
-    filters.price.forEach(function (bucket) {
-      console.log(bucket);
-      var listItem = document.createElement('LI');
-      listItem.textContent = bucket;
-      listItem.addEventListener('click', function (e) {
-        console.log(bucket + ' clicked');
-      });
-      itemList.append(listItem);
-    });
-  } else {
-    filterDetail.forEach(function (detailedFilter) {
-      var listItem = document.createElement('LI');
-      listItem.textContent = detailedFilter;
-      listItem.addEventListener('click', function (e) {
-        filteredProducts = products.filter(function (product) {
-          //return product.hasProperty(filterDetail, listItem)
+  filterDetail.forEach(function (detailedFilter) {
+    // for each filter detail
+    var listItem = document.createElement('LI'); // create a new LI
+    listItem.textContent = detailedFilter; // LI text content is name of detail
+    listItem.addEventListener('click', function (e) {
+      // Add event listener to detail item
+      filteredProducts = products.filter(function (product) {
+        if (activeFilter === 'price') {
+          // bucket filtering
+          // hard coding this in right now, not the right way to do it
+          if (detailedFilter === 'Under $25') {
+            return parseFloat(product.price) < 25;
+          } else if (detailedFilter === '$25 to $50') {
+            return parseFloat(product.price) >= 25 && parseFloat(product.price) < 50;
+          } else if (detailedFilter === '$50 to $75') {
+            return parseFloat(product.price) >= 50 && parseFloat(product.price) < 75;
+          } else {
+            return parseFloat(product.price) >= 75;
+          }
+        } else if (activeFilter === 'tags') {
+          // one-of-many filtering
+          return product[activeFilter].includes(detailedFilter[0]);
+        } else {
+          // exact-match filtering (easiest case)
           return product[activeFilter] === detailedFilter;
-        });
-        displayProducts(filteredProducts);
+        }
       });
-      itemList.append(listItem);
+      displayProducts(filteredProducts);
     });
-  }
+    itemList.append(listItem);
+  });
 
   filterDetailDiv.append(itemList);
 }
