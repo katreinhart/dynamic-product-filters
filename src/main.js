@@ -1,8 +1,8 @@
 const data = require ('../data/products.json')
-const productSchema = require('../model/validator')
-const detectAllFields = require('../detectCustomFields')
-
 const products = data.products
+
+const productSchema = require('../model/validator')
+const detectAllFields = require('../model/detectCustomFields')
 
 const filterDiv = document.getElementById('filters')
 const filterDetailDiv = document.getElementById('filter-detail')
@@ -15,6 +15,7 @@ const filtersList = document.createElement('ul')
 const filterNames = keys.filter(item => {
   // we don't need to be able to filter by these. todo: tag them as filterable: false?
   return ((item !== 'id') && (item !== "name") && (item !== "description") && (item !== "image"))
+  // also filter out any keys without values???
 })
 
 clearButton.addEventListener('click', e => {
@@ -78,7 +79,6 @@ filterNames.forEach(name => {
   listItem.addEventListener('click', e => {
     displayOptions(filters[name])
     activeFilter = name
-    console.log('active filter: ', activeFilter)
   })
   filtersList.append(listItem)
 })

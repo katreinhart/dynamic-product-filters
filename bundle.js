@@ -1148,10 +1148,10 @@ Url.prototype.parseHost = function() {
 
 
 var data = __webpack_require__(1);
-var productSchema = __webpack_require__(4);
-var detectAllFields = __webpack_require__(15);
-
 var products = data.products;
+
+var productSchema = __webpack_require__(4);
+var detectAllFields = __webpack_require__(16);
 
 var filterDiv = document.getElementById('filters');
 var filterDetailDiv = document.getElementById('filter-detail');
@@ -1164,6 +1164,7 @@ var filtersList = document.createElement('ul');
 var filterNames = keys.filter(function (item) {
   // we don't need to be able to filter by these. todo: tag them as filterable: false?
   return item !== 'id' && item !== "name" && item !== "description" && item !== "image";
+  // also filter out any keys without values???
 });
 
 clearButton.addEventListener('click', function (e) {
@@ -1227,7 +1228,6 @@ filterNames.forEach(function (name) {
   listItem.addEventListener('click', function (e) {
     displayOptions(filters[name]);
     activeFilter = name;
-    console.log('active filter: ', activeFilter);
   });
   filtersList.append(listItem);
 });
@@ -3325,39 +3325,18 @@ module.exports = attribute;
 
 
 /***/ }),
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-// const customProductSchema = require ('./model/validator')
-// const productData = require('./data/products.json')
-
 function detectAllFields(schema, data) {
-  // compare data to existing schema
+
   var standardFields = Object.keys(schema.customProduct.properties);
-  console.log(standardFields);
 
   var customFields = [];
-
-  // for each product in the array
-  // this is going to run at O(m * n) where m is the number of products & n is the number of fields.
-  // this could probably be optimized. Thoughts: Do we need to check every product, or do random sample?
-  // data.products.forEach(item => {
-  //   const hasFields = Object.keys(item)
-  //   console.log(hasFields)
-  //   hasFields.forEach(field => {
-  //     if(!standardFields.includes(field)){
-  //       if(!customFields.includes(field)){
-  //         customFields.push(field)
-  //       }
-  //     }
-  //   })
-  // })
-  // console.log("data:", data)
-  // console.log("schema:", schema)
-  // console.log(Object.keys(data.properties))
 
   for (var i = 0; i < data.length; i++) {
     var hasFields = Object.keys(data[i]);
@@ -3371,12 +3350,9 @@ function detectAllFields(schema, data) {
     }
   }
 
-  console.log(customFields);
-
   return standardFields.concat(customFields);
 }
-// console.log(customProduct)
-// detectCustomFields(customProductSchema, productData)
+
 module.exports = detectAllFields;
 
 /***/ })
