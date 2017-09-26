@@ -1,5 +1,5 @@
 const data = require ('../data/products.json')
-console.log(data)
+
 const products = data.products
 
 const filterDiv = document.getElementById('filters')
@@ -13,7 +13,7 @@ const filterNames = keys.filter(item => {
   return ((item !== 'id') && (item !== "name") && (item !== "description") && (item !== "image"))
 })
 
-let filteredProducts = products
+let filteredProducts = []
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
 const filters = {}
@@ -52,8 +52,10 @@ function displayOptions(filterItem) {
     listItem.addEventListener('click', e => {
       filteredProducts = products.filter(product => {
         //return product.hasProperty(filterItem, listItem)
-        console.log(product, filterItem, item)
+        // console.log(product, filterItem, item)
+        return (product.type === item)
       })
+      displayProducts(filteredProducts)
     })
     itemList.append(listItem)
   })
@@ -73,16 +75,21 @@ filterDiv.append(filtersList)
 
 
 // apply products to page
-const productList = document.createElement('div')
-productList.className = "card-deck"
-products.forEach(product => {
-  const newEl = document.createElement('DIV')
-  newEl.innerHTML = `<div class="card" style="width: 20rem;">`
-      + `<img class="card-img-top" src="${product.image}" alt="an image of ${product.name}">`
-      + `<div class="card-block"><h3 class="card-title">${product.name} <span class="price">${product.price}</span></h3>`
-      + `<p class="card-text">${product.description}</p>`
-      + `<a href="#" class="btn btn-primary">Add to Cart</a>`
-      + `</div></div>`
-  productList.append(newEl)
-})
-productDiv.append(productList)
+function displayProducts(productsToDisplay) {
+  productDiv.innerHTML = ""
+  const productList = document.createElement('div')
+  productList.className = "card-deck"
+  productsToDisplay.forEach(product => {
+    const newEl = document.createElement('DIV')
+    newEl.innerHTML = `<div class="card" style="width: 20rem;">`
+        + `<img class="card-img-top" src="${product.image}" alt="an image of ${product.name}">`
+        + `<div class="card-block"><h3 class="card-title">${product.name} <span class="price">${product.price}</span></h3>`
+        + `<p class="card-text">${product.description}</p>`
+        + `<a href="#" class="btn btn-primary">Add to Cart</a>`
+        + `</div></div>`
+    productList.append(newEl)
+  })
+  productDiv.append(productList)
+}
+
+displayProducts(products)
