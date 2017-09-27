@@ -1,3 +1,5 @@
+const Filter = require('./filter')
+
 const data = require ('../data/test-products.json')
 const products = data.products
 
@@ -104,7 +106,6 @@ generatePriceBuckets()
 function displayFilterDetails(filterDetail, parentDiv) {
   // filterDetailDiv.innerHTML = "" // clear out the current contents
   if(parentDiv.childNodes.length > 1) {
-    console.log('asdf')
     parentDiv.innerHTML = activeFilter
   } else {
     const itemList = document.createElement('UL') // create a new UL

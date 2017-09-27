@@ -40,4 +40,6 @@ const Filter = function () {
     const filteredData = data.filter()
     return filteredData
   }
+
+  console.log('Filter obect loaded')
 }

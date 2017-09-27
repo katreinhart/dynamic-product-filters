@@ -70,6 +70,7 @@ body {
   }
   .menu-sidebar.hidden {
     display: block;
+    width: 25%;
   }
   .main {
     width: 75%;
@@ -81,10 +82,10 @@ body {
   }
 }
 
-@media (min-device-width: 992px) {
+@media (min-width: 992px) {
   body {
 
   }
 }
 
-@media (min-device-width: 1200px) {  }
+@media (min-width: 1200px) {  }
