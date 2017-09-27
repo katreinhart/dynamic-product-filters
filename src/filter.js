@@ -30,7 +30,7 @@ const Filter = function () {
 
 
 
-  this.filterCount = this.filters.length
+  this.filterCount = Object.keys(this.filters).length
 
   this.generateFilters = function (data) {
 
