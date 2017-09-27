@@ -67,6 +67,9 @@ body {
   body {
     font-size: 16px;
   }
+  .menu-sidebar.hidden {
+    display: block;
+  }
 }
 
 @media (min-device-width: 992px) {
