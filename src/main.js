@@ -11,94 +11,91 @@ const productDiv = document.getElementById('products')
 
 const filters = {
   keys: detectFields(productSchema, products),
-  dontFilterBy: ['id', 'name', 'description', 'image']
+  dontFilterBy: ['id', 'name', 'description', 'image'],
+  filteredProducts: [],
+  activeFilter: "",
+
+  generateFilters: function() {
+    filters.keys.forEach(filterType => {
+      filters[filterType] = []
+
+      products.forEach(item => {
+        if(!filters[filterType].includes(item[filterType])){
+          filters[filterType].push(item[filterType])
+        }
+      })
+      if(filters[filterType].length <= 2) {
+        // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
+        filters.dontFilterBy.push(filterType)
+      }
+    })
+  },
+
+  generateTagList: function () {
+    const tagList = []
+    products.forEach(item => {
+      item.tags.forEach(tag => {
+        if(!tagList.includes(tag)) {
+          tagList.push([tag, 1])
+        } else {
+          let index = tagList.find(tag)
+
+          tagList[index][1]+=1
+        }
+      })
+    })
+    this.tags = tagList
+  },
+
+  generatePriceBuckets: function () {
+    let min = Infinity
+    let max = 0
+    products.forEach(item => {
+      if(parseFloat(item.price) < min) {
+        min = parseFloat(item.price)
+      }
+      if(parseFloat(item.price) > max) {
+        max = parseFloat(item.price)
+      }
+    })
+
+    let bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4))
+    let bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2))
+    let bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4))
+    let bucket4 = roundUpToNearest25(parseFloat(max))
+
+    filters.price = [ { "label": `Under \$${bucket1}`,
+                        "bucket": [0, bucket1] },
+                      { "label": `\$${bucket1} to \$${bucket2}`,
+                        "bucket": [bucket1, bucket2] },
+                      { "label": `\$${bucket2} to \$${bucket3}`,
+                        "bucket": [bucket2, bucket3] },
+                      { "label": `Over \$${bucket3}`,
+                        "bucket": [bucket3, bucket4] }
+                    ]
+
+  }
 }
 
-// const keys = detectFields(productSchema, products)
-
-// let's move this into filter?
-// const dontFilterBy = ['id', 'name', 'description', 'image']
-const filtersList = document.createElement('ul')
-
-// let filterNames = filters.keys
-let filteredProducts = []
-let activeFilter = ""
-
-const clearButton = document.getElementById('clearButton')
-clearButton.addEventListener('click', e => {
-  filteredProducts = []
-  activeFilter = ""
-  displayProducts(products)
-})
-
 // Generate a filters object which contains the key-value pairs of all the available properties.
-// const filters = {}
-filters.keys.forEach(filterType => {
-  filters[filterType] = []
 
-  products.forEach(item => {
-    if(!filters[filterType].includes(item[filterType])){
-      filters[filterType].push(item[filterType])
-    }
-  })
-  if(filters[filterType].length <= 2) {
-    // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
-    filters.dontFilterBy.push(filterType)
-  }
-})
-
-// TAGS
-const tagList = []
-
-products.forEach(item => {
-  item.tags.forEach(tag => {
-    if(!tagList.includes(tag)) {
-      tagList.push([tag, 1])
-    } else {
-      let index = tagList.find(tag)
-
-      tagList[index][1]+=1
-    }
-  })
-})
-
-filters.tags = tagList
-// PRICE
-// dynamically generate buckets based on range of prices in data.
+filters.generateFilters()
+filters.generateTagList()
+filters.generatePriceBuckets()
 
 // helper function
 function roundUpToNearest25(number) {
   return (Math.ceil(number/25) * 25)
 }
 
-function generatePriceBuckets() {
-  let min = Infinity
-  let max = 0
-  products.forEach(item => {
-    if(parseFloat(item.price) < min) {
-      min = parseFloat(item.price)
-    }
-    if(parseFloat(item.price) > max) {
-      max = parseFloat(item.price)
-    }
-  })
 
-  let bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4))
-  let bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2))
-  let bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4))
-  let bucket4 = roundUpToNearest25(parseFloat(max))
-
-  filters.price = [ { "label": `Under \$${bucket1}`,
-                      "bucket": [0, bucket1] },
-                    { "label": `\$${bucket1} to \$${bucket2}`,
-                      "bucket": [bucket1, bucket2] },
-                    { "label": `\$${bucket2} to \$${bucket3}`,
-                      "bucket": [bucket2, bucket3] },
-                    { "label": `Over \$${bucket3}`,
-                      "bucket": [bucket3, bucket4] }
-                  ]
-}
-generatePriceBuckets()
+const filtersList = document.createElement('ul')
+const clearButton = document.getElementById('clearButton')
+clearButton.addEventListener('click', e => {
+  filters.filteredProducts = []
+  filters.activeFilter = ""
+  displayProducts(products)
+})
 
 // Display Filter Details
 // Called on click of filter title
@@ -107,33 +104,33 @@ generatePriceBuckets()
 function displayFilterDetails(filterDetail, parentDiv) {
   // filterDetailDiv.innerHTML = "" // clear out the current contents
   if(parentDiv.childNodes.length > 1) {
-    parentDiv.innerHTML = activeFilter
+    parentDiv.innerHTML = filters.activeFilter
   } else {
     const itemList = document.createElement('UL') // create a new UL
     itemList.className = "list-group"
     filterDetail.forEach(detailedFilter => { // for each filter detail
       const listItem = document.createElement('LI') // create a new LI
       listItem.className = "list-group-item"
-      if(activeFilter === 'price') {
+      if(filters.activeFilter === 'price') {
         listItem.textContent = detailedFilter.label
-      } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')){
+      } else if ((filters.activeFilter === 'tags') || (filters.activeFilter === 'keywords')){
         listItem.textContent = `${detailedFilter[0]} (${detailedFilter[1]})`
       } else {
         listItem.textContent = detailedFilter // LI text content is name of detail
       }
 
       listItem.addEventListener('click', e => { // Add event listener to detail item
-        filteredProducts = products.filter(product => {
-          if(activeFilter === 'price') { // bucket filtering
+        filters.filteredProducts = products.filter(product => {
+          if(filters.activeFilter === 'price') { // bucket filtering
             return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
                   && (parseFloat(product.price) <= detailedFilter.bucket[1]))
-          } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')) { // one-of-many filtering
-            return product[activeFilter].includes(detailedFilter[0])
+          } else if ((filters.activeFilter === 'tags') || (filters.activeFilter === 'keywords')) { // one-of-many filtering
+            return product[filters.activeFilter].includes(detailedFilter[0])
           } else { // exact-match filtering (easiest case)
-            return (product[activeFilter] === detailedFilter)
+            return (product[filters.activeFilter] === detailedFilter)
           }
         })
-        displayProducts(filteredProducts)
+        displayProducts(filters.filteredProducts)
       })
       itemList.append(listItem)
     })
@@ -151,7 +148,7 @@ filters.keys.forEach(name => {
     listItem.textContent = name
 
     listItem.addEventListener('click', e => {
-      activeFilter = name
+      filters.activeFilter = name
       // BUG: Clicking on a filter detail collapses the menu
       displayFilterDetails(filters[name], listItem)
     })
@@ -193,4 +190,4 @@ displaySidebarButton.addEventListener('click', e => {
 })
 
 
-console.log(filters)
+// console.log(filters)
