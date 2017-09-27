@@ -46,10 +46,11 @@ body {
 
 .slide-over {
   position: absolute;
+  width: 75%;
   left: 25%;
 }
 
-@media (min-device-width: 576px) {
+@media screen and (min-device-width: 576px) {
   body {
     font-size: 21px;
   }
