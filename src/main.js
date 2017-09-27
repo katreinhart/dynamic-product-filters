@@ -5,7 +5,7 @@ const productSchema = require('../model/validator')
 const detectAllFields = require('../model/detectCustomFields')
 
 const filterDiv = document.getElementById('filters')
-const filterDetailDiv = document.getElementById('filter-detail')
+// const filterDetailDiv = document.getElementById('filter-detail')
 const productDiv = document.getElementById('products')
 const clearButton = document.getElementById('clearButton')
 
@@ -18,7 +18,7 @@ let filterNames = keys
 clearButton.addEventListener('click', e => {
   filteredProducts = []
   activeFilter = ""
-  filterDetailDiv.innerHTML = ""
+  // filterDetailDiv.innerHTML = ""
   displayProducts(products)
 })
 
@@ -101,38 +101,43 @@ generatePriceBuckets()
 // Called on click of filter title
 // Generates UL & LIs for the filter details & appends to FilterDetailDiv
 
-function displayFilterDetails(filterDetail) {
-  filterDetailDiv.innerHTML = "" // clear out the current contents
-  const itemList = document.createElement('UL') // create a new UL
-  itemList.className = "list-group"
-  filterDetail.forEach(detailedFilter => { // for each filter detail
-    const listItem = document.createElement('LI') // create a new LI
-    listItem.className = "list-group-item"
-    if(activeFilter === 'price') {
-      listItem.textContent = detailedFilter.label
-    } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')){
-      listItem.textContent = `${detailedFilter[0]} (${detailedFilter[1]})`
-    } else {
-      listItem.textContent = detailedFilter // LI text content is name of detail
-    }
+function displayFilterDetails(filterDetail, parentDiv) {
+  // filterDetailDiv.innerHTML = "" // clear out the current contents
+  if(parentDiv.childNodes.length > 1) {
+    console.log('asdf')
+    parentDiv.innerHTML = activeFilter
+  } else {
+    const itemList = document.createElement('UL') // create a new UL
+    itemList.className = "list-group"
+    filterDetail.forEach(detailedFilter => { // for each filter detail
+      const listItem = document.createElement('LI') // create a new LI
+      listItem.className = "list-group-item"
+      if(activeFilter === 'price') {
+        listItem.textContent = detailedFilter.label
+      } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')){
+        listItem.textContent = `${detailedFilter[0]} (${detailedFilter[1]})`
+      } else {
+        listItem.textContent = detailedFilter // LI text content is name of detail
+      }
 
-    listItem.addEventListener('click', e => { // Add event listener to detail item
-      filteredProducts = products.filter(product => {
-        if(activeFilter === 'price') { // bucket filtering
-          return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
-                && (parseFloat(product.price) <= detailedFilter.bucket[1]))
-        } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')) { // one-of-many filtering
-          return product[activeFilter].includes(detailedFilter[0])
-        } else { // exact-match filtering (easiest case)
-          return (product[activeFilter] === detailedFilter)
-        }
+      listItem.addEventListener('click', e => { // Add event listener to detail item
+        filteredProducts = products.filter(product => {
+          if(activeFilter === 'price') { // bucket filtering
+            return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
+                  && (parseFloat(product.price) <= detailedFilter.bucket[1]))
+          } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')) { // one-of-many filtering
+            return product[activeFilter].includes(detailedFilter[0])
+          } else { // exact-match filtering (easiest case)
+            return (product[activeFilter] === detailedFilter)
+          }
+        })
+        displayProducts(filteredProducts)
       })
-      displayProducts(filteredProducts)
+      itemList.append(listItem)
     })
-    itemList.append(listItem)
-  })
 
-  filterDetailDiv.append(itemList)
+    parentDiv.append(itemList)
+  }
 }
 
 filtersList.className = "list-group"
@@ -144,7 +149,8 @@ filterNames.forEach(name => {
 
     listItem.addEventListener('click', e => {
       activeFilter = name
-      displayFilterDetails(filters[name])
+      console.log(activeFilter)
+      displayFilterDetails(filters[name], listItem)
     })
     filtersList.append(listItem)
   }
@@ -172,3 +178,13 @@ function displayProducts(productsToDisplay) {
 }
 
 displayProducts(products)
+
+// UI STUFF
+
+const displaySidebarButton = document.getElementById('showSidebar')
+const sidebar = document.getElementById('menuSidebar')
+const mainContent = document.getElementById('mainContent')
+displaySidebarButton.addEventListener('click', e => {
+  sidebar.classList.toggle('hidden')
+  mainContent.classList.toggle('slide-over')
+})

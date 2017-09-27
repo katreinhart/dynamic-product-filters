@@ -14,6 +14,11 @@ body {
   text-decoration: underline;
 }
 
+.card-deck-wrapper {
+  justify-content: center;
+  padding: 10px;
+}
+
 .card {
   margin: 20px;
   width: 640px;
@@ -25,7 +30,12 @@ body {
 
 .menu-sidebar {
   padding: 0;
+  width: 25%;
+  transition: 0.5s;
+}
 
+.menu-sidebar.hidden {
+  display: none;
 }
 
 .menu-sidebar .list-group-item {
@@ -34,7 +44,13 @@ body {
   border-radius: 0
 }
 
-@media (min-device-width: 576px) {
+.slide-over {
+  position: absolute;
+  width: 75%;
+  left: 25%;
+}
+
+@media screen and (min-device-width: 576px) {
   body {
     font-size: 21px;
   }
@@ -50,6 +66,9 @@ body {
 @media (min-device-width: 768px) {
   body {
     font-size: 16px;
+  }
+  .menu-sidebar.hidden {
+    display: block;
   }
 }
 

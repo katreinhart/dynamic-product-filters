@@ -1154,7 +1154,7 @@ var productSchema = __webpack_require__(4);
 var detectAllFields = __webpack_require__(16);
 
 var filterDiv = document.getElementById('filters');
-var filterDetailDiv = document.getElementById('filter-detail');
+// const filterDetailDiv = document.getElementById('filter-detail')
 var productDiv = document.getElementById('products');
 var clearButton = document.getElementById('clearButton');
 
@@ -1167,7 +1167,7 @@ var filterNames = keys;
 clearButton.addEventListener('click', function (e) {
   filteredProducts = [];
   activeFilter = "";
-  filterDetailDiv.innerHTML = "";
+  // filterDetailDiv.innerHTML = ""
   displayProducts(products);
 });
 
@@ -1246,42 +1246,47 @@ generatePriceBuckets();
 // Called on click of filter title
 // Generates UL & LIs for the filter details & appends to FilterDetailDiv
 
-function displayFilterDetails(filterDetail) {
-  filterDetailDiv.innerHTML = ""; // clear out the current contents
-  var itemList = document.createElement('UL'); // create a new UL
-  itemList.className = "list-group";
-  filterDetail.forEach(function (detailedFilter) {
-    // for each filter detail
-    var listItem = document.createElement('LI'); // create a new LI
-    listItem.className = "list-group-item";
-    if (activeFilter === 'price') {
-      listItem.textContent = detailedFilter.label;
-    } else if (activeFilter === 'tags' || activeFilter === 'keywords') {
-      listItem.textContent = detailedFilter[0] + ' (' + detailedFilter[1] + ')';
-    } else {
-      listItem.textContent = detailedFilter; // LI text content is name of detail
-    }
+function displayFilterDetails(filterDetail, parentDiv) {
+  // filterDetailDiv.innerHTML = "" // clear out the current contents
+  if (parentDiv.childNodes.length > 1) {
+    console.log('asdf');
+    parentDiv.innerHTML = activeFilter;
+  } else {
+    var itemList = document.createElement('UL'); // create a new UL
+    itemList.className = "list-group";
+    filterDetail.forEach(function (detailedFilter) {
+      // for each filter detail
+      var listItem = document.createElement('LI'); // create a new LI
+      listItem.className = "list-group-item";
+      if (activeFilter === 'price') {
+        listItem.textContent = detailedFilter.label;
+      } else if (activeFilter === 'tags' || activeFilter === 'keywords') {
+        listItem.textContent = detailedFilter[0] + ' (' + detailedFilter[1] + ')';
+      } else {
+        listItem.textContent = detailedFilter; // LI text content is name of detail
+      }
 
-    listItem.addEventListener('click', function (e) {
-      // Add event listener to detail item
-      filteredProducts = products.filter(function (product) {
-        if (activeFilter === 'price') {
-          // bucket filtering
-          return parseFloat(product.price) > detailedFilter.bucket[0] && parseFloat(product.price) <= detailedFilter.bucket[1];
-        } else if (activeFilter === 'tags' || activeFilter === 'keywords') {
-          // one-of-many filtering
-          return product[activeFilter].includes(detailedFilter[0]);
-        } else {
-          // exact-match filtering (easiest case)
-          return product[activeFilter] === detailedFilter;
-        }
+      listItem.addEventListener('click', function (e) {
+        // Add event listener to detail item
+        filteredProducts = products.filter(function (product) {
+          if (activeFilter === 'price') {
+            // bucket filtering
+            return parseFloat(product.price) > detailedFilter.bucket[0] && parseFloat(product.price) <= detailedFilter.bucket[1];
+          } else if (activeFilter === 'tags' || activeFilter === 'keywords') {
+            // one-of-many filtering
+            return product[activeFilter].includes(detailedFilter[0]);
+          } else {
+            // exact-match filtering (easiest case)
+            return product[activeFilter] === detailedFilter;
+          }
+        });
+        displayProducts(filteredProducts);
       });
-      displayProducts(filteredProducts);
+      itemList.append(listItem);
     });
-    itemList.append(listItem);
-  });
 
-  filterDetailDiv.append(itemList);
+    parentDiv.append(itemList);
+  }
 }
 
 filtersList.className = "list-group";
@@ -1293,7 +1298,8 @@ filterNames.forEach(function (name) {
 
     listItem.addEventListener('click', function (e) {
       activeFilter = name;
-      displayFilterDetails(filters[name]);
+      console.log(activeFilter);
+      displayFilterDetails(filters[name], listItem);
     });
     filtersList.append(listItem);
   }
@@ -1315,6 +1321,16 @@ function displayProducts(productsToDisplay) {
 }
 
 displayProducts(products);
+
+// UI STUFF
+
+var displaySidebarButton = document.getElementById('showSidebar');
+var sidebar = document.getElementById('menuSidebar');
+var mainContent = document.getElementById('mainContent');
+displaySidebarButton.addEventListener('click', function (e) {
+  sidebar.classList.toggle('hidden');
+  mainContent.classList.toggle('slide-over');
+});
 
 /***/ }),
 /* 4 */
