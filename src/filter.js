@@ -1,12 +1,6 @@
-const Filter = function () {
-  // validate data against schema?
-  // generate filters for the data and make them available
-  // How many types of filters do we need?
-  // Single-match filters (i.e. item type)
-  // One of many filters (i.e. tags)
-  // Range filters (i.e. price)
-  // dimensional filters???
+const Filter = {}
 
+Filter.generateFilters = function (data) {
   this.filters = {
     "price": {
       "type": "range"
@@ -26,20 +20,14 @@ const Filter = function () {
     "brand": {
       "type": "single-match"
     }
-  } // would return ['price', 'tags', 'style', 'color'] e.g.
-
-
-
-  this.filterCount = Object.keys(this.filters).length
-
-  this.generateFilters = function (data) {
-
   }
+}
 
-  this.applyFilter = function (data, filter) {
-    const filteredData = data.filter()
+Filter.applyFilter = function (data, filterCallback) {
+    const filteredData = data.filter(filterCallback)
     return filteredData
-  }
+}
 
-  console.log('Filter obect loaded')
+Filter.filterCount = function() {
+  return Object.keys(this.filters).length
 }

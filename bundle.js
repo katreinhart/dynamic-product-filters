@@ -1148,33 +1148,32 @@ Url.prototype.parseHost = function() {
 
 
 var Filter = __webpack_require__(18);
-
 var data = __webpack_require__(17);
 var products = data.products;
 
+// product schema = JSONSchema model; validates product data
 var productSchema = __webpack_require__(4);
+// Takes in validated data, detects fields that are not in schema
 var detectAllFields = __webpack_require__(16);
 
 var filterDiv = document.getElementById('filters');
-// const filterDetailDiv = document.getElementById('filter-detail')
 var productDiv = document.getElementById('products');
-var clearButton = document.getElementById('clearButton');
 
 var keys = detectAllFields(productSchema, products);
 
+// let's move this into filter?
 var dontFilterBy = ['id', 'name', 'description', 'image'];
 var filtersList = document.createElement('ul');
 var filterNames = keys;
+var filteredProducts = [];
+var activeFilter = "";
 
+var clearButton = document.getElementById('clearButton');
 clearButton.addEventListener('click', function (e) {
   filteredProducts = [];
   activeFilter = "";
-  // filterDetailDiv.innerHTML = ""
   displayProducts(products);
 });
-
-var filteredProducts = [];
-var activeFilter = "";
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
 var filters = {};
@@ -1232,9 +1231,6 @@ function generatePriceBuckets() {
   var bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2));
   var bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4));
   var bucket4 = roundUpToNearest25(parseFloat(max));
-
-  // filters.price = { "labels": [`Under \$${bucket1}`, `\$${bucket1} to \$${bucket2}`, `\$${bucket2} to \$${bucket3}`, `Over \$${bucket3}`],
-  //                   "buckets": [bucket1, bucket2, bucket3] }
 
   filters.price = [{ "label": 'Under $' + bucket1,
     "bucket": [0, bucket1] }, { "label": '$' + bucket1 + ' to $' + bucket2,
@@ -3450,15 +3446,9 @@ module.exports = {"products":[{"id":"1506464726335","name":"salvia still swag","
 "use strict";
 
 
-var Filter = function Filter() {
-  // validate data against schema?
-  // generate filters for the data and make them available
-  // How many types of filters do we need?
-  // Single-match filters (i.e. item type)
-  // One of many filters (i.e. tags)
-  // Range filters (i.e. price)
-  // dimensional filters???
+var Filter = {};
 
+Filter.generateFilters = function (data) {
   this.filters = {
     "price": {
       "type": "range"
@@ -3477,19 +3467,17 @@ var Filter = function Filter() {
     },
     "brand": {
       "type": "single-match"
-    } // would return ['price', 'tags', 'style', 'color'] e.g.
-
-
-  };this.filterCount = Object.keys(this.filters).length;
-
-  this.generateFilters = function (data) {};
-
-  this.applyFilter = function (data, filter) {
-    var filteredData = data.filter();
-    return filteredData;
+    }
   };
+};
 
-  console.log('Filter obect loaded');
+Filter.applyFilter = function (data, filterCallback) {
+  var filteredData = data.filter(filterCallback);
+  return filteredData;
+};
+
+Filter.filterCount = function () {
+  return Object.keys(this.filters).length;
 };
 
 /***/ })

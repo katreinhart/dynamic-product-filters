@@ -1,31 +1,31 @@
 const Filter = require('./filter')
-
 const data = require ('../data/test-products.json')
 const products = data.products
 
+// product schema = JSONSchema model; validates product data
 const productSchema = require('../model/validator')
+// Takes in validated data, detects fields that are not in schema
 const detectAllFields = require('../model/detectCustomFields')
 
 const filterDiv = document.getElementById('filters')
-// const filterDetailDiv = document.getElementById('filter-detail')
 const productDiv = document.getElementById('products')
-const clearButton = document.getElementById('clearButton')
 
 const keys = detectAllFields(productSchema, products)
 
+// let's move this into filter?
 const dontFilterBy = ['id', 'name', 'description', 'image']
 const filtersList = document.createElement('ul')
 let filterNames = keys
+let filteredProducts = []
+let activeFilter = ""
 
+
+const clearButton = document.getElementById('clearButton')
 clearButton.addEventListener('click', e => {
   filteredProducts = []
   activeFilter = ""
-  // filterDetailDiv.innerHTML = ""
   displayProducts(products)
 })
-
-let filteredProducts = []
-let activeFilter = ""
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
 const filters = {}
@@ -84,9 +84,6 @@ function generatePriceBuckets() {
   let bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4))
   let bucket4 = roundUpToNearest25(parseFloat(max))
 
-  // filters.price = { "labels": [`Under \$${bucket1}`, `\$${bucket1} to \$${bucket2}`, `\$${bucket2} to \$${bucket3}`, `Over \$${bucket3}`],
-  //                   "buckets": [bucket1, bucket2, bucket3] }
-
   filters.price = [ { "label": `Under \$${bucket1}`,
                       "bucket": [0, bucket1] },
                     { "label": `\$${bucket1} to \$${bucket2}`,
@@ -140,6 +137,7 @@ function displayFilterDetails(filterDetail, parentDiv) {
     parentDiv.append(itemList)
   }
 }
+
 
 filtersList.className = "list-group"
 filterNames.forEach(name => {
