@@ -1316,6 +1316,16 @@ function displayProducts(productsToDisplay) {
 
 displayProducts(products);
 
+// UI STUFF
+
+var displaySidebarButton = document.getElementById('showSidebar');
+var sidebar = document.getElementById('menuSidebar');
+var mainContent = document.getElementById('mainContent');
+displaySidebarButton.addEventListener('click', function (e) {
+  sidebar.classList.toggle('hidden');
+  mainContent.classList.toggle('slide-over');
+});
+
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {

@@ -172,3 +172,13 @@ function displayProducts(productsToDisplay) {
 }
 
 displayProducts(products)
+
+// UI STUFF
+
+const displaySidebarButton = document.getElementById('showSidebar')
+const sidebar = document.getElementById('menuSidebar')
+const mainContent = document.getElementById('mainContent')
+displaySidebarButton.addEventListener('click', e => {
+  sidebar.classList.toggle('hidden')
+  mainContent.classList.toggle('slide-over')
+})

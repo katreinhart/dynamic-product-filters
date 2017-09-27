@@ -9,12 +9,12 @@
   <body>
     <header>
       <nav class="navbar navbar-toggleable-md navbar-dark bg-dark">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" id="showSidebar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">Product Filter</a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -30,7 +30,7 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
-        </div>
+        </div> -->
       </nav>
     </header>
     <section class="hero container">
@@ -38,13 +38,13 @@
     </section>
     <section class="container-fluid">
       <div class="row">
-        <div class="col-2 col-md-1 menu-sidebar">
+        <div class="menu-sidebar hidden" id="menuSidebar">
           <div id="filters"></div>
         </div>
-        <div class="col-2 col-md-1 menu-sidebar menu-detail">
+        <!-- <div class="menu-sidebar menu-detail">
           <div id="filter-detail"></div>
-        </div>
-        <div class="col-8 col-md-10">
+        </div> -->
+        <div class="col-12" id="mainContent">
           <div class="row">
             <div class="col-sm-12">
               <h1>Product Filters</h1>
@@ -55,11 +55,11 @@
               <div class=""><button type="button" id="clearButton">Clear Filters</button></div>
             </div>
             <div class="col-md-9">
-              <div id="activeFilterDisplay"></div>
+              <div id="activeFilterDisplay"><!-- this is not implemented yet --></div>
             </div>
           </div>
           <div class="col-12">
-            <div id="products" class="card-deck-wrapper"></div>            
+            <div id="products" class="card-deck-wrapper"></div>
           </div>
         </div>
       </div>
