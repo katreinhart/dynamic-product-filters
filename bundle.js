@@ -1150,20 +1150,24 @@ Url.prototype.parseHost = function() {
 var data = __webpack_require__(1);
 var products = data.products;
 
-// product schema = JSONSchema model; validates product data
 var productSchema = __webpack_require__(4);
 // Takes in validated data, detects fields that are not in schema
-var detectAllFields = __webpack_require__(16);
+var detectFields = __webpack_require__(21);
 
 var filterDiv = document.getElementById('filters');
 var productDiv = document.getElementById('products');
 
-var keys = detectAllFields(productSchema, products);
+var filters = {
+  keys: detectFields(productSchema, products),
+  dontFilterBy: ['id', 'name', 'description', 'image']
 
-// let's move this into filter?
-var dontFilterBy = ['id', 'name', 'description', 'image'];
-var filtersList = document.createElement('ul');
-var filterNames = keys;
+  // const keys = detectFields(productSchema, products)
+
+  // let's move this into filter?
+  // const dontFilterBy = ['id', 'name', 'description', 'image']
+};var filtersList = document.createElement('ul');
+
+// let filterNames = filters.keys
 var filteredProducts = [];
 var activeFilter = "";
 
@@ -1175,8 +1179,8 @@ clearButton.addEventListener('click', function (e) {
 });
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
-var filters = {};
-filterNames.forEach(function (filterType) {
+// const filters = {}
+filters.keys.forEach(function (filterType) {
   filters[filterType] = [];
 
   products.forEach(function (item) {
@@ -1186,7 +1190,7 @@ filterNames.forEach(function (filterType) {
   });
   if (filters[filterType].length <= 2) {
     // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
-    dontFilterBy.push(filterType);
+    filters.dontFilterBy.push(filterType);
   }
 });
 
@@ -1286,8 +1290,8 @@ function displayFilterDetails(filterDetail, parentDiv) {
 }
 
 filtersList.className = "list-group";
-filterNames.forEach(function (name) {
-  if (!dontFilterBy.includes(name)) {
+filters.keys.forEach(function (name) {
+  if (!filters.dontFilterBy.includes(name)) {
     var listItem = document.createElement('LI');
     listItem.className = "list-group-item";
     listItem.textContent = name;
@@ -1328,6 +1332,8 @@ displaySidebarButton.addEventListener('click', function (e) {
   mainContent.classList.toggle('slide-over');
 });
 
+console.log(filters);
+
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1338,48 +1344,8 @@ displaySidebarButton.addEventListener('click', function (e) {
 var Validator = __webpack_require__(5).Validator;
 var v = new Validator();
 
-// const productSchema = require('./products.schema.json')
 var products = __webpack_require__(1);
-
-var customProduct = {
-  "id": "/customProduct",
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "string",
-      "required": true
-    },
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "price": {
-      "type": "string",
-      "required": true
-    },
-    "description": {
-      "type": "string"
-    },
-    "size": {
-      "type": "string"
-    },
-    "color": {
-      "type": "string"
-    },
-    "brand": {
-      "type": "string"
-    },
-    "tags": {
-      "type": "array",
-      "items": [{
-        "type": "string"
-      }]
-    },
-    "image": {
-      "type": "string"
-    }
-  }
-};
+var customProduct = __webpack_require__(20);
 
 var productSchema = {
   "$schema": "http://json-schema.org/schema#",
@@ -3405,13 +3371,23 @@ module.exports = attribute;
 
 /***/ }),
 /* 15 */,
-/* 16 */
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = {"$schema":"http://json-schema.org/schema#","id":"/customProduct","type":"object","properties":{"id":{"type":"string","required":true},"name":{"type":"string","required":true},"price":{"type":"string","required":true},"description":{"type":"string"},"size":{"type":"string"},"color":{"type":"string"},"brand":{"type":"string"},"tags":{"type":"array","items":[{"type":"string"}]},"image":{"type":"string"}}}
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-function detectAllFields(schema, data) {
+function detectFields(schema, data) {
   var standardFields = Object.keys(schema.customProduct.properties);
   var customFields = [];
 
@@ -3430,7 +3406,7 @@ function detectAllFields(schema, data) {
   return standardFields.concat(customFields);
 }
 
-module.exports = detectAllFields;
+module.exports = detectFields;
 
 /***/ })
 /******/ ]);

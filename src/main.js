@@ -2,20 +2,25 @@
 const data = require ('../data/products.json')
 const products = data.products
 
-// product schema = JSONSchema model; validates product data
 const productSchema = require('../model/validator')
 // Takes in validated data, detects fields that are not in schema
-const detectAllFields = require('../model/detectCustomFields')
+const detectFields = require('../model/detectFields')
 
 const filterDiv = document.getElementById('filters')
 const productDiv = document.getElementById('products')
 
-const keys = detectAllFields(productSchema, products)
+const filters = {
+  keys: detectFields(productSchema, products),
+  dontFilterBy: ['id', 'name', 'description', 'image']
+}
+
+// const keys = detectFields(productSchema, products)
 
 // let's move this into filter?
-const dontFilterBy = ['id', 'name', 'description', 'image']
+// const dontFilterBy = ['id', 'name', 'description', 'image']
 const filtersList = document.createElement('ul')
-let filterNames = keys
+
+// let filterNames = filters.keys
 let filteredProducts = []
 let activeFilter = ""
 
@@ -27,8 +32,8 @@ clearButton.addEventListener('click', e => {
 })
 
 // Generate a filters object which contains the key-value pairs of all the available properties.
-const filters = {}
-filterNames.forEach(filterType => {
+// const filters = {}
+filters.keys.forEach(filterType => {
   filters[filterType] = []
 
   products.forEach(item => {
@@ -38,7 +43,7 @@ filterNames.forEach(filterType => {
   })
   if(filters[filterType].length <= 2) {
     // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
-    dontFilterBy.push(filterType)
+    filters.dontFilterBy.push(filterType)
   }
 })
 
@@ -139,8 +144,8 @@ function displayFilterDetails(filterDetail, parentDiv) {
 
 
 filtersList.className = "list-group"
-filterNames.forEach(name => {
-  if(!dontFilterBy.includes(name)) {
+filters.keys.forEach(name => {
+  if(!filters.dontFilterBy.includes(name)) {
     const listItem = document.createElement('LI')
     listItem.className = "list-group-item"
     listItem.textContent = name
@@ -186,3 +191,6 @@ displaySidebarButton.addEventListener('click', e => {
   sidebar.classList.toggle('hidden')
   mainContent.classList.toggle('slide-over')
 })
+
+
+console.log(filters)

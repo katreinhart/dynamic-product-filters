@@ -1,5 +1,5 @@
 
-function detectAllFields (schema, data) {
+function detectFields (schema, data) {
     const standardFields = Object.keys(schema.customProduct.properties)
     const customFields = []
 
@@ -18,4 +18,4 @@ function detectAllFields (schema, data) {
     return standardFields.concat(customFields)
 }
 
-module.exports = detectAllFields
+module.exports = detectFields
