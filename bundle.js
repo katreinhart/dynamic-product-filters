@@ -1164,16 +1164,10 @@ var dontFilterBy = ['id', 'name', 'description', 'image'];
 var filtersList = document.createElement('ul');
 var filterNames = keys;
 
-filterNames = keys.filter(function (item) {
-  // we don't need to be able to filter by these. todo: tag them as filterable: false?
-  // console.log(item)
-  return !dontFilterBy.includes(item);
-  // also filter out any keys without values???
-});
-
 clearButton.addEventListener('click', function (e) {
   filteredProducts = [];
   activeFilter = "";
+  filterDetailDiv.innerHTML = "";
   displayProducts(products);
 });
 
@@ -1205,7 +1199,8 @@ products.forEach(function (item) {
       tagList.push([tag, 1]);
     } else {
       var index = tagList.find(tag);
-      tagList[index][1]++;
+
+      tagList[index][1] += 1;
     }
   });
 });
@@ -1254,12 +1249,15 @@ generatePriceBuckets();
 function displayFilterDetails(filterDetail) {
   filterDetailDiv.innerHTML = ""; // clear out the current contents
   var itemList = document.createElement('UL'); // create a new UL
-
+  itemList.className = "list-group";
   filterDetail.forEach(function (detailedFilter) {
     // for each filter detail
     var listItem = document.createElement('LI'); // create a new LI
+    listItem.className = "list-group-item";
     if (activeFilter === 'price') {
       listItem.textContent = detailedFilter.label;
+    } else if (activeFilter === 'tags' || activeFilter === 'keywords') {
+      listItem.textContent = detailedFilter[0] + ' (' + detailedFilter[1] + ')';
     } else {
       listItem.textContent = detailedFilter; // LI text content is name of detail
     }
@@ -1286,9 +1284,11 @@ function displayFilterDetails(filterDetail) {
   filterDetailDiv.append(itemList);
 }
 
+filtersList.className = "list-group";
 filterNames.forEach(function (name) {
   if (!dontFilterBy.includes(name)) {
     var listItem = document.createElement('LI');
+    listItem.className = "list-group-item";
     listItem.textContent = name;
 
     listItem.addEventListener('click', function (e) {
@@ -1308,7 +1308,7 @@ function displayProducts(productsToDisplay) {
   productList.className = "card-deck";
   productsToDisplay.forEach(function (product) {
     var newEl = document.createElement('DIV');
-    newEl.innerHTML = '<div class="card" style="width: 20rem;">' + ('<img class="card-img-top" src="' + product.image + '" alt="an image of ' + product.name + '">') + ('<div class="card-block"><h3 class="card-title">' + product.name + ' <span class="price">' + product.price + '</span></h3>') + ('<p class="card-text">' + product.description + '</p>') + '<a href="#" class="btn btn-primary">Add to Cart</a>' + '</div></div>';
+    newEl.innerHTML = '<div class="card">' + ('<img class="card-img-top" src="' + product.image + '" alt="an image of ' + product.name + '">') + ('<div class="card-block"><h3 class="card-title">' + product.name + ' <span class="price">' + product.price + '</span></h3>') + ('<p class="card-text">' + product.description + '</p>') + '<a href="#" class="btn btn-info">Add to Cart</a>' + '</div></div>';
     productList.append(newEl);
   });
   productDiv.append(productList);
@@ -3400,9 +3400,7 @@ module.exports = attribute;
 
 
 function detectAllFields(schema, data) {
-
   var standardFields = Object.keys(schema.customProduct.properties);
-
   var customFields = [];
 
   for (var i = 0; i < data.length; i++) {

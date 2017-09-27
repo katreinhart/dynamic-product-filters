@@ -1,3 +1,13 @@
+body {
+  background-color: #ececec;
+  font-size: 32px;
+}
+
+.navbar-dark a {
+  color: #cdcdcd;
+  font-weight: bold;
+}
+
 .price {
   font-size: 1.2rem;
   font-weight: bold;
@@ -6,4 +16,47 @@
 
 .card {
   margin: 20px;
+  width: 640px;
 }
+
+.card-block {
+  padding: 5px;
+}
+
+.menu-sidebar {
+  padding: 0;
+
+}
+
+.menu-sidebar .list-group-item {
+  background-color: #454545;
+  color: #ededed;
+  border-radius: 0
+}
+
+@media (min-device-width: 576px) {
+  body {
+    font-size: 21px;
+  }
+
+  .card-deck {
+
+  }
+  .card {
+    width: 320px;
+  }
+}
+
+@media (min-device-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (min-device-width: 992px) {
+  body {
+
+  }
+}
+
+@media (min-device-width: 1200px) {  }

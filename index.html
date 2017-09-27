@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/main.css">
-    <title>Product Filter</title>
+    <title>Product Filters</title>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <nav class="navbar navbar-toggleable-md navbar-dark bg-dark">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,32 +34,33 @@
       </nav>
     </header>
     <section class="hero container">
-      <div class="row">
-        <div class="col-12">
-          <h1>Product Filters</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-3">
-          <div class=""><button type="button" id="clearButton">Clear Filters</button></div>
-        </div>
-        <div class="col-9">
-          <div id="activeFilterDisplay">
 
-          </div>
-        </div>
-      </div>
     </section>
-    <section class="container">
+    <section class="container-fluid">
       <div class="row">
-        <div class="col-2">
+        <div class="col-2 col-md-1 menu-sidebar">
           <div id="filters"></div>
         </div>
-        <div class="col-2">
+        <div class="col-2 col-md-1 menu-sidebar menu-detail">
           <div id="filter-detail"></div>
         </div>
-        <div class="col-8">
-          <div id="products" class="card-deck-wrapper"></div>
+        <div class="col-8 col-md-10">
+          <div class="row">
+            <div class="col-sm-12">
+              <h1>Product Filters</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class=""><button type="button" id="clearButton">Clear Filters</button></div>
+            </div>
+            <div class="col-md-9">
+              <div id="activeFilterDisplay"></div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div id="products" class="card-deck-wrapper"></div>            
+          </div>
         </div>
       </div>
     </section>

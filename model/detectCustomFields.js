@@ -1,8 +1,6 @@
 
 function detectAllFields (schema, data) {
-    
     const standardFields = Object.keys(schema.customProduct.properties)
-
     const customFields = []
 
     for(let i=0; i < data.length; i++) {
