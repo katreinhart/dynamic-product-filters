@@ -15,16 +15,10 @@ const dontFilterBy = ['id', 'name', 'description', 'image']
 const filtersList = document.createElement('ul')
 let filterNames = keys
 
-filterNames = keys.filter(item => {
-  // we don't need to be able to filter by these. todo: tag them as filterable: false?
-  // console.log(item)
-  return (!dontFilterBy.includes(item))
-  // also filter out any keys without values???
-})
-
 clearButton.addEventListener('click', e => {
   filteredProducts = []
   activeFilter = ""
+  filterDetailDiv.innerHTML = ""
   displayProducts(products)
 })
 
@@ -56,7 +50,8 @@ products.forEach(item => {
       tagList.push([tag, 1])
     } else {
       let index = tagList.find(tag)
-      tagList[index][1] ++
+
+      tagList[index][1]+=1
     }
   })
 })
@@ -109,11 +104,14 @@ generatePriceBuckets()
 function displayFilterDetails(filterDetail) {
   filterDetailDiv.innerHTML = "" // clear out the current contents
   const itemList = document.createElement('UL') // create a new UL
-
+  itemList.className = "list-group"
   filterDetail.forEach(detailedFilter => { // for each filter detail
     const listItem = document.createElement('LI') // create a new LI
+    listItem.className = "list-group-item"
     if(activeFilter === 'price') {
       listItem.textContent = detailedFilter.label
+    } else if ((activeFilter === 'tags') || (activeFilter === 'keywords')){
+      listItem.textContent = `${detailedFilter[0]} (${detailedFilter[1]})`
     } else {
       listItem.textContent = detailedFilter // LI text content is name of detail
     }
@@ -128,7 +126,6 @@ function displayFilterDetails(filterDetail) {
         } else { // exact-match filtering (easiest case)
           return (product[activeFilter] === detailedFilter)
         }
-
       })
       displayProducts(filteredProducts)
     })
@@ -138,9 +135,11 @@ function displayFilterDetails(filterDetail) {
   filterDetailDiv.append(itemList)
 }
 
+filtersList.className = "list-group"
 filterNames.forEach(name => {
   if(!dontFilterBy.includes(name)) {
     const listItem = document.createElement('LI')
+    listItem.className = "list-group-item"
     listItem.textContent = name
 
     listItem.addEventListener('click', e => {
@@ -161,11 +160,11 @@ function displayProducts(productsToDisplay) {
   productList.className = "card-deck"
   productsToDisplay.forEach(product => {
     const newEl = document.createElement('DIV')
-    newEl.innerHTML = `<div class="card" style="width: 20rem;">`
+    newEl.innerHTML = `<div class="card">`
         + `<img class="card-img-top" src="${product.image}" alt="an image of ${product.name}">`
         + `<div class="card-block"><h3 class="card-title">${product.name} <span class="price">${product.price}</span></h3>`
         + `<p class="card-text">${product.description}</p>`
-        + `<a href="#" class="btn btn-primary">Add to Cart</a>`
+        + `<a href="#" class="btn btn-info">Add to Cart</a>`
         + `</div></div>`
     productList.append(newEl)
   })
