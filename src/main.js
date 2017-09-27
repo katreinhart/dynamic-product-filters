@@ -1,5 +1,5 @@
-const Filter = require('./filter')
-const data = require ('../data/test-products.json')
+
+const data = require ('../data/products.json')
 const products = data.products
 
 // product schema = JSONSchema model; validates product data
@@ -18,7 +18,6 @@ const filtersList = document.createElement('ul')
 let filterNames = keys
 let filteredProducts = []
 let activeFilter = ""
-
 
 const clearButton = document.getElementById('clearButton')
 clearButton.addEventListener('click', e => {
