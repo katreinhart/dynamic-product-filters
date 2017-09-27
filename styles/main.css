@@ -70,6 +70,14 @@ body {
   .menu-sidebar.hidden {
     display: block;
   }
+  .main {
+    width: 75%;
+    position: absolute;
+    left: 25%;
+  }
+  .navbar-toggler {
+    display: none;
+  }
 }
 
 @media (min-device-width: 992px) {

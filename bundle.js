@@ -1298,7 +1298,7 @@ filterNames.forEach(function (name) {
 
     listItem.addEventListener('click', function (e) {
       activeFilter = name;
-      console.log(activeFilter);
+      // BUG: Clicking on a filter detail collapses the menu
       displayFilterDetails(filters[name], listItem);
     });
     filtersList.append(listItem);

@@ -149,7 +149,7 @@ filterNames.forEach(name => {
 
     listItem.addEventListener('click', e => {
       activeFilter = name
-      console.log(activeFilter)
+      // BUG: Clicking on a filter detail collapses the menu
       displayFilterDetails(filters[name], listItem)
     })
     filtersList.append(listItem)
