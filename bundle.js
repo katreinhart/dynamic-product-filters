@@ -1160,10 +1160,14 @@ var clearButton = document.getElementById('clearButton');
 
 var keys = detectAllFields(productSchema, products);
 
+var dontFilterBy = ['id', 'name', 'description', 'image'];
 var filtersList = document.createElement('ul');
-var filterNames = keys.filter(function (item) {
+var filterNames = keys;
+
+filterNames = keys.filter(function (item) {
   // we don't need to be able to filter by these. todo: tag them as filterable: false?
-  return item !== 'id' && item !== "name" && item !== "description" && item !== "image";
+  // console.log(item)
+  return !dontFilterBy.includes(item);
   // also filter out any keys without values???
 });
 
@@ -1186,6 +1190,10 @@ filterNames.forEach(function (filterType) {
       filters[filterType].push(item[filterType]);
     }
   });
+  if (filters[filterType].length <= 2) {
+    // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
+    dontFilterBy.push(filterType);
+  }
 });
 
 // TAGS
@@ -1203,7 +1211,6 @@ products.forEach(function (item) {
 });
 
 filters.tags = tagList;
-
 // PRICE
 // dynamically generate buckets based on range of prices in data.
 
@@ -1237,7 +1244,6 @@ function generatePriceBuckets() {
     "bucket": [bucket1, bucket2] }, { "label": '$' + bucket2 + ' to $' + bucket3,
     "bucket": [bucket2, bucket3] }, { "label": 'Over $' + bucket3,
     "bucket": [bucket3, bucket4] }];
-  console.log(filters.price);
 }
 generatePriceBuckets();
 
@@ -1281,14 +1287,16 @@ function displayFilterDetails(filterDetail) {
 }
 
 filterNames.forEach(function (name) {
-  var listItem = document.createElement('LI');
-  listItem.textContent = name;
+  if (!dontFilterBy.includes(name)) {
+    var listItem = document.createElement('LI');
+    listItem.textContent = name;
 
-  listItem.addEventListener('click', function (e) {
-    activeFilter = name;
-    displayFilterDetails(filters[name]);
-  });
-  filtersList.append(listItem);
+    listItem.addEventListener('click', function (e) {
+      activeFilter = name;
+      displayFilterDetails(filters[name]);
+    });
+    filtersList.append(listItem);
+  }
 });
 
 filterDiv.append(filtersList);

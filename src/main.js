@@ -11,10 +11,14 @@ const clearButton = document.getElementById('clearButton')
 
 const keys = detectAllFields(productSchema, products)
 
+const dontFilterBy = ['id', 'name', 'description', 'image']
 const filtersList = document.createElement('ul')
-const filterNames = keys.filter(item => {
+let filterNames = keys
+
+filterNames = keys.filter(item => {
   // we don't need to be able to filter by these. todo: tag them as filterable: false?
-  return ((item !== 'id') && (item !== "name") && (item !== "description") && (item !== "image"))
+  // console.log(item)
+  return (!dontFilterBy.includes(item))
   // also filter out any keys without values???
 })
 
@@ -37,6 +41,10 @@ filterNames.forEach(filterType => {
       filters[filterType].push(item[filterType])
     }
   })
+  if(filters[filterType].length <= 2) {
+    // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
+    dontFilterBy.push(filterType)
+  }
 })
 
 // TAGS
@@ -54,7 +62,6 @@ products.forEach(item => {
 })
 
 filters.tags = tagList
-
 // PRICE
 // dynamically generate buckets based on range of prices in data.
 
@@ -92,7 +99,6 @@ function generatePriceBuckets() {
                     { "label": `Over \$${bucket3}`,
                       "bucket": [bucket3, bucket4] }
                   ]
-  console.log(filters.price)
 }
 generatePriceBuckets()
 
@@ -133,14 +139,16 @@ function displayFilterDetails(filterDetail) {
 }
 
 filterNames.forEach(name => {
-  const listItem = document.createElement('LI')
-  listItem.textContent = name
+  if(!dontFilterBy.includes(name)) {
+    const listItem = document.createElement('LI')
+    listItem.textContent = name
 
-  listItem.addEventListener('click', e => {
-    activeFilter = name
-    displayFilterDetails(filters[name])
-  })
-  filtersList.append(listItem)
+    listItem.addEventListener('click', e => {
+      activeFilter = name
+      displayFilterDetails(filters[name])
+    })
+    filtersList.append(listItem)
+  }
 })
 
 filterDiv.append(filtersList)
