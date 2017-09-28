@@ -1,14 +1,44 @@
 const DynamicFilter = require('../model')
 const expect = require('chai').expect
 
+const testSchema = require('./fixtures/schema.json')
+const testProducts = require('./fixtures/test-products.json')
+
 describe('DynamicFilter', function () {
-  describe('new DynamicFilter', function () {
-    it('should return a new instance of DynamicFilter')
-    it('should throw an error if either the schema or the products are not provided')
-    it('should allow for an exclude option')
+  before(function () {
+    this.schema = testSchema
+    this.products = testProducts
   })
 
-  describe('.data', function () {
+  describe('new DynamicFilter', function () {
+    it('should return a new instance of DynamicFilter', function() {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      expect(newFilter).to.be.an.instanceof(DynamicFilter)
+    })
+    it('should throw an error if either the schema or the products are not provided', function() {
+      const badFilter = () => { new DynamicFilter() }
+      expect(badFilter).to.throw()
+    })
+    it('should allow for an exclude option', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products, ['id'])
+      expect(newFilter.exclude).to.deep.equal(['id'])
+    })
+  })
+
+  describe('.detectFields', function () {
+    it('should validate the data against the schema', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      expect(newFilter.detectFields()).to.be.a('array')
+    })
+  })
+
+  describe('.generateFilters', function () {
+    it('should do something', function () {
+      expect.something.to.happen()
+    })
+  })
+
+  describe('.filters', function () {
     it('should return an object with all the keys of those properties that are filterable')
     it('should exclude properties if an option of exclude is provided that includes the property name')
     it('should exclude properties which only have 0-1 options')
