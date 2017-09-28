@@ -396,12 +396,7 @@ exports.getDecimalPlaces = function getDecimalPlaces(number) {
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = {"products":[{"id":"1506445881315","name":"readymade shorts swag hoodie","description":"Schlitz party occupy OSS! Marfa mixtape church-key skateboard sold crucifix lo-fi fix lo-fi","tags":["fund","shabby","kitsch","chillwave","photo","actually"],"style":"modern","type":"wall art","price":"94.63","image":"https://unsplash.it/400/200?image=279"},{"id":"1506445881326","name":"before","description":"Vice Tumblr belly beer Internal Future semiotics single-origin narwhal High chambray loko ugh art","tags":["post-ironic","haven't","Server","jean","sold"],"style":"traditional","type":"accessory","price":"63.66","image":"https://unsplash.it/400/200?image=966"},{"id":"1506445881327","name":"party Apparel whatever","description":"Neutra meh vegan mixtape Intelligentsia viral being slow-carb messenger","tags":["tattooed","VHS","McSweeney's","stumptown","polaroid","being"],"style":"modern","type":"jeans","price":"26.36","image":"https://unsplash.it/400/200?image=241"},{"id":"1506445881327","name":"chia","description":"synth VHS flexitarian swag scenester moon lomo cray gastropub swag art deep vinyl PBR","tags":["shabby","booth","yr","art","lomo","master"],"style":"traditional","type":"accessory","price":"62.35","image":"https://unsplash.it/400/200?image=768"},{"id":"1506445881344","name":"bicycle dreamcatcher Wes","description":"vinyl put in mi post-ironic out mumblecore artisan are cornhole trade scenester Brooklyn PBR&B four party master sriracha","tags":["butcher","scenester","bag","flannel"],"style":"retro","type":"beer","price":"22.26","image":"https://unsplash.it/400/200?image=990"},{"id":"1506445881347","name":"OSS!","description":"banjo ethical Intelligentsia Carles viral fashion Austin keffiyeh kitsch","tags":["kale","wolf","Truffaut","chic"],"style":"traditional","type":"jeans","price":"76.98","image":"https://unsplash.it/400/200?image=299"},{"id":"1506445881350","name":"biodiesel","description":"towards scenester belly Pitchfork selvage party axe farm-to-table selfies Pitchfork batch photo Shoreditch 2017-07-02; Tumblr","tags":["Bushwick","still","blog","{\"text\":\"kogi"],"style":"retro","type":"T-shirt","price":"53.69","image":"https://unsplash.it/400/200?image=603"},{"id":"1506445881357","name":"Bottle cleanse master","description":"ethical hoodie Park whatever flexitarian bitters Bushwick street level on single-origin cred bag","tags":["Apparel","chambray","Pinterest","twee"],"style":"kitsch","type":"beer","price":"72.36","image":"https://unsplash.it/400/200?image=39"},{"id":"1506445881357","name":"fixie","description":"place salvia pork cardigan asymmetrical salvia butcher slow-carb chia put 2017-06-23; Williamsburg","tags":["direct","bicycle","out","twee","biodiesel","Quick"],"style":"sartorial","type":"beer","price":"77.70","image":"https://unsplash.it/400/200?image=744"},{"id":"1506445881358","name":"letterpress","description":"iPhone probably polaroid v 3 shabby +1 pickled fixie Bottle Cosby retro Godard NOT chips pack selvage Progress","tags":["art","keffiyeh","church-key","Thundercats","leggings"],"style":"transitional","type":"coffee","price":"36.84","image":"https://unsplash.it/400/200?image=252"},{"id":"1506445931918","name":"Neutra Echo","description":"Odd Anderson it locavore blog they street Anderson fix raw","tags":["pork","Marfa","Brooklyn","chic"],"style":"modern","type":"beer","price":"50.51","image":"https://unsplash.it/400/200?image=507"},{"id":"1506445931921","name":"wayfarers party Wes Progress","description":"Tonx selvage NOT booth sweater drinking retro before sustainable umami before sweater loko tattooed 90's","tags":["mi","stumptown","normcore","flannel","sold","lo-fi"],"style":"kitsch","type":"table","price":"0.39","image":"https://unsplash.it/400/200?image=695"},{"id":"1506445931922","name":"aesthetic","description":"mi vinegar wayfarers mustache retro party salvia banh Intelligentsia 2017-06-23; Future disrupt cleanse place fixie level on","tags":["pug","pour-over","street","craft","Server"],"style":"retro","type":"jeans","price":"55.28","image":"https://unsplash.it/400/200?image=278"},{"id":"1506445931922","name":"pour-over before level","description":"vinyl salvia master PBR&B salvia cray Godard chia umami cornhole cardigan viral brunch axe roof aesthetic shabby","tags":["honored","sold","authentic","8-bit","food"],"style":"kitsch","type":"wall art","price":"33.46","image":"https://unsplash.it/400/200?image=1024"},{"id":"1506445931923","name":"mumblecore","description":"wolf polaroid bicycle vinyl bespoke lo-fi American biodiesel brunch","tags":["trade","authentic","tousled","sustainable"],"style":"sartorial","type":"beer","price":"6.28","image":"https://unsplash.it/400/200?image=554"},{"id":"1506445931923","name":"meh","description":"Williamsburg party twee hella retro Brooklyn tofu sartorial bird cleanse chia keffiyeh heirloom church-key","tags":["meggings","blog","hella","haven't"],"style":"transitional","type":"wall art","price":"72.69","image":"https://unsplash.it/400/200?image=335"},{"id":"1506445931924","name":"cornhole a","description":"them paleo forage tofu 2017-07-02; try-hard tattooed place Pinterest letterpress XOXO occupy twee stumptown Apparel put wolf place whatever flannel","tags":["honored","put","party","salvia","forage"],"style":"retro","type":"T-shirt","price":"84.36","image":"https://unsplash.it/400/200?image=429"},{"id":"1506445931925","name":"post-ironic","description":"place Kickstarter booth DIY being pour-over trade ennui Godard small roof it leggings Blue","tags":["heirloom","in","messenger","cred"],"style":"kitsch","type":"beer","price":"68.72","image":"https://unsplash.it/400/200?image=700"},{"id":"1506445931926","name":"squid sriracha","description":"Cosby bespoke fixie Vice them try-hard food narwhal tousled are Truffaut fingerstache sartorial","tags":["stumptown","on","loko","Error\",\"message\":\"Work"],"style":"transitional","type":"table","price":"85.22","image":"https://unsplash.it/400/200?image=773"},{"id":"1506445931935","name":"forage","description":"wolf banjo honore retro disrupt master salvia mi Portland in","tags":["narwhal","leggings","fixie","put","trust"],"style":"hella","type":"chair","price":"80.20","image":"https://unsplash.it/400/200?image=600"}]}
-
-/***/ }),
+/* 1 */,
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -429,8 +424,8 @@ module.exports = {"products":[{"id":"1506445881315","name":"readymade shorts swa
 
 
 
-var punycode = __webpack_require__(7);
-var util = __webpack_require__(10);
+var punycode = __webpack_require__(8);
+var util = __webpack_require__(11);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -505,7 +500,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
       'gopher:': true,
       'file:': true
     },
-    querystring = __webpack_require__(11);
+    querystring = __webpack_require__(12);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -1147,10 +1142,10 @@ Url.prototype.parseHost = function() {
 "use strict";
 
 
-var data = __webpack_require__(17);
+var data = __webpack_require__(20);
 var products = data.products;
 
-var filters = __webpack_require__(23);
+var filters = __webpack_require__(4);
 // Generate a filters object which contains the key-value pairs of all the available properties.
 filters.init(); // runs all the initialization & setup functions inside of filters
 
@@ -1287,11 +1282,96 @@ displaySidebarButton.addEventListener('click', function (e) {
 "use strict";
 
 
-var Validator = __webpack_require__(5).Validator;
+var data = __webpack_require__(20);
+var products = data.products;
+
+var productSchema = __webpack_require__(5);
+var detectFields = __webpack_require__(18);
+var roundUpToNearest25 = __webpack_require__(19);
+
+var filters = {
+  keys: detectFields(productSchema, products),
+  dontFilterBy: ['id', 'name', 'description', 'image'],
+  filteredProducts: [],
+  activeFilter: "",
+
+  generateFilters: function generateFilters() {
+    filters.keys.forEach(function (filterType) {
+      filters[filterType] = [];
+
+      products.forEach(function (item) {
+        if (!filters[filterType].includes(item[filterType])) {
+          filters[filterType].push(item[filterType]);
+        }
+      });
+      if (filters[filterType].length < 2) {
+        // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
+        filters.dontFilterBy.push(filterType);
+      }
+    });
+  },
+
+  generateTagList: function generateTagList() {
+    var tagList = [];
+    products.forEach(function (item) {
+      item.tags.forEach(function (tag) {
+        if (!tagList.includes(tag)) {
+          tagList.push([tag, 1]);
+        } else {
+          var index = tagList.find(tag);
+
+          tagList[index][1] += 1;
+        }
+      });
+    });
+    this.tags = tagList;
+  },
+
+  generatePriceBuckets: function generatePriceBuckets() {
+    var min = Infinity;
+    var max = 0;
+    products.forEach(function (item) {
+      if (parseFloat(item.price) < min) {
+        min = parseFloat(item.price);
+      }
+      if (parseFloat(item.price) > max) {
+        max = parseFloat(item.price);
+      }
+    });
+
+    var bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4));
+    var bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2));
+    var bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4));
+    var bucket4 = roundUpToNearest25(parseFloat(max));
+
+    filters.price = [{ "label": 'Under $' + bucket1,
+      "bucket": [0, bucket1] }, { "label": '$' + bucket1 + ' to $' + bucket2,
+      "bucket": [bucket1, bucket2] }, { "label": '$' + bucket2 + ' to $' + bucket3,
+      "bucket": [bucket2, bucket3] }, { "label": 'Over $' + bucket3,
+      "bucket": [bucket3, bucket4] }];
+  },
+
+  init: function init() {
+    this.generateFilters();
+    this.generateTagList();
+    this.generatePriceBuckets();
+  }
+};
+
+module.exports = filters;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Validator = __webpack_require__(6).Validator;
 var v = new Validator();
 
-var products = __webpack_require__(1);
-var customProduct = __webpack_require__(20);
+var products = __webpack_require__(16);
+var customProduct = __webpack_require__(17);
 
 var productSchema = {
   "$schema": "http://json-schema.org/schema#",
@@ -1314,13 +1394,13 @@ module.exports = {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Validator = module.exports.Validator = __webpack_require__(6);
+var Validator = module.exports.Validator = __webpack_require__(7);
 
 module.exports.ValidatorResult = __webpack_require__(0).ValidatorResult;
 module.exports.ValidationError = __webpack_require__(0).ValidationError;
@@ -1333,7 +1413,7 @@ module.exports.validate = function (instance, schema, options) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1341,7 +1421,7 @@ module.exports.validate = function (instance, schema, options) {
 
 var urilib = __webpack_require__(2);
 
-var attribute = __webpack_require__(14);
+var attribute = __webpack_require__(15);
 var helpers = __webpack_require__(0);
 var ValidatorResult = helpers.ValidatorResult;
 var SchemaError = helpers.SchemaError;
@@ -1674,7 +1754,7 @@ module.exports = Validator;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -2210,10 +2290,10 @@ module.exports = Validator;
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)(module), __webpack_require__(9)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)(module), __webpack_require__(10)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -2241,7 +2321,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2268,7 +2348,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2291,18 +2371,18 @@ module.exports = {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(12);
-exports.encode = exports.stringify = __webpack_require__(13);
+exports.decode = exports.parse = __webpack_require__(13);
+exports.encode = exports.stringify = __webpack_require__(14);
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2393,7 +2473,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2485,7 +2565,7 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3316,23 +3396,19 @@ module.exports = attribute;
 
 
 /***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"products":[{"id":"1506464726335","name":"salvia still swag","description":"pickled typewriter loko gastropub try-hard Pinterest axe +1 in dreamcatcher craft you pack wolf +1 quinoa gentrify are irony","tags":["lomo","Etsy","biodiesel","of"],"itemType":"jackets","size":"xl","age":"4-6","price":"174.16","image":"https://unsplash.it/400/200?image=208"},{"id":"1506464726338","name":"Progress fashion bespoke raw","description":"squid DIY out cred bag direct them ennui OSS! quinoa chia","tags":["Neutra","gastropub","honored","pack","YOLO","gluten-free"],"itemType":"jackets","size":"medium","age":"Under 2","price":"155.43","image":"https://unsplash.it/400/200?image=872"},{"id":"1506464726342","name":"trade High","description":"3 dreamcatcher irony bespoke yr banjo kitsch fix batch it banjo meggings gluten-free in Williamsburg tofu occupy","tags":["XOXO","fixie","on","chips","keytar"],"itemType":"pants","size":"small","age":"6-8","price":"164.75","image":"https://unsplash.it/400/200?image=160"},{"id":"1506464726343","name":"chic","description":"irony Future street heard heard chambray kale vinyl whatever keffiyeh cleanse narwhal wolf High forage swag them","tags":["brunch","swag","Odd","distillery","PBR&B"],"itemType":"shirt","size":"xl","age":"8 and Up","price":"162.49","image":"https://unsplash.it/400/200?image=209"},{"id":"1506464726343","name":"swag","description":"booth Thundercats party irony a ugh actually truly letterpress a gluten-free jean of salvia","tags":["fap","vinyl","Kickstarter","Anderson","+1"],"itemType":"shirt","size":"small","age":"4-6","price":"137.02","image":"https://unsplash.it/400/200?image=96"},{"id":"1506464726348","name":"scenester flannel","description":"trust raw bird cray towards honored loko bag Williamsburg fashion blog rights probably party Pinterest","tags":["on","PBR&B","8-bit","four","VHS"],"itemType":"jackets","size":"xs","age":"6-8","price":"122.49","image":"https://unsplash.it/400/200?image=932"},{"id":"1506464726350","name":"Kickstarter mlkshk on yr","description":"farm-to-table tote bag truck narwhal ennui Future put Kickstarter pop-up vinyl Portland hashtag in Schlitz bird synth probably party freegan","tags":["cornhole","photo","truly","it","biodiesel"],"itemType":"accessories","size":"large","age":"Under 2","price":"163.85","image":"https://unsplash.it/400/200?image=915"},{"id":"1506464726352","name":"mlkshk Server","description":"hella ugh small fingerstache fanny Bushwick belly tattooed Server salvia flannel denim bag food gentrify party pug paleo drinking","tags":["3","twee","occupy","wolf","food"],"itemType":"shirt","size":"small","age":"2-4","price":"75.05","image":"https://unsplash.it/400/200?image=75"},{"id":"1506464726359","name":"coffee deep yr bespoke","description":"90's flannel fingerstache sriracha bicycle Vice being hoodie OSS! iPhone","tags":["leggings","Bushwick","pop-up","out"],"itemType":"shorts","size":"xl","age":"2-4","price":"199.30","image":"https://unsplash.it/400/200?image=121"},{"id":"1506464726360","name":"sustainable","description":"2017-06-23; wolf ethical irony Truffaut American polaroid slow-carb tofu mlkshk wolf","tags":["honored\"}","bicycle","fingerstache","Williamsburg"],"itemType":"shorts","size":"medium","age":"2-4","price":"70.01","image":"https://unsplash.it/400/200?image=941"},{"id":"1506464739251","name":"High chic in","description":"Marfa deep bird being v booth vegan narwhal mumblecore fix OSS! 90's a keffiyeh","tags":["denim","artisan","selfies","forage","fund","Portland"],"itemType":"shorts","size":"medium","age":"2-4","price":"154.19","image":"https://unsplash.it/400/200?image=698"},{"id":"1506464739254","name":"fund","description":"denim lomo normcore chambray cray Tonx denim 90's fap typewriter quinoa of meh bag sustainable trust cornhole Brooklyn pug","tags":["moon","Wes","synth","meh","Godard"],"itemType":"shirt","size":"large","age":"2-4","price":"17.53","image":"https://unsplash.it/400/200?image=360"},{"id":"1506464739255","name":"sweater","description":"fap sold you loko Server OSS! Brooklyn Internal Blue params skateboard roof kale","tags":["wayfarers","Thundercats","before","quinoa","truly"],"itemType":"accessories","size":"xs","age":"Under 2","price":"131.50","image":"https://unsplash.it/400/200?image=162"},{"id":"1506464739255","name":"you Life Thundercats","description":"iPhone pickled Internal YOLO mixtape gluten-free Bottle Etsy synth","tags":["params","sold","cray","small","Cosby"],"itemType":"socks","size":"xl","age":"Under 2","price":"199.43","image":"https://unsplash.it/400/200?image=700"},{"id":"1506464739256","name":"raw","description":"party banh Cosby lo-fi PBR craft wolf sriracha Quick sriracha","tags":["authentic","iPhone","raw","mlkshk","bird"],"itemType":"shirt","size":"xs","age":"8 and Up","price":"82.88","image":"https://unsplash.it/400/200?image=607"},{"id":"1506464739256","name":"normcore","description":"distillery vinyl distillery probably paleo messenger bag Tonx Bushwick fixie Shoreditch bird","tags":["ethical","Bottle","artisan","kogi","party"],"itemType":"shorts","size":"small","age":"8 and Up","price":"53.76","image":"https://unsplash.it/400/200?image=981"},{"id":"1506464739256","name":"cardigan asymmetrical","description":"meh drinking before bag on flexitarian sustainable them heirloom keytar  biodiesel Internal lomo cardigan synth towards on","tags":["squid","single-origin","shabby","dreamcatcher"],"itemType":"jackets","size":"medium","age":"2-4","price":"40.62","image":"https://unsplash.it/400/200?image=503"},{"id":"1506464739257","name":"actually","description":"cliche Etsy distillery pop-up flannel post-ironic Cosby photo cred mixtape bag mixtape sold street church-key single-origin they","tags":["Thundercats","craft","synth","beer"],"itemType":"pants","size":"xl","age":"6-8","price":"66.96","image":"https://unsplash.it/400/200?image=350"},{"id":"1506464739257","name":"banjo Austin Bushwick","description":"mi Life literally flexitarian hella squid butcher OSS! Pinterest denim gluten-free chambray readymade kogi tattooed tofu scenester wolf you","tags":["raw","Anderson","vegan","messenger","fashion","lomo"],"itemType":"accessories","size":"medium","age":"6-8","price":"18.33","image":"https://unsplash.it/400/200?image=733"},{"id":"1506464739258","name":"cray","description":"VHS asymmetrical Portland raw out art probably put pack PBR party PBR&B 2017-07-02; denim Pinterest sweater banh it drinking pop-up","tags":["Echo","in","cray","hella"],"itemType":"jackets","size":"medium","age":"8 and Up","price":"52.11","image":"https://unsplash.it/400/200?image=455"},{"id":"1506465473260","name":"freegan shabby PBR&B salvia","description":"heard Pinterest mumblecore quinoa flannel cardigan fanny haven't Portland sartorial OSS! v Truffaut gentrify bicycle messenger mlkshk OSS! Godard VHS","tags":["bird","truck","shorts","narwhal"],"itemType":"shirt","size":"small","age":"2-4","price":"120.24","image":"https://unsplash.it/400/200?image=906"},{"id":"1506465473264","name":"readymade organic pop-up vegan","description":"Marfa coffee 3 chambray pug irony before +1 iPhone photo Anderson","tags":["banh","post-ironic","3","sustainable","kogi","synth"],"itemType":"jackets","size":"xs","age":"8 and Up","price":"107.58","image":"https://unsplash.it/400/200?image=186"},{"id":"1506465473264","name":"forage","description":"hella chia party distillery paleo church-key Bottle keytar raw mi forage church-key","tags":["place","it","biodiesel","OSS!","XOXO"],"itemType":"shirt","size":"large","age":"6-8","price":"136.08","image":"https://unsplash.it/400/200?image=214"},{"id":"1506465473265","name":"Progress aesthetic fanny","description":"master paleo shorts actually banh irony stumptown it truly honored probably towards","tags":["dreamcatcher","beard","occupy","kale","direct"],"itemType":"shirt","size":"small","age":"Under 2","price":"50.94","image":"https://unsplash.it/400/200?image=873"},{"id":"1506465473265","name":"towards","description":"sustainable on chic polaroid normcore v ennui PBR gluten-free","tags":["truly","chia","quinoa","put","McSweeney's","drinking"],"itemType":"shirt","size":"medium","age":"8 and Up","price":"110.12","image":"https://unsplash.it/400/200?image=433"},{"id":"1506465473266","name":"hella blog","description":"Vice Brooklyn bitters wolf XOXO put chips Intelligentsia kale Life squid mixtape actually master heirloom banjo hoodie next honored\"}","tags":["ugh","aesthetic","American","seitan","denim"],"itemType":"shirt","size":"medium","age":"4-6","price":"43.55","image":"https://unsplash.it/400/200?image=66"},{"id":"1506465473267","name":"on","description":"cred tofu Portland asymmetrical Schlitz truck cleanse fix a authentic Anderson haven't of asymmetrical typewriter irony vinyl selvage whatever retro photo","tags":["on","90's","Bottle","Pitchfork","typewriter","fingerstache"],"itemType":"pants","size":"xs","age":"Under 2","price":"177.28","image":"https://unsplash.it/400/200?image=209"},{"id":"1506465473268","name":"on","description":"Vice NOT banh tote pork mumblecore Quick actually wolf Bushwick heard mi flexitarian 3 typewriter normcore Bushwick jean Pitchfork mixtape ennui party","tags":["batch","Truffaut","High","direct"],"itemType":"pants","size":"xs","age":"4-6","price":"44.97","image":"https://unsplash.it/400/200?image=396"},{"id":"1506465473269","name":"Etsy fashion","description":"heirloom Pinterest direct Quick in letterpress cray YOLO chia street party Bushwick party aesthetic Life actually 3 moon +1","tags":["mixtape","Progress","meh","disrupt","vinyl"],"itemType":"jackets","size":"xl","age":"2-4","price":"116.95","image":"https://unsplash.it/400/200?image=313"},{"id":"1506465473270","name":"ennui","description":"banjo photo Server bitters viral narwhal fashion selvage towards keytar farm-to-table sriracha","tags":["biodiesel","Odd","kale","chic","Carles"],"itemType":"jackets","size":"xs","age":"Under 2","price":"158.19","image":"https://unsplash.it/400/200?image=92"}]}
+module.exports = {"products":[{"id":"1506445881315","name":"readymade shorts swag hoodie","description":"Schlitz party occupy OSS! Marfa mixtape church-key skateboard sold crucifix lo-fi fix lo-fi","tags":["fund","shabby","kitsch","chillwave","photo","actually"],"style":"modern","type":"wall art","price":"94.63","image":"https://unsplash.it/400/200?image=279"},{"id":"1506445881326","name":"before","description":"Vice Tumblr belly beer Internal Future semiotics single-origin narwhal High chambray loko ugh art","tags":["post-ironic","haven't","Server","jean","sold"],"style":"traditional","type":"accessory","price":"63.66","image":"https://unsplash.it/400/200?image=966"},{"id":"1506445881327","name":"party Apparel whatever","description":"Neutra meh vegan mixtape Intelligentsia viral being slow-carb messenger","tags":["tattooed","VHS","McSweeney's","stumptown","polaroid","being"],"style":"modern","type":"jeans","price":"26.36","image":"https://unsplash.it/400/200?image=241"},{"id":"1506445881327","name":"chia","description":"synth VHS flexitarian swag scenester moon lomo cray gastropub swag art deep vinyl PBR","tags":["shabby","booth","yr","art","lomo","master"],"style":"traditional","type":"accessory","price":"62.35","image":"https://unsplash.it/400/200?image=768"},{"id":"1506445881344","name":"bicycle dreamcatcher Wes","description":"vinyl put in mi post-ironic out mumblecore artisan are cornhole trade scenester Brooklyn PBR&B four party master sriracha","tags":["butcher","scenester","bag","flannel"],"style":"retro","type":"beer","price":"22.26","image":"https://unsplash.it/400/200?image=990"},{"id":"1506445881347","name":"OSS!","description":"banjo ethical Intelligentsia Carles viral fashion Austin keffiyeh kitsch","tags":["kale","wolf","Truffaut","chic"],"style":"traditional","type":"jeans","price":"76.98","image":"https://unsplash.it/400/200?image=299"},{"id":"1506445881350","name":"biodiesel","description":"towards scenester belly Pitchfork selvage party axe farm-to-table selfies Pitchfork batch photo Shoreditch 2017-07-02; Tumblr","tags":["Bushwick","still","blog","{\"text\":\"kogi"],"style":"retro","type":"T-shirt","price":"53.69","image":"https://unsplash.it/400/200?image=603"},{"id":"1506445881357","name":"Bottle cleanse master","description":"ethical hoodie Park whatever flexitarian bitters Bushwick street level on single-origin cred bag","tags":["Apparel","chambray","Pinterest","twee"],"style":"kitsch","type":"beer","price":"72.36","image":"https://unsplash.it/400/200?image=39"},{"id":"1506445881357","name":"fixie","description":"place salvia pork cardigan asymmetrical salvia butcher slow-carb chia put 2017-06-23; Williamsburg","tags":["direct","bicycle","out","twee","biodiesel","Quick"],"style":"sartorial","type":"beer","price":"77.70","image":"https://unsplash.it/400/200?image=744"},{"id":"1506445881358","name":"letterpress","description":"iPhone probably polaroid v 3 shabby +1 pickled fixie Bottle Cosby retro Godard NOT chips pack selvage Progress","tags":["art","keffiyeh","church-key","Thundercats","leggings"],"style":"transitional","type":"coffee","price":"36.84","image":"https://unsplash.it/400/200?image=252"},{"id":"1506445931918","name":"Neutra Echo","description":"Odd Anderson it locavore blog they street Anderson fix raw","tags":["pork","Marfa","Brooklyn","chic"],"style":"modern","type":"beer","price":"50.51","image":"https://unsplash.it/400/200?image=507"},{"id":"1506445931921","name":"wayfarers party Wes Progress","description":"Tonx selvage NOT booth sweater drinking retro before sustainable umami before sweater loko tattooed 90's","tags":["mi","stumptown","normcore","flannel","sold","lo-fi"],"style":"kitsch","type":"table","price":"0.39","image":"https://unsplash.it/400/200?image=695"},{"id":"1506445931922","name":"aesthetic","description":"mi vinegar wayfarers mustache retro party salvia banh Intelligentsia 2017-06-23; Future disrupt cleanse place fixie level on","tags":["pug","pour-over","street","craft","Server"],"style":"retro","type":"jeans","price":"55.28","image":"https://unsplash.it/400/200?image=278"},{"id":"1506445931922","name":"pour-over before level","description":"vinyl salvia master PBR&B salvia cray Godard chia umami cornhole cardigan viral brunch axe roof aesthetic shabby","tags":["honored","sold","authentic","8-bit","food"],"style":"kitsch","type":"wall art","price":"33.46","image":"https://unsplash.it/400/200?image=1024"},{"id":"1506445931923","name":"mumblecore","description":"wolf polaroid bicycle vinyl bespoke lo-fi American biodiesel brunch","tags":["trade","authentic","tousled","sustainable"],"style":"sartorial","type":"beer","price":"6.28","image":"https://unsplash.it/400/200?image=554"},{"id":"1506445931923","name":"meh","description":"Williamsburg party twee hella retro Brooklyn tofu sartorial bird cleanse chia keffiyeh heirloom church-key","tags":["meggings","blog","hella","haven't"],"style":"transitional","type":"wall art","price":"72.69","image":"https://unsplash.it/400/200?image=335"},{"id":"1506445931924","name":"cornhole a","description":"them paleo forage tofu 2017-07-02; try-hard tattooed place Pinterest letterpress XOXO occupy twee stumptown Apparel put wolf place whatever flannel","tags":["honored","put","party","salvia","forage"],"style":"retro","type":"T-shirt","price":"84.36","image":"https://unsplash.it/400/200?image=429"},{"id":"1506445931925","name":"post-ironic","description":"place Kickstarter booth DIY being pour-over trade ennui Godard small roof it leggings Blue","tags":["heirloom","in","messenger","cred"],"style":"kitsch","type":"beer","price":"68.72","image":"https://unsplash.it/400/200?image=700"},{"id":"1506445931926","name":"squid sriracha","description":"Cosby bespoke fixie Vice them try-hard food narwhal tousled are Truffaut fingerstache sartorial","tags":["stumptown","on","loko","Error\",\"message\":\"Work"],"style":"transitional","type":"table","price":"85.22","image":"https://unsplash.it/400/200?image=773"},{"id":"1506445931935","name":"forage","description":"wolf banjo honore retro disrupt master salvia mi Portland in","tags":["narwhal","leggings","fixie","put","trust"],"style":"hella","type":"chair","price":"80.20","image":"https://unsplash.it/400/200?image=600"}]}
 
 /***/ }),
-/* 18 */,
-/* 19 */,
-/* 20 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = {"$schema":"http://json-schema.org/schema#","id":"/customProduct","type":"object","properties":{"id":{"type":"string","required":true},"name":{"type":"string","required":true},"price":{"type":"string","required":true},"description":{"type":"string"},"size":{"type":"string"},"color":{"type":"string"},"brand":{"type":"string"},"tags":{"type":"array","items":[{"type":"string"}]},"image":{"type":"string"}}}
 
 /***/ }),
-/* 21 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3360,7 +3436,7 @@ function detectFields(schema, data) {
 module.exports = detectFields;
 
 /***/ }),
-/* 22 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3374,89 +3450,10 @@ function roundUpToNearest25(number) {
 module.exports = roundUpToNearest25;
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 20 */
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-var data = __webpack_require__(17);
-var products = data.products;
-
-var productSchema = __webpack_require__(4);
-var detectFields = __webpack_require__(21);
-var roundUpToNearest25 = __webpack_require__(22);
-
-var filters = {
-  keys: detectFields(productSchema, products),
-  dontFilterBy: ['id', 'name', 'description', 'image'],
-  filteredProducts: [],
-  activeFilter: "",
-
-  generateFilters: function generateFilters() {
-    filters.keys.forEach(function (filterType) {
-      filters[filterType] = [];
-
-      products.forEach(function (item) {
-        if (!filters[filterType].includes(item[filterType])) {
-          filters[filterType].push(item[filterType]);
-        }
-      });
-      if (filters[filterType].length <= 2) {
-        // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
-        filters.dontFilterBy.push(filterType);
-      }
-    });
-  },
-
-  generateTagList: function generateTagList() {
-    var tagList = [];
-    products.forEach(function (item) {
-      item.tags.forEach(function (tag) {
-        if (!tagList.includes(tag)) {
-          tagList.push([tag, 1]);
-        } else {
-          var index = tagList.find(tag);
-
-          tagList[index][1] += 1;
-        }
-      });
-    });
-    this.tags = tagList;
-  },
-
-  generatePriceBuckets: function generatePriceBuckets() {
-    var min = Infinity;
-    var max = 0;
-    products.forEach(function (item) {
-      if (parseFloat(item.price) < min) {
-        min = parseFloat(item.price);
-      }
-      if (parseFloat(item.price) > max) {
-        max = parseFloat(item.price);
-      }
-    });
-
-    var bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4));
-    var bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2));
-    var bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4));
-    var bucket4 = roundUpToNearest25(parseFloat(max));
-
-    filters.price = [{ "label": 'Under $' + bucket1,
-      "bucket": [0, bucket1] }, { "label": '$' + bucket1 + ' to $' + bucket2,
-      "bucket": [bucket1, bucket2] }, { "label": '$' + bucket2 + ' to $' + bucket3,
-      "bucket": [bucket2, bucket3] }, { "label": 'Over $' + bucket3,
-      "bucket": [bucket3, bucket4] }];
-  },
-
-  init: function init() {
-    this.generateFilters();
-    this.generateTagList();
-    this.generatePriceBuckets();
-  }
-};
-
-module.exports = filters;
+module.exports = {"products":[{"id":"1506629238864","name":"cardigan fix umami","description":"2017-06-23; aesthetic are literally beer yr kitsch Kickstarter towards authentic distillery out asymmetrical beard deep coffee viral before hella","tags":["out","American","Neutra","truck","banh"],"style":"transitional","type":"accessory","size":"xl","price":"97.14","image":"https://unsplash.it/400/200?image=627"},{"id":"1506629238872","name":"pop-up polaroid ethical","description":"Helvetica Wes probably loko four Blue typewriter in Life towards tote PBR&B denim blog tattooed in","tags":["skateboard","vegan","church-key","sold"],"style":"sartorial","type":"beer","size":"xl","price":"182.03","image":"https://unsplash.it/400/200?image=184"},{"id":"1506629238878","name":"Server beard bespoke shabby","description":"level chillwave occupy Echo booth yr flexitarian Park Marfa","tags":["kale","coffee","polaroid","squid","honored\"}","party"],"style":"modern","type":"chair","size":"small","price":"176.03","image":"https://unsplash.it/400/200?image=804"},{"id":"1506629238879","name":"slow-carb","description":"loko plaid 2017-07-02; bag biodiesel fund seitan art vegan four belly Thundercats fixie salvia kogi Kickstarter","tags":["Vice","truly","semiotics","yr","+1","kogi"],"style":"modern","type":"chair","size":"xs","price":"54.78","image":"https://unsplash.it/400/200?image=760"},{"id":"1506629238885","name":"irony","description":"banjo leggings moon Anderson seitan party Future keffiyeh cornhole on heard kogi fap 8-bit denim","tags":["moon","post-ironic","Odd","vegan","brunch"],"style":"modern","type":"chair","size":"xl","price":"5.00","image":"https://unsplash.it/400/200?image=1056"},{"id":"1506629238886","name":"put","description":"iPhone chambray ethical heirloom Internal chips still crucifix chia truck forage chips scenester","tags":["occupy","plaid","mlkshk","vegan","locavore","fund"],"style":"transitional","type":"beer","size":"xl","price":"125.33","image":"https://unsplash.it/400/200?image=328"},{"id":"1506629238890","name":"crucifix","description":"selvage trust fap bird fixie heirloom four Shoreditch squid selvage Future bag","tags":["tattooed","four","coffee","try-hard"],"style":"sartorial","type":"wall art","size":"xs","price":"147.52","image":"https://unsplash.it/400/200?image=46"},{"id":"1506629238890","name":"sriracha Portland sustainable whatever","description":"put actually Quick sweater next  coffee trade readymade them selfies letterpress vinegar wolf cray beard params beer street try-hard bag mustache","tags":["honored","params","direct","Carles","beard"],"style":"modern","type":"accessory","size":"medium","price":"145.03","image":"https://unsplash.it/400/200?image=621"},{"id":"1506629238891","name":"DIY Carles photo direct","description":"Shoreditch sartorial mumblecore freegan truly put hoodie master sriracha keytar XOXO Pitchfork mustache Tonx mumblecore street post-ironic","tags":["McSweeney's","single-origin","Kickstarter","Server","Wes","Austin"],"style":"modern","type":"beer","size":"xs","price":"158.37","image":"https://unsplash.it/400/200?image=1077"},{"id":"1506629238895","name":"iPhone American","description":"post-ironic shorts place banjo bitters Anderson whatever beard irony mumblecore asymmetrical","tags":["ugh","","stumptown","paleo"],"style":"retro","type":"jeans","size":"xs","price":"10.47","image":"https://unsplash.it/400/200?image=626"},{"id":"1506629263422","name":"Austin actually it","description":"pop-up hella fix them scenester on Quick Brooklyn typewriter iPhone hoodie","tags":["NOT","Brooklyn","NOT","iPhone","leggings"],"style":"traditional","type":"beer","size":"xl","price":"145.66","image":"https://unsplash.it/400/200?image=357"},{"id":"1506629263432","name":"yr flexitarian whatever","description":"trust raw chillwave bird honore towards forage tote batch","tags":["mumblecore","bag","ugh","blog"],"style":"sartorial","type":"chair","size":"small","price":"53.93","image":"https://unsplash.it/400/200?image=397"},{"id":"1506629263433","name":"flexitarian fix cornhole banjo","description":"chia 8-bit 2017-07-02; biodiesel next tousled keytar bag","tags":["PBR","+1","meggings","Park","wolf"],"style":"transitional","type":"T-shirt","size":"xs","price":"86.25","image":"https://unsplash.it/400/200?image=585"},{"id":"1506629263434","name":"four","description":"pour-over truly Austin letterpress chic single-origin ennui Thundercats honored vinyl cleanse cornhole level hoodie","tags":["still","trust","ennui","Vice","freegan","authentic"],"style":"retro","type":"beer","size":"xs","price":"78.82","image":"https://unsplash.it/400/200?image=528"},{"id":"1506629263434","name":"denim trade","description":"bag heirloom +1 Schlitz vegan PBR&B farm-to-table Schlitz vegan kogi dreamcatcher Portland artisan tote loko ethical haven't sweater twee lo-fi 3 selfies","tags":["Server","chips","artisan","trade","shabby","banh"],"style":"sartorial","type":"chair","size":"xl","price":"147.53","image":"https://unsplash.it/400/200?image=292"},{"id":"1506629263438","name":"crucifix","description":"swag umami raw before honored Cosby Etsy fap Pitchfork umami butcher party kogi in","tags":["XOXO","gastropub","2017-07-02;","keytar"],"style":"retro","type":"coffee","size":"large","price":"177.22","image":"https://unsplash.it/400/200?image=774"},{"id":"1506629263440","name":"axe","description":"try-hard food next hoodie viral small post-ironic try-hard drinking semiotics art tousled DIY polaroid street kogi blog before Schlitz scenester","tags":["photo","actually","keffiyeh","kitsch","dreamcatcher","sriracha"],"style":"modern","type":"wall art","size":"small","price":"191.47","image":"https://unsplash.it/400/200?image=541"},{"id":"1506629263441","name":"single-origin","description":"fingerstache Kickstarter aesthetic yr in +1 Future meh Server mumblecore truck on haven't Brooklyn narwhal Brooklyn","tags":["selfies","stumptown","Brooklyn","sweater","pack"],"style":"traditional","type":"chair","size":"xs","price":"30.11","image":"https://unsplash.it/400/200?image=564"},{"id":"1506629263441","name":"bespoke","description":"level batch freegan hoodie axe umami sriracha 8-bit","tags":["pork","banh","vegan","8-bit","occupy"],"style":"modern","type":"coffee","size":"xl","price":"116.27","image":"https://unsplash.it/400/200?image=960"}]}
 
 /***/ })
 /******/ ]);

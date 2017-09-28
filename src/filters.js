@@ -1,4 +1,4 @@
-const data = require ('../data/test-products.json')
+const data = require ('../data/test-products-2.json')
 const products = data.products
 
 const productSchema = require('../model/validator')
@@ -20,7 +20,7 @@ const filters = {
           filters[filterType].push(item[filterType])
         }
       })
-      if(filters[filterType].length <= 2) {
+      if(filters[filterType].length < 2) {
         // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
         filters.dontFilterBy.push(filterType)
       }

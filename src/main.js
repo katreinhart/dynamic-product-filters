@@ -1,4 +1,4 @@
-const data = require ('../data/test-products.json')
+const data = require ('../data/test-products-2.json')
 const products = data.products
 
 const filters = require('./filters')
