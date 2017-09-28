@@ -1,4 +1,4 @@
-const data = require ('../data/products.json')
+const data = require ('../data/test-products.json')
 const products = data.products
 
 const filters = require('./filters')
@@ -13,14 +13,19 @@ const productDiv = document.getElementById('products')
 const filtersList = document.createElement('ul')
 filtersList.className = "list-group" // bootstrap
 
+
+const activeFilterDisplay = document.getElementById('activeFilterDisplay')
+
 // would be nice to eventually have dismissable pills with each filter on it
 // but for now, it's just one clear button
 const clearButton = document.getElementById('clearButton')
 clearButton.addEventListener('click', e => {
   filters.filteredProducts = []
   filters.activeFilter = ""
+  activeFilterDisplay.textContent = ""
   displayProducts(products)
 })
+
 
 // Display Filter Details
 // Called on click of filter title
@@ -47,6 +52,7 @@ function displayFilterDetails(filterDetail, parentDiv) {
       }
 
       listItem.addEventListener('click', e => { // Add event listener to detail item
+        activeFilterDisplay.textContent = `${filters.activeFilter}: ${detailedFilter}`
         filters.filteredProducts = products.filter(product => {
           if(filters.activeFilter === 'price') { // bucket filtering
             return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
@@ -120,15 +126,12 @@ function displayProducts(productsToDisplay) {
 
 displayProducts(products)
 
-// UI STUFF
-
+// UI STUFF FOR SMALL SCREENS
 const displaySidebarButton = document.getElementById('showSidebar')
 const sidebar = document.getElementById('menuSidebar')
 const mainContent = document.getElementById('mainContent')
+
 displaySidebarButton.addEventListener('click', e => {
   sidebar.classList.toggle('hidden')
   mainContent.classList.toggle('slide-over')
 })
-
-
-// console.log(filters)

@@ -1,5 +1,4 @@
-
-const data = require ('../data/products.json')
+const data = require ('../data/test-products.json')
 const products = data.products
 
 const productSchema = require('../model/validator')
