@@ -1150,87 +1150,20 @@ Url.prototype.parseHost = function() {
 var data = __webpack_require__(1);
 var products = data.products;
 
-var productSchema = __webpack_require__(4);
-// Takes in validated data, detects fields that are not in schema
-var detectFields = __webpack_require__(21);
+var filters = __webpack_require__(23);
+// Generate a filters object which contains the key-value pairs of all the available properties.
+filters.init(); // runs all the initialization & setup functions inside of filters
 
+// getting all the divs you need
 var filterDiv = document.getElementById('filters');
 var productDiv = document.getElementById('products');
 
-var filters = {
-  keys: detectFields(productSchema, products),
-  dontFilterBy: ['id', 'name', 'description', 'image'],
-  filteredProducts: [],
-  activeFilter: "",
-
-  generateFilters: function generateFilters() {
-    filters.keys.forEach(function (filterType) {
-      filters[filterType] = [];
-
-      products.forEach(function (item) {
-        if (!filters[filterType].includes(item[filterType])) {
-          filters[filterType].push(item[filterType]);
-        }
-      });
-      if (filters[filterType].length <= 2) {
-        // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
-        filters.dontFilterBy.push(filterType);
-      }
-    });
-  },
-
-  generateTagList: function generateTagList() {
-    var tagList = [];
-    products.forEach(function (item) {
-      item.tags.forEach(function (tag) {
-        if (!tagList.includes(tag)) {
-          tagList.push([tag, 1]);
-        } else {
-          var index = tagList.find(tag);
-
-          tagList[index][1] += 1;
-        }
-      });
-    });
-    this.tags = tagList;
-  },
-
-  generatePriceBuckets: function generatePriceBuckets() {
-    var min = Infinity;
-    var max = 0;
-    products.forEach(function (item) {
-      if (parseFloat(item.price) < min) {
-        min = parseFloat(item.price);
-      }
-      if (parseFloat(item.price) > max) {
-        max = parseFloat(item.price);
-      }
-    });
-
-    var bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4));
-    var bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2));
-    var bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4));
-    var bucket4 = roundUpToNearest25(parseFloat(max));
-
-    filters.price = [{ "label": 'Under $' + bucket1,
-      "bucket": [0, bucket1] }, { "label": '$' + bucket1 + ' to $' + bucket2,
-      "bucket": [bucket1, bucket2] }, { "label": '$' + bucket2 + ' to $' + bucket3,
-      "bucket": [bucket2, bucket3] }, { "label": 'Over $' + bucket3,
-      "bucket": [bucket3, bucket4] }];
-  }
-
-  // Generate a filters object which contains the key-value pairs of all the available properties.
-
-};filters.generateFilters();
-filters.generateTagList();
-filters.generatePriceBuckets();
-
-// helper function
-function roundUpToNearest25(number) {
-  return Math.ceil(number / 25) * 25;
-}
-
+// create the UL that will hold the list
 var filtersList = document.createElement('ul');
+filtersList.className = "list-group"; // bootstrap
+
+// would be nice to eventually have dismissable pills with each filter on it
+// but for now, it's just one clear button
 var clearButton = document.getElementById('clearButton');
 clearButton.addEventListener('click', function (e) {
   filters.filteredProducts = [];
@@ -1284,23 +1217,26 @@ function displayFilterDetails(filterDetail, parentDiv) {
   }
 }
 
-filtersList.className = "list-group";
-filters.keys.forEach(function (name) {
-  if (!filters.dontFilterBy.includes(name)) {
-    var listItem = document.createElement('LI');
-    listItem.className = "list-group-item";
-    listItem.textContent = name;
+function displayFilterNames() {
+  filters.keys.forEach(function (name) {
+    if (!filters.dontFilterBy.includes(name)) {
+      var listItem = document.createElement('LI');
+      listItem.className = "list-group-item";
+      listItem.textContent = name;
 
-    listItem.addEventListener('click', function (e) {
-      filters.activeFilter = name;
-      // BUG: Clicking on a filter detail collapses the menu
-      displayFilterDetails(filters[name], listItem);
-    });
-    filtersList.append(listItem);
-  }
-});
+      listItem.addEventListener('click', function (e) {
+        filters.activeFilter = name;
+        // BUG: Clicking on a filter detail collapses the menu
+        displayFilterDetails(filters[name], listItem);
+      });
+      filtersList.append(listItem);
+    }
+  });
 
-filterDiv.append(filtersList);
+  filterDiv.append(filtersList);
+}
+
+displayFilterNames();
 
 // apply products to page
 function displayProducts(productsToDisplay) {
@@ -3402,6 +3338,105 @@ function detectFields(schema, data) {
 }
 
 module.exports = detectFields;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// helper function
+function roundUpToNearest25(number) {
+  return Math.ceil(number / 25) * 25;
+}
+
+module.exports = roundUpToNearest25;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var data = __webpack_require__(1);
+var products = data.products;
+
+var productSchema = __webpack_require__(4);
+var detectFields = __webpack_require__(21);
+var roundUpToNearest25 = __webpack_require__(22);
+
+var filters = {
+  keys: detectFields(productSchema, products),
+  dontFilterBy: ['id', 'name', 'description', 'image'],
+  filteredProducts: [],
+  activeFilter: "",
+
+  generateFilters: function generateFilters() {
+    filters.keys.forEach(function (filterType) {
+      filters[filterType] = [];
+
+      products.forEach(function (item) {
+        if (!filters[filterType].includes(item[filterType])) {
+          filters[filterType].push(item[filterType]);
+        }
+      });
+      if (filters[filterType].length <= 2) {
+        // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
+        filters.dontFilterBy.push(filterType);
+      }
+    });
+  },
+
+  generateTagList: function generateTagList() {
+    var tagList = [];
+    products.forEach(function (item) {
+      item.tags.forEach(function (tag) {
+        if (!tagList.includes(tag)) {
+          tagList.push([tag, 1]);
+        } else {
+          var index = tagList.find(tag);
+
+          tagList[index][1] += 1;
+        }
+      });
+    });
+    this.tags = tagList;
+  },
+
+  generatePriceBuckets: function generatePriceBuckets() {
+    var min = Infinity;
+    var max = 0;
+    products.forEach(function (item) {
+      if (parseFloat(item.price) < min) {
+        min = parseFloat(item.price);
+      }
+      if (parseFloat(item.price) > max) {
+        max = parseFloat(item.price);
+      }
+    });
+
+    var bucket1 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4));
+    var bucket2 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2));
+    var bucket3 = roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4));
+    var bucket4 = roundUpToNearest25(parseFloat(max));
+
+    filters.price = [{ "label": 'Under $' + bucket1,
+      "bucket": [0, bucket1] }, { "label": '$' + bucket1 + ' to $' + bucket2,
+      "bucket": [bucket1, bucket2] }, { "label": '$' + bucket2 + ' to $' + bucket3,
+      "bucket": [bucket2, bucket3] }, { "label": 'Over $' + bucket3,
+      "bucket": [bucket3, bucket4] }];
+  },
+
+  init: function init() {
+    this.generateFilters();
+    this.generateTagList();
+    this.generatePriceBuckets();
+  }
+};
+
+module.exports = filters;
 
 /***/ })
 /******/ ]);

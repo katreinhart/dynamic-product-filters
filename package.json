@@ -18,7 +18,6 @@
   "homepage": "https://github.com/katreinhart/dynamic-product-filters#readme",
   "dependencies": {
     "babel-loader": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
     "jsonschema": "^1.2.0",
     "request": "^2.82.0",
     "webpack": "^3.6.0"

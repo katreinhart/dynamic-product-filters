@@ -84,7 +84,14 @@ body {
 
 @media (min-width: 992px) {
   body {
-
+    font-size: 14px;
+  }
+  .menu-sidebar.hidden {
+    width: 20%;
+  }
+  .main {
+    width: 80%;
+    left: 20%;
   }
 }
 
