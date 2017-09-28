@@ -1177,15 +1177,17 @@ clearButton.addEventListener('click', function (e) {
 
 function displayFilterDetails(filterDetail, parentDiv) {
   // filterDetailDiv.innerHTML = "" // clear out the current contents
+  // console.log(filterDetail, parentDiv)
   if (parentDiv.childNodes.length > 1) {
-    parentDiv.innerHTML = filters.activeFilter;
+    // parentDiv.innerHTML = filters.activeFilter
+    // console.log('has children')
   } else {
     var itemList = document.createElement('UL'); // create a new UL
     itemList.className = "list-group";
     filterDetail.forEach(function (detailedFilter) {
       // for each filter detail
       var listItem = document.createElement('LI'); // create a new LI
-      listItem.className = "list-group-item";
+      listItem.className = "list-group-item detail-item";
       if (filters.activeFilter === 'price') {
         listItem.textContent = detailedFilter.label;
       } else if (filters.activeFilter === 'tags' || filters.activeFilter === 'keywords') {
@@ -1217,6 +1219,11 @@ function displayFilterDetails(filterDetail, parentDiv) {
   }
 }
 
+function collapseFilterDetails(name, listItem) {
+  listItem.innerHTML = name;
+  listItem.classList.remove('detail-opened');
+}
+
 function displayFilterNames() {
   filters.keys.forEach(function (name) {
     if (!filters.dontFilterBy.includes(name)) {
@@ -1227,7 +1234,12 @@ function displayFilterNames() {
       listItem.addEventListener('click', function (e) {
         filters.activeFilter = name;
         // BUG: Clicking on a filter detail collapses the menu
-        displayFilterDetails(filters[name], listItem);
+        if (e.target.className.includes("detail-opened")) {
+          collapseFilterDetails(name, listItem);
+        } else {
+          displayFilterDetails(filters[name], listItem);
+          e.target.classList.add("detail-opened");
+        }
       });
       filtersList.append(listItem);
     }

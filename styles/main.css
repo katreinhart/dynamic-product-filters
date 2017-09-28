@@ -51,6 +51,10 @@ body {
   left: 75%;
 }
 
+.detail-opened ul{
+  margin-top: 15px;
+}
+
 @media screen and (min-width: 576px) {
   body {
     font-size: 21px;
