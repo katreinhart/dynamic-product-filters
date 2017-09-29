@@ -39,7 +39,7 @@ clearButton.addEventListener('click', e => {
 
 function displayFilterDetails(filterDetail, parentDiv) {
   // filterDetailDiv.innerHTML = "" // clear out the current contents
-  console.log(filterDetail, parentDiv)
+
   if(parentDiv.childNodes.length > 1) {
     // parentDiv.innerHTML = filters.activeFilter
     // console.log('has children')

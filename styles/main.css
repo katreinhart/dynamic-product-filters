@@ -33,6 +33,7 @@ body {
   padding: 0;
   width: 75%;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .menu-sidebar.hidden {
