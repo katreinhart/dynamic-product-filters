@@ -3,7 +3,8 @@ function detectFields (schema, data) {
   if((!schema) || (!data)) {
     throw new Error('Please provide valid data')
   } else {
-    const standardFields = Object.keys(schema.properties.products.items.properties)
+    console.log(schema)
+    const standardFields = Object.keys(schema.productsSchema.properties)
     const customFields = []
 
     for(let i=0; i < data.length; i++) {
