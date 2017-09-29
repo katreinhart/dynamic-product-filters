@@ -72,7 +72,7 @@ describe('DynamicFilter', function () {
   describe('.filters', function () {
     it('should return an object with all the keys of those properties that are filterable', function() {
       const newFilter = new DynamicFilter(this.schema, this.products)
-      const filterObject = newFilter.filters()
+      const filterObject = newFilter.getFilters()
       const filterKeys = Object.keys(filterObject)
 
       expect(filterObject).to.be.a('object')
@@ -82,7 +82,7 @@ describe('DynamicFilter', function () {
 
     it('should not exclude properties if an empty array is provided', function () {
       const newFilter = new DynamicFilter(this.schema, this.products, []) // empty array excludes nothing
-      const filterObject = newFilter.filters()
+      const filterObject = newFilter.getFilters()
       const filterKeys = Object.keys(filterObject)
 
       expect(filterKeys).to.include('id')
@@ -91,7 +91,7 @@ describe('DynamicFilter', function () {
 
     it('should exclude properties if a non-empty array is provided', function () {
       const newFilter = new DynamicFilter(this.schema, this.products, ["id", "image", "price", "tags"])
-      const filterObject = newFilter.filters()
+      const filterObject = newFilter.getFilters()
       const filterKeys = Object.keys(filterObject)
 
       expect(filterKeys).to.not.include('id')
@@ -102,13 +102,29 @@ describe('DynamicFilter', function () {
 
     it('should exclude properties which only have 0-1 options', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
-      const filterObject = newFilter.filters()
+      const filterObject = newFilter.getFilters()
       const filterKeys = Object.keys(filterObject)
-
       expect(filterKeys).to.not.include('color')
     })
 
+
+
     xit('??? something about tags/keywords (array values) and checking for multiple values')
     xit('??? something about price range (number values)')
+  })
+
+  describe('price buckets', function () {
+    it('should default to 4', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      expect(newFilter.priceBuckets).to.eq(4)
+    })
+    it('should accept an integer value', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products, null, 3)
+      expect(newFilter.priceBuckets).to.eq(3)
+    })
+    it('should throw an error for a non-integer value', function () {
+      const newFilter = () => { new DynamicFilter(this.schema, this.products, null, 3.4) }
+      expect(newFilter).to.throw()
+    })
   })
 })

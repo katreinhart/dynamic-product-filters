@@ -28,16 +28,11 @@ const filters = {
   },
 
   generateTagList: function () {
-    // this doesn't actually work as intended, need to fix it
     const tagList = []
     products.forEach(item => {
       item.tags.forEach(tag => {
-        if(!tagList.includes(tag)) { // <--- this line is borked
-          tagList.push([tag, 1])
-        } else {
-          let index = tagList.find(tag)
-
-          tagList[index][1]+=1
+        if(!tagList.includes(tag)) {
+          tagList.push(tag)
         }
       })
     })

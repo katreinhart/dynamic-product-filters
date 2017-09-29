@@ -45,9 +45,7 @@ function displayFilterDetails(filterDetail, parentDiv) {
       listItem.className = "list-group-item detail-item"
       if(filters.activeFilter === 'price') {
         listItem.textContent = detailedFilter.label
-      } else if ((filters.activeFilter === 'tags') || (filters.activeFilter === 'keywords')){
-        listItem.textContent = `${detailedFilter[0]} (${detailedFilter[1]})`
-      } else {
+      }  else {
         listItem.textContent = detailedFilter // LI text content is name of detail
       }
 
@@ -58,7 +56,7 @@ function displayFilterDetails(filterDetail, parentDiv) {
             return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
                   && (parseFloat(product.price) <= detailedFilter.bucket[1]))
           } else if ((filters.activeFilter === 'tags') || (filters.activeFilter === 'keywords')) { // one-of-many filtering
-            return product[filters.activeFilter].includes(detailedFilter[0])
+            return product[filters.activeFilter].includes(detailedFilter)
           } else { // exact-match filtering (easiest case)
             return (product[filters.activeFilter] === detailedFilter)
           }
