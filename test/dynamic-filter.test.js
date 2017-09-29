@@ -59,17 +59,54 @@ describe('DynamicFilter', function () {
     it('should return an array', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
       const filters = newFilter.generateFilters()
-
       expect(filters).to.be.a('array')
+    })
+    it('should contain expected items but not contain excluded items', function() {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      const filters = newFilter.generateFilters()
       expect(filters).to.contain('price')
       expect(filters).not.to.contain('id')
     })
   })
 
   describe('.filters', function () {
-    it('should return an object with all the keys of those properties that are filterable')
-    it('should exclude properties if an option of exclude is provided that includes the property name')
-    it('should exclude properties which only have 0-1 options')
+    it('should return an object with all the keys of those properties that are filterable', function() {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      const filterObject = newFilter.filters()
+      const filterKeys = Object.keys(filterObject)
+
+      expect(filterObject).to.be.a('object')
+      expect(filterKeys).to.not.include('id')
+      expect(filterKeys).to.include('price')
+    })
+
+    it('should not exclude properties if an empty array is provided', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products, []) // empty array excludes nothing
+      const filterObject = newFilter.filters()
+      const filterKeys = Object.keys(filterObject)
+
+      expect(filterKeys).to.include('id')
+      expect(filterKeys).to.include('image')
+    })
+
+    it('should exclude properties if a non-empty array is provided', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products, ["id", "image", "price", "tags"])
+      const filterObject = newFilter.filters()
+      const filterKeys = Object.keys(filterObject)
+
+      expect(filterKeys).to.not.include('id')
+      expect(filterKeys).to.not.include('image')
+      expect(filterKeys).to.not.include('price')
+      expect(filterKeys).to.include('description')
+    })
+
+    it('should exclude properties which only have 0-1 options', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      const filterObject = newFilter.filters()
+      const filterKeys = Object.keys(filterObject)
+
+      expect(filterKeys).to.not.include('color')
+    })
 
     xit('??? something about tags/keywords (array values) and checking for multiple values')
     xit('??? something about price range (number values)')

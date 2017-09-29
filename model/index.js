@@ -71,11 +71,19 @@ class DynamicFilter {
 
   generateFilters() {
     this.allFields = this.detectFields()
-    this.filters = this.allFields.filter(field => {
+    this.filterKeys = this.allFields.filter(field => {
       return (!this.exclude.includes(field))
     })
-    console.log(this.filters)
-    return this.filters
+    return this.filterKeys
+  }
+
+  filters() {
+    this.generateFilters()
+    const filterObject = {}
+    this.filterKeys.forEach(function(filter) {
+      filterObject[filter] = ""
+    })
+    return filterObject
   }
 }
 
