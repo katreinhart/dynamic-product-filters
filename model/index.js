@@ -95,13 +95,11 @@ class DynamicFilter {
         _this.exclude.push(key)
       }
     })
-
     this.filterKeys.forEach(key => {
       if(!this.exclude.includes(key)) {
         _this.filterObject[key] = tempFilterObject[key]
       }
     })
-    console.log(this.exclude)
     return this.filterObject
   }
 }
