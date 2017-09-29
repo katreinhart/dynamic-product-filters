@@ -107,10 +107,6 @@ describe('DynamicFilter', function () {
       expect(filterKeys).to.not.include('color')
     })
 
-
-
-    xit('??? something about tags/keywords (array values) and checking for multiple values')
-    xit('??? something about price range (number values)')
   })
 
   describe('price buckets', function () {
@@ -125,6 +121,24 @@ describe('DynamicFilter', function () {
     it('should throw an error for a non-integer value', function () {
       const newFilter = () => { new DynamicFilter(this.schema, this.products, null, 3.4) }
       expect(newFilter).to.throw()
+    })
+
+    it('should create 4 price buckets when no value is passed', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      expect(newFilter.getFilters().price.length).to.eq(4)
+    })
+    xit('should create the proper number of price buckets', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products, null, 3)
+      expect(newFilter.getFilters().price.length).to.eq(3)
+    })
+  })
+
+  describe('tag lists', function () {
+    it('should generate a list of tags present in the data', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      expect(newFilter.getFilters().tags).to.be.a('array')
+      expect(newFilter.getFilters().tags).to.include('kale')
+      expect(newFilter.getFilters().tags).to.not.include('javascript')
     })
   })
 })

@@ -104,10 +104,64 @@ class DynamicFilter {
     this.filterKeys = this.filterKeys.filter(key => !this.exclude.includes(key))
 
     this.filterKeys.forEach(function (key) {
-     _this.filterObject[key] = tempFilterObject[key]
-   })
+      _this.filterObject[key] = tempFilterObject[key]
+      if(key === 'price') {
+        _this.generatePriceBuckets()
+      }
+      if(key === 'tags') {
+        _this.generateTagList()
+      }
+    })
+
 
     return this.filterKeys
+  }
+
+  // helper function
+  roundUpToNearest25(number) {
+    return (Math.ceil(number/25) * 25)
+  }
+
+  generatePriceBuckets () {
+    // determine range of prices
+    // take the number of buckets indicated and generate buckets (under X, X to Y, Y to Z, over Z)
+    let min = Infinity
+    let max = 0
+    this.data.products.forEach(item => {
+      if(parseFloat(item.price) < min) {
+        min = parseFloat(item.price)
+      }
+      if(parseFloat(item.price) > max) {
+        max = parseFloat(item.price)
+      }
+    })
+
+    let bucket1 = this.roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4))
+    let bucket2 = this.roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2))
+    let bucket3 = this.roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4))
+    let bucket4 = this.roundUpToNearest25(parseFloat(max))
+
+    this.filterObject.price = [ { "label": `Under \$${bucket1}`,
+                        "bucket": [0, bucket1] },
+                      { "label": `\$${bucket1} to \$${bucket2}`,
+                        "bucket": [bucket1, bucket2] },
+                      { "label": `\$${bucket2} to \$${bucket3}`,
+                        "bucket": [bucket2, bucket3] },
+                      { "label": `Over \$${bucket3}`,
+                        "bucket": [bucket3, bucket4] }
+                    ]
+  }
+
+  generateTagList() {
+    const tagList = []
+    this.data.products.forEach(item => {
+      item.tags.forEach(tag => {
+        if(!tagList.includes(tag)) {
+          tagList.push(tag)
+        }
+      })
+    })
+    this.filterObject.tags = tagList
   }
 
   getFilters() {
