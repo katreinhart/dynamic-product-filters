@@ -61,8 +61,8 @@ class DynamicFilter {
       this.standardFields = Object.keys(this.schema.properties)
       this.customFields = []
 
-      for(let i=0; i < this.data.length; i++) {
-        const hasFields = Object.keys(this.data[i])
+      for(let i=0; i < this.data.products.length; i++) {
+        const hasFields = Object.keys(this.data.products[i])
         for(let j=0; j<hasFields.length; j++) {
           let field = hasFields[j]
           if(!this.standardFields.includes(field)) {
@@ -95,6 +95,8 @@ class DynamicFilter {
           tempFilterObject[key].push(item[key])
         }
       })
+    })
+    this.filterKeys.forEach(function(key) {
       if(tempFilterObject[key].length < 2) {
         // don't display filters with 0 or 1 options
         _this.exclude.push(key)

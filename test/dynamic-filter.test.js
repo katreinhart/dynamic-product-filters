@@ -106,7 +106,6 @@ describe('DynamicFilter', function () {
       const filterKeys = Object.keys(filterObject)
       expect(filterKeys).to.not.include('color')
     })
-
   })
 
   describe('price buckets', function () {

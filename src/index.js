@@ -1,10 +1,17 @@
 const data = require ('../data/test-products-2.json')
 const products = data.products
+const productSchema = require('../model/product.schema.json')
 
-const filters = require('./filters')
-// Generate a filters object which contains the key-value pairs of all the available properties.
-filters.init() // runs all the initialization & setup functions inside of filters
-console.log(filters)
+const DynamicFilter = require('../model')
+const df = new DynamicFilter(productSchema, data)
+
+// const filters = require('./filters')
+// // Generate a filters object which contains the key-value pairs of all the available properties.
+// filters.init() // runs all the initialization & setup functions inside of filters
+
+const filterObject = df.getFilters()
+const filters = Object.keys(filterObject)
+
 // getting all the divs you need
 const filterDiv = document.getElementById('filters')
 const productDiv = document.getElementById('products')
@@ -12,7 +19,6 @@ const productDiv = document.getElementById('products')
 // create the UL that will hold the list
 const filtersList = document.createElement('ul')
 filtersList.className = "list-group" // bootstrap
-
 
 const activeFilterDisplay = document.getElementById('activeFilterDisplay')
 
@@ -33,7 +39,7 @@ clearButton.addEventListener('click', e => {
 
 function displayFilterDetails(filterDetail, parentDiv) {
   // filterDetailDiv.innerHTML = "" // clear out the current contents
-  // console.log(filterDetail, parentDiv)
+  console.log(filterDetail, parentDiv)
   if(parentDiv.childNodes.length > 1) {
     // parentDiv.innerHTML = filters.activeFilter
     // console.log('has children')
@@ -76,27 +82,23 @@ function collapseFilterDetails(name, listItem) {
 }
 
 function displayFilterNames() {
-  filters.keys.forEach(name => {
-    if(!filters.dontFilterBy.includes(name)) {
-      const listItem = document.createElement('LI')
-      listItem.className = "list-group-item"
-      listItem.textContent = name
+  filters.forEach(name => {
+    const listItem = document.createElement('LI')
+    listItem.className = "list-group-item"
+    listItem.textContent = name
 
-      listItem.addEventListener('click', e => {
-        filters.activeFilter = name
-        // BUG: Clicking on a filter detail collapses the menu
-        if(e.target.className.includes("detail-opened")){
-          collapseFilterDetails(name, listItem)
-        } else {
-          displayFilterDetails(filters[name], listItem)
-          e.target.classList.add("detail-opened")
-        }
+    listItem.addEventListener('click', e => {
+      filters.activeFilter = name
+      if(e.target.className.includes("detail-opened")){
+        collapseFilterDetails(name, listItem)
+      } else {
+        displayFilterDetails(filterObject[name], listItem)
+        e.target.classList.add("detail-opened")
+      }
 
-      })
-      filtersList.append(listItem)
-    }
+    })
+    filtersList.append(listItem)
   })
-
   filterDiv.append(filtersList)
 }
 
