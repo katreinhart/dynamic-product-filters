@@ -44,7 +44,10 @@ describe('DynamicFilter', function () {
   describe('.detectFields', function () {
     it('should validate the data against the schema', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
-      expect(newFilter.detectFields()).to.be.a('array')
+      const fields = newFilter.detectFields()
+      expect(fields).to.be.a('array')
+      expect(fields).to.contain('price')
+      expect(fields).to.contain('name')
     })
     it('should not validate bad data', function() {
       const newFilter = () => { new DynamicFilter(this.schema, null) }
@@ -53,8 +56,13 @@ describe('DynamicFilter', function () {
   })
 
   describe('.generateFilters', function () {
-    xit('should do something', function () {
+    it('should return an array', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      const filters = newFilter.generateFilters()
 
+      expect(filters).to.be.a('array')
+      expect(filters).to.contain('price')
+      expect(filters).not.to.contain('id')
     })
   })
 

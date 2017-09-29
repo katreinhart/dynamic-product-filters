@@ -14,8 +14,6 @@ class DynamicFilter {
     } else {
       this.exclude = ['id', 'name', 'description', 'image']
     }
-
-    // this.allFields = this.detectFields()
   }
 
   validateData () {
@@ -36,42 +34,48 @@ class DynamicFilter {
       }
     }
 
-    v.addSchema(productsSchema, '/productsSchema')
-    v.addSchema(this.schema, '/singleProduct')
-    const validatorResult = v.validate(this.data, productsSchema)
-    if(validatorResult.errors.length > 0) {
-      throw new Error("Validator failed: ", validatorResult.errors)
+    v.addSchema(productsSchema, '/productsSchema') // schema for products object
+    v.addSchema(this.schema, '/singleProduct')     // schema for individual product
+    this.validatorResult = v.validate(this.data, productsSchema)
+    if(this.validatorResult.errors.length > 0) {
+      this.valid = false
+      throw new Error("Validator failed: ", this.validatorResult.errors)
     } else {
-      return validatorResult
+      this.valid = true
+      return this.validatorResult
     }
   }
 
   detectFields () {
-    if((!this.schema) || (!this.data)) {
-      throw new Error('Please provide data and schema')
+    this.validateData()
+    if (this.validatorResult.errors.length > 0) {
+      throw new Error("Errors were found: ", this.validatorResult.errors)
     } else {
-      const validatorResult = this.validateData()
-      if (validatorResult.errors.length > 0) {
-        throw new Error(validatorResult.throwError)
-      } else {
-        const standardFields = Object.keys(this.schema.properties)
-        const customFields = []
+      this.standardFields = Object.keys(this.schema.properties)
+      this.customFields = []
 
-        for(let i=0; i < this.data.length; i++) {
-          const hasFields = Object.keys(this.data[i])
-          for(let j=0; j<hasFields.length; j++) {
-            let field = hasFields[j]
-            if(!standardFields.includes(field)) {
-              if(!customFields.includes(field)) {
-                customFields.push(field)
-              }
+      for(let i=0; i < this.data.length; i++) {
+        const hasFields = Object.keys(this.data[i])
+        for(let j=0; j<hasFields.length; j++) {
+          let field = hasFields[j]
+          if(!this.standardFields.includes(field)) {
+            if(!this.customFields.includes(field)) {
+              this.customFields.push(field)
             }
           }
         }
-        return standardFields.concat(customFields)
       }
-      return standardFields.concat(customFields)
+      return this.standardFields.concat(this.customFields)
     }
+  }
+
+  generateFilters() {
+    this.allFields = this.detectFields()
+    this.filters = this.allFields.filter(field => {
+      return (!this.exclude.includes(field))
+    })
+    console.log(this.filters)
+    return this.filters
   }
 }
 
