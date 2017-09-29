@@ -32,8 +32,12 @@ describe('DynamicFilter', function () {
       expect(valid.errors.length).to.equal(0)
     })
 
-    xit('should return an array of errors for invalid data', function () {
-
+    it('should throw an error for invalid data', () => {
+      const badFilter = new DynamicFilter(this.schema, {})
+      const validateData = () => {
+        badFilter.validateData()
+      }
+      expect(validateData).to.throw()
     })
   })
 

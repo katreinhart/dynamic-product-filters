@@ -30,15 +30,21 @@ class DynamicFilter {
           "type": "array",
           "items" : [
               {"$ref": "/singleProduct"}
-          ]
+          ],
+          "required": true
         }
       }
     }
 
     v.addSchema(productsSchema, '/productsSchema')
     v.addSchema(this.schema, '/singleProduct')
-    return v.validate(this.data, productsSchema)
-
+    const validatorResult = v.validate(this.data, productsSchema)
+    console.log(validatorResult)
+    if(validatorResult.throwError) {
+      throw new Error(validatorResult.throwError)
+    } else {
+      return validatorResult
+    }
   }
 
   detectFields () {
