@@ -38,7 +38,7 @@ describe('DynamicFilter', function () {
   })
 
   describe('.detectFields', function () {
-    xit('should validate the data against the schema', function () {
+    it('should validate the data against the schema', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
       expect(newFilter.detectFields()).to.be.a('array')
     })
