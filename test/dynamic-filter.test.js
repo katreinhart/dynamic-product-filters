@@ -1,7 +1,7 @@
 const DynamicFilter = require('../model')
 const expect = require('chai').expect
 
-const testSchema = require('./fixtures/schema.json')
+const testSchema = require('./fixtures/singleProductSchema.json')
 const testProducts = require('./fixtures/test-products.json')
 
 describe('DynamicFilter', function () {
@@ -25,6 +25,18 @@ describe('DynamicFilter', function () {
     })
   })
 
+  describe('.validate', function () {
+    it('should return an empty error array for valid data', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      const valid = newFilter.validate()
+      expect(valid.errors.length).to.equal(0)
+    })
+
+    xit('should return an array of errors for invalid data', function () {
+
+    })
+  })
+
   describe('.detectFields', function () {
     it('should validate the data against the schema', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
@@ -33,8 +45,8 @@ describe('DynamicFilter', function () {
   })
 
   describe('.generateFilters', function () {
-    it('should do something', function () {
-      expect.something.to.happen()
+    xit('should do something', function () {
+
     })
   })
 

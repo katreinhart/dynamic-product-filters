@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "id": "/customProduct",
+  "id": "/singleProduct",
   "type": "object",
   "properties": {
     "id": {
