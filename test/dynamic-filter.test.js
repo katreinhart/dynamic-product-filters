@@ -2,7 +2,7 @@ const DynamicFilter = require('../model')
 const expect = require('chai').expect
 
 const testProductsSchema = require('./fixtures/productsSchema.json')
-const testSingleProductSchema = require('./fixtures/singleProduct.json')
+// const testSingleProductSchema = require('./fixtures/singleProduct.json')
 const testProducts = require('./fixtures/test-products.json')
 
 describe('DynamicFilter', function () {
