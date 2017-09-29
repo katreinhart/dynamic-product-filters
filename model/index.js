@@ -37,17 +37,17 @@ class DynamicFilter {
 
     v.addSchema(productsSchema, '/productsSchema')
     v.addSchema(this.schema, '/singleProduct')
-    this.validatorResult = v.validate(this.data, productsSchema)
-    return this.validatorResult
+    return v.validate(this.data, productsSchema)
+
   }
 
   detectFields () {
     if((!this.schema) || (!this.data)) {
       throw new Error('Please provide data and schema')
     } else {
-      this.validateData()
-      if (this.validatorResult.errors.length > 0) {
-        throw new Error(this.validatorResult.throwError)
+      const validatorResult = this.validateData()
+      if (validatorResult.errors.length > 0) {
+        throw new Error(validatorResult.throwError)
       } else {
         const standardFields = Object.keys(this.schema.properties)
         const customFields = []
@@ -63,7 +63,6 @@ class DynamicFilter {
             }
           }
         }
-
         return standardFields.concat(customFields)
       }
       return standardFields.concat(customFields)

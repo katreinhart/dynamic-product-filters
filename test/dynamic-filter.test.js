@@ -29,7 +29,6 @@ describe('DynamicFilter', function () {
     it('should return an empty error array for valid data', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
       const valid = newFilter.validateData()
-      console.log(valid)
       expect(valid.errors.length).to.equal(0)
     })
 
@@ -44,7 +43,7 @@ describe('DynamicFilter', function () {
       expect(newFilter.detectFields()).to.be.a('array')
     })
     it('should not validate bad data', function() {
-      const newFilter = () => { new DynamicFilter(this.schema, {}) }
+      const newFilter = () => { new DynamicFilter(this.schema, null) }
       expect(newFilter).to.throw()
     })
   })
