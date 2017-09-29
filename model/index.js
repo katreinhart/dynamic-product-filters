@@ -37,7 +37,7 @@ class DynamicFilter {
 
     v.addSchema(productsSchema, '/productsSchema')
     v.addSchema(this.schema, '/singleProduct')
-    this.validatorResult = v.validate(this.data, this.schema)
+    this.validatorResult = v.validate(this.data, productsSchema)
     return this.validatorResult
   }
 
