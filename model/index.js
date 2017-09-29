@@ -1,3 +1,5 @@
+const Validator = require('jsonschema').Validator
+
 class DynamicFilter {
   constructor(schema, data, exclude) {
     if(!schema || !data) {
@@ -13,25 +15,39 @@ class DynamicFilter {
     this.allFields = this.detectFields()
   }
 
-  detectFields () {
-    const standardFields = Object.keys(this.schema.properties)
-    // console.log(standardFields)
-    const customFields = []
+  validateData () {
+    const v = new Validator()
 
-    for(let i=0; i < this.data.products.length; i++) {
-      const hasFields = Object.keys(this.data.products[i])
-      // console.log(hasFields)
-      for(let j=0; j<hasFields.length; j++) {
-        let field = hasFields[j]
-        if(!standardFields.includes(field)) {
-          if(!customFields.includes(field)) {
-            customFields.push(field)
+    v.addSchema(productsSchema, '/productsSchema')
+    v.addSchema(singleProduct, '/singleProduct')
+    this.validatorResult = v.validate(this.data, this.schema)
+  }
+
+  detectFields () {
+    if((!this.schema) || (!this.data)) {
+      throw new Error('Please provide data and schema')
+    } else {
+      this.validateData()
+      if (this.validatorResult.errors.length > 0) {
+        throw new Error(this.validatorResult.throwError)
+      } else {
+        const standardFields = Object.keys(this.schema.properties)
+        const customFields = []
+
+        for(let i=0; i < this.data.length; i++) {
+          const hasFields = Object.keys(this.data[i])
+          for(let j=0; j<hasFields.length; j++) {
+            let field = hasFields[j]
+            if(!standardFields.includes(field)) {
+              if(!customFields.includes(field)) {
+                customFields.push(field)
+              }
+            }
           }
         }
       }
+      return standardFields.concat(customFields)
     }
-
-    return standardFields.concat(customFields)
   }
 }
 

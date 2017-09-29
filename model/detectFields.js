@@ -1,6 +1,9 @@
 
 function detectFields (schema, data) {
-    const standardFields = Object.keys(schema.customProduct.properties)
+  if((!schema) || (!data)) {
+    throw new Error('Please provide valid data')
+  } else {
+    const standardFields = Object.keys(schema.properties.products.items.properties)
     const customFields = []
 
     for(let i=0; i < data.length; i++) {
@@ -16,6 +19,8 @@ function detectFields (schema, data) {
     }
 
     return standardFields.concat(customFields)
+  }
+
 }
 
 module.exports = detectFields

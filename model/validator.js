@@ -2,26 +2,26 @@ const Validator = require('jsonschema').Validator
 const v = new Validator()
 
 const products = require('../data/products.json')
-var customProduct = require('./product.schema.json')
+const productsSchema = require('./product.schema.json')
 
-var productSchema = {
-  "$schema": "http://json-schema.org/schema#",
-  "id": "/productSchema",
-  "type": "object",
-  "properties": {
-    "products": {
-      "type": "array",
-      "items" : [
-          {"$ref": "/customProduct"}
-      ]
-    }
-  }
-}
+// const productsSchema = {
+//   "$schema": "http://json-schema.org/schema#",
+//   "id": "/productsSchema",
+//   "type": "object",
+//   "properties": {
+//     "products": {
+//       "type": "array",
+//       "items" : [
+//           {"$ref": "/singleProduct"}
+//       ]
+//     }
+//   }
+// }
 
-v.addSchema(productSchema, '/productSchema')
-v.addSchema(customProduct, '/customProduct')
-// console.log(v.validate(products, productSchema))
+v.addSchema(productsSchema, '/productsSchema')
+// v.addSchema(singleProduct, '/singleProduct')
+console.log(v.validate(products, productsSchema))
 
 module.exports = {
-  customProduct: customProduct
+  productsSchema: productsSchema
 }

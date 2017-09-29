@@ -4,7 +4,9 @@
   "description": "Dynamically generated product filters for online shopping sites of all types.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "webpack": "webpack",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",

@@ -1,12 +1,12 @@
 const data = require ('../data/test-products-2.json')
 const products = data.products
 
-const productSchema = require('../model/validator')
+const productsSchema = require('../model/validator')
 const detectFields = require('../model/detectFields')
 const roundUpToNearest25 = require("./helpers")
 
 const filters = {
-  keys: detectFields(productSchema, products),
+  keys: detectFields(productsSchema, products),
   dontFilterBy: ['id', 'name', 'description', 'image'],
   filteredProducts: [],
   activeFilter: "",
@@ -28,10 +28,11 @@ const filters = {
   },
 
   generateTagList: function () {
+    // this doesn't actually work as intended, need to fix it
     const tagList = []
     products.forEach(item => {
       item.tags.forEach(tag => {
-        if(!tagList.includes(tag)) {
+        if(!tagList.includes(tag)) { // <--- this line is borked
           tagList.push([tag, 1])
         } else {
           let index = tagList.find(tag)
