@@ -79,11 +79,30 @@ class DynamicFilter {
 
   filters() {
     this.generateFilters()
-    const filterObject = {}
-    this.filterKeys.forEach(function(filter) {
-      filterObject[filter] = ""
+    const tempFilterObject = {}
+    this.filterObject = {}
+    const _this = this
+    this.filterKeys.forEach(function(key) {
+      tempFilterObject[key] = []
+
+      _this.data.products.forEach(item => {
+        if(!tempFilterObject[key].includes(item[key])){
+          tempFilterObject[key].push(item[key])
+        }
+      })
+      if(tempFilterObject[key].length < 2) {
+        // If there are less than 2 options in the list - it's probably not worth displaying at least not giving priority to
+        _this.exclude.push(key)
+      }
     })
-    return filterObject
+
+    this.filterKeys.forEach(key => {
+      if(!this.exclude.includes(key)) {
+        _this.filterObject[key] = tempFilterObject[key]
+      }
+    })
+    console.log(this.exclude)
+    return this.filterObject
   }
 }
 
