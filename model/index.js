@@ -39,9 +39,8 @@ class DynamicFilter {
     v.addSchema(productsSchema, '/productsSchema')
     v.addSchema(this.schema, '/singleProduct')
     const validatorResult = v.validate(this.data, productsSchema)
-    console.log(validatorResult)
-    if(validatorResult.throwError) {
-      throw new Error(validatorResult.throwError)
+    if(validatorResult.errors.length > 0) {
+      throw new Error("Validator failed: ", validatorResult.errors)
     } else {
       return validatorResult
     }
