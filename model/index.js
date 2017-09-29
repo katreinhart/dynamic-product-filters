@@ -1,6 +1,8 @@
 const Validator = require('jsonschema').Validator
 
 class DynamicFilter {
+  // Schema is the JSONSchema for the individual product. This gets plugged into a generic
+  // products object schema.
   constructor(schema, data, exclude) {
     if(!schema || !data) {
       throw new Error('Please provide schema and data')
@@ -45,6 +47,8 @@ class DynamicFilter {
             }
           }
         }
+
+        return standardFields.concat(customFields)
       }
       return standardFields.concat(customFields)
     }

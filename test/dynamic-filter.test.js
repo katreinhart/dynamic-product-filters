@@ -1,8 +1,7 @@
 const DynamicFilter = require('../model')
 const expect = require('chai').expect
 
-const testProductsSchema = require('./fixtures/productsSchema.json')
-// const testSingleProductSchema = require('./fixtures/singleProduct.json')
+const testSchema = require('./fixtures/singleProductSchema.json')
 const testProducts = require('./fixtures/test-products.json')
 
 describe('DynamicFilter', function () {
@@ -23,6 +22,18 @@ describe('DynamicFilter', function () {
     it('should allow for an exclude option', function () {
       const newFilter = new DynamicFilter(this.schema, this.products, ['id'])
       expect(newFilter.exclude).to.deep.equal(['id'])
+    })
+  })
+
+  describe('.validate', function () {
+    it('should return an empty error array for valid data', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products)
+      const valid = newFilter.validate()
+      expect(valid.errors.length).to.equal(0)
+    })
+
+    xit('should return an array of errors for invalid data', function () {
+
     })
   })
 
