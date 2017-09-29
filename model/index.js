@@ -14,15 +14,31 @@ class DynamicFilter {
     } else {
       this.exclude = ['id', 'name', 'description', 'image']
     }
-    this.allFields = this.detectFields()
+
+    // this.allFields = this.detectFields()
   }
 
   validateData () {
     const v = new Validator()
 
+    const productsSchema = {
+      "$schema": "http://json-schema.org/schema#",
+      "id": "/productsSchema",
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items" : [
+              {"$ref": "/singleProduct"}
+          ]
+        }
+      }
+    }
+
     v.addSchema(productsSchema, '/productsSchema')
-    v.addSchema(singleProduct, '/singleProduct')
+    v.addSchema(this.schema, '/singleProduct')
     this.validatorResult = v.validate(this.data, this.schema)
+    return this.validatorResult
   }
 
   detectFields () {
