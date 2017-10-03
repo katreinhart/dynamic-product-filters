@@ -50,7 +50,7 @@ class DynamicFilter {
     this.validatorResult = v.validate(this.data, productsSchema)
     if(this.validatorResult.errors.length > 0) {
       this.valid = false
-      throw new Error("Validator failed: ", this.validatorResult.errors)
+      throw new Error('Validator failed: ', this.validatorResult.errors)
     } else {
       this.valid = true
       return this.validatorResult
@@ -60,7 +60,7 @@ class DynamicFilter {
   detectFields () {
     this.validateData()
     if (this.validatorResult.errors.length > 0) {
-      throw new Error("Errors were found: ", this.validatorResult.errors)
+      throw new Error('Errors were found: ', this.validatorResult.errors)
     } else {
       this.standardFields = Object.keys(this.schema.properties)
       this.customFields = []
