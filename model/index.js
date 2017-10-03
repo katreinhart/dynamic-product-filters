@@ -116,8 +116,6 @@ class DynamicFilter {
         _this.generateTagList()
       }
     })
-
-
     return this.filterKeys
   }
 
@@ -127,12 +125,13 @@ class DynamicFilter {
   }
 
   generatePriceBuckets () {
-    // determine range of prices
+    // Generates the different options for sorting by price.
     // take the number of buckets indicated and generate buckets
     // (under X, X to Y, Y to Z, over Z)
 
+    // Determine min and max values for individual prices.
     let min = Infinity
-    let max = 0
+    let max = 0 // assumed no prices will have zero or negative values
     this.data.products.forEach(item => {
       if(parseFloat(item.price) < min) {
         min = parseFloat(item.price)
@@ -142,10 +141,16 @@ class DynamicFilter {
       }
     })
 
-    this.buckets = []
-    let roundTo
+    // create new array to hold the "buckets", i.e. the dividing values.
+    // This array is scoped to this generating function, as it is not necessary
+    // once the price object is created.
 
+    const buckets = []
+    let roundTo
+    
     switch(this.priceBuckets) {
+      // These are somewhat arbitrary; however it is assumed that if you have more buckets
+      // you will want more granularity, i.e. smaller buckets.
       case 3: case 4: case 5:
         roundTo = 25
         break
@@ -157,40 +162,32 @@ class DynamicFilter {
         break
     }
 
-    this.buckets[0] = this.roundUpToNearest(roundTo, Math.floor(parseFloat(min)))
+    buckets[0] = this.roundUpToNearest(roundTo, Math.floor(parseFloat(min)))
 
     for (let i=1; i < this.priceBuckets - 1; i++) {
-      this.buckets[i] = this.roundUpToNearest(roundTo, Math.floor((parseFloat(max) + parseFloat(min)) * (i + 1) / this.priceBuckets))
+      buckets[i] = this.roundUpToNearest(roundTo, Math.floor((parseFloat(max) + parseFloat(min)) * (i + 1) / this.priceBuckets))
     }
 
-    this.buckets[this.priceBuckets - 1] = this.roundUpToNearest(roundTo, parseFloat(max))
+    buckets[this.priceBuckets - 1] = this.roundUpToNearest(roundTo, parseFloat(max))
 
+    // this.filterObject.price will be the object exposed in the API. It is itself an array of objects.
+    // Each object in the array has a label, which will be displayed in the filter list,
+    // and a "bucket" ,which is an array of two numbers, the min and max price.
     this.filterObject.price = []
-
     this.filterObject.price[0] = {
-      "label": `Under \$${this.buckets[0]}`,
-      "bucket": [0, this.buckets[0]]
+      "label": `Under \$${buckets[0]}`,
+      "bucket": [0, buckets[0]]
     }
-    for(let i=1; i < this.priceBuckets; i++) {
+    for(let i=1; i < this.priceBuckets - 1; i++) {
       this.filterObject.price[i] = {
-        "label": `\$${this.buckets[i-1]} to \$${this.buckets[i]}`,
-        "bucket": [this.buckets[i-1], this.buckets[i]]
+        "label": `\$${buckets[i-1]} to \$${buckets[i]}`,
+        "bucket": [buckets[i-1], buckets[i]]
       }
     }
     this.filterObject.price[this.priceBuckets - 1] = {
-      "label": `Over \$${this.buckets[this.priceBuckets - 2]}`,
-      "bucket": [this.buckets[this.priceBuckets - 2], this.buckets[this.priceBuckets - 1]]
+      "label": `Over \$${buckets[this.priceBuckets - 2]}`,
+      "bucket": [buckets[this.priceBuckets - 2], buckets[this.priceBuckets - 1]]
     }
-  //
-  //   this.filterObject.price = [ { "label": `Under \$${bucket1}`,
-  //                       "bucket": [0, bucket1] },
-  //                     { "label": `\$${bucket1} to \$${bucket2}`,
-  //                       "bucket": [bucket1, bucket2] },
-  //                     { "label": `\$${bucket2} to \$${bucket3}`,
-  //                       "bucket": [bucket2, bucket3] },
-  //                     { "label": `Over \$${bucket3}`,
-  //                       "bucket": [bucket3, bucket4] }
-  //                   ]
   }
 
   generateTagList() {

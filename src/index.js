@@ -1,4 +1,4 @@
-const data = require ('../data/test-products.json')
+const data = require ('../data/test-products-2.json')
 const products = data.products
 const productSchema = require('../model/product.schema.json')
 
@@ -28,13 +28,11 @@ clearButton.addEventListener('click', e => {
   displayProducts(products)
 })
 
-
 // Display Filter Details
 // Called on click of filter title
 // Generates UL & LIs for the filter details & appends to FilterDetailDiv
 
 function displayFilterDetails(filterDetail, parentDiv) {
-  // filterDetailDiv.innerHTML = "" // clear out the current contents
 
   if(parentDiv.childNodes.length <= 1) {
     const itemList = document.createElement('UL') // create a new UL

@@ -7,7 +7,6 @@ let types = ["jeans", "T-shirt", "chair", "table", "wall art", "coffee", "beer",
 let sizes = ["small", "medium", "large", "xl", "xs"]
 // let ages = ["Under 2", "2-4", "4-6", "6-8", "8 and Up"]
 
-
 const products = []
 createProductsArray()
 
