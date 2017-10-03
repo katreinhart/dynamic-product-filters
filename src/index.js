@@ -1,13 +1,9 @@
-const data = require ('../data/test-products-2.json')
+const data = require ('../data/test-products.json')
 const products = data.products
 const productSchema = require('../model/product.schema.json')
 
 const DynamicFilter = require('../model')
-const df = new DynamicFilter(productSchema, data)
-
-// const filters = require('./filters')
-// // Generate a filters object which contains the key-value pairs of all the available properties.
-// filters.init() // runs all the initialization & setup functions inside of filters
+const df = new DynamicFilter(productSchema, data, null, 5)
 
 const filterObject = df.getFilters()
 const filters = Object.keys(filterObject)
@@ -40,10 +36,7 @@ clearButton.addEventListener('click', e => {
 function displayFilterDetails(filterDetail, parentDiv) {
   // filterDetailDiv.innerHTML = "" // clear out the current contents
 
-  if(parentDiv.childNodes.length > 1) {
-    // parentDiv.innerHTML = filters.activeFilter
-    // console.log('has children')
-  } else {
+  if(parentDiv.childNodes.length <= 1) {
     const itemList = document.createElement('UL') // create a new UL
     itemList.className = "list-group"
     filterDetail.forEach(detailedFilter => { // for each filter detail
@@ -59,11 +52,12 @@ function displayFilterDetails(filterDetail, parentDiv) {
         activeFilterDisplay.textContent = `${filters.activeFilter}: ${detailedFilter}`
         filters.filteredProducts = products.filter(product => {
           if(filters.activeFilter === 'price') { // bucket filtering
+            activeFilterDisplay.textContent = `${filters.activeFilter}: ${detailedFilter.label}`
             return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
                   && (parseFloat(product.price) <= detailedFilter.bucket[1]))
           } else if ((filters.activeFilter === 'tags') || (filters.activeFilter === 'keywords')) { // one-of-many filtering
             return product[filters.activeFilter].includes(detailedFilter)
-          } else { // exact-match filtering (easiest case)
+          } else { // exact-match filtering
             return (product[filters.activeFilter] === detailedFilter)
           }
         })

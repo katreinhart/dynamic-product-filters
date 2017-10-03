@@ -1,6 +1,6 @@
 // helper function
-function roundUpToNearest25(number) {
-  return (Math.ceil(number/25) * 25)
+function roundUpToNearest(roundTo, number) {
+  return (Math.ceil(number/roundTo) * roundTo)
 }
 
-module.exports = roundUpToNearest25
+module.exports = roundUpToNearest

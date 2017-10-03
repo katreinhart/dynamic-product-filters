@@ -126,9 +126,9 @@ describe('DynamicFilter', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
       expect(newFilter.getFilters().price.length).to.eq(4)
     })
-    xit('should create the proper number of price buckets', function () {
-      const newFilter = new DynamicFilter(this.schema, this.products, null, 3)
-      expect(newFilter.getFilters().price.length).to.eq(3)
+    it('should create the proper number of price buckets', function () {
+      const newFilter = new DynamicFilter(this.schema, this.products, null, 6)
+      expect(newFilter.getFilters().price.length).to.eq(6)
     })
   })
 

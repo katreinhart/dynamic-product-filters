@@ -16,7 +16,9 @@ class DynamicFilter {
     }
     if((buckets) && !Number.isInteger(buckets)) {
       throw new Error('Please provide a number of price buckets')
-    } else if ((buckets) && Number.isInteger(buckets)) {
+    } else if ((buckets > 10) || (buckets < 2)) {
+      throw new Error('Please provide a number between 3 and 10')
+    } else if (buckets) {
       this.priceBuckets = buckets
     } else {
       this.priceBuckets = 4
@@ -120,13 +122,15 @@ class DynamicFilter {
   }
 
   // helper function
-  roundUpToNearest25(number) {
-    return (Math.ceil(number/25) * 25)
+  roundUpToNearest(roundTo, number) {
+    return (Math.ceil(number/roundTo) * roundTo)
   }
 
   generatePriceBuckets () {
     // determine range of prices
-    // take the number of buckets indicated and generate buckets (under X, X to Y, Y to Z, over Z)
+    // take the number of buckets indicated and generate buckets
+    // (under X, X to Y, Y to Z, over Z)
+
     let min = Infinity
     let max = 0
     this.data.products.forEach(item => {
@@ -138,20 +142,55 @@ class DynamicFilter {
       }
     })
 
-    let bucket1 = this.roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 4))
-    let bucket2 = this.roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) / 2))
-    let bucket3 = this.roundUpToNearest25(Math.floor((parseFloat(max) + parseFloat(min)) * 3 / 4))
-    let bucket4 = this.roundUpToNearest25(parseFloat(max))
+    this.buckets = []
+    let roundTo
 
-    this.filterObject.price = [ { "label": `Under \$${bucket1}`,
-                        "bucket": [0, bucket1] },
-                      { "label": `\$${bucket1} to \$${bucket2}`,
-                        "bucket": [bucket1, bucket2] },
-                      { "label": `\$${bucket2} to \$${bucket3}`,
-                        "bucket": [bucket2, bucket3] },
-                      { "label": `Over \$${bucket3}`,
-                        "bucket": [bucket3, bucket4] }
-                    ]
+    switch(this.priceBuckets) {
+      case 3: case 4: case 5:
+        roundTo = 25
+        break
+      case 6: case 7: case 8:
+        roundTo = 10
+        break
+      case 9: case 10:
+        roundTo = 5
+        break
+    }
+
+    this.buckets[0] = this.roundUpToNearest(roundTo, Math.floor(parseFloat(min)))
+
+    for (let i=1; i < this.priceBuckets - 1; i++) {
+      this.buckets[i] = this.roundUpToNearest(roundTo, Math.floor((parseFloat(max) + parseFloat(min)) * (i + 1) / this.priceBuckets))
+    }
+
+    this.buckets[this.priceBuckets - 1] = this.roundUpToNearest(roundTo, parseFloat(max))
+
+    this.filterObject.price = []
+
+    this.filterObject.price[0] = {
+      "label": `Under \$${this.buckets[0]}`,
+      "bucket": [0, this.buckets[0]]
+    }
+    for(let i=1; i < this.priceBuckets; i++) {
+      this.filterObject.price[i] = {
+        "label": `\$${this.buckets[i-1]} to \$${this.buckets[i]}`,
+        "bucket": [this.buckets[i-1], this.buckets[i]]
+      }
+    }
+    this.filterObject.price[this.priceBuckets - 1] = {
+      "label": `Over \$${this.buckets[this.priceBuckets - 2]}`,
+      "bucket": [this.buckets[this.priceBuckets - 2], this.buckets[this.priceBuckets - 1]]
+    }
+  //
+  //   this.filterObject.price = [ { "label": `Under \$${bucket1}`,
+  //                       "bucket": [0, bucket1] },
+  //                     { "label": `\$${bucket1} to \$${bucket2}`,
+  //                       "bucket": [bucket1, bucket2] },
+  //                     { "label": `\$${bucket2} to \$${bucket3}`,
+  //                       "bucket": [bucket2, bucket3] },
+  //                     { "label": `Over \$${bucket3}`,
+  //                       "bucket": [bucket3, bucket4] }
+  //                   ]
   }
 
   generateTagList() {

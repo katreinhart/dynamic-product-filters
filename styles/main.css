@@ -58,14 +58,13 @@ body {
 
 @media screen and (min-width: 576px) {
   body {
-    font-size: 21px;
+    font-size: 16px;
   }
-
-  .card-deck {
-
+  .slide-over {
+    left: 50%;
   }
-  .card {
-    width: 320px;
+  .menu-sidebar {
+    width: 50%;
   }
 }
 
@@ -100,4 +99,12 @@ body {
   }
 }
 
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) {
+  .menu-sidebar.hidden {
+    width: 15%;
+  }
+  .main {
+    width: 85%;
+    left: 15%
+  }
+}
