@@ -1,4 +1,4 @@
-const DynamicFilter = require('../model')
+const DynamicFilter = require('../lib')
 const expect = require('chai').expect
 
 const testSchema = require('./fixtures/singleProductSchema.json')
