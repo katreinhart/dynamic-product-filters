@@ -12,7 +12,11 @@ class DynamicFilter {
     if(exclude) {
       this.exclude = exclude
     } else {
-      this.exclude = ['id', 'name', 'description', 'image']
+      this.exclude = [ 'id'
+                     , 'name'
+                     , 'description'
+                     , 'image'
+                     ]
     }
     if((buckets) && !Number.isInteger(buckets)) {
       throw new Error('Please provide a number of price buckets')
@@ -28,20 +32,18 @@ class DynamicFilter {
   validateData () {
     const v = new Validator()
 
-    const productsSchema = {
-      "$schema": "http://json-schema.org/schema#",
-      "id": "/productsSchema",
-      "type": "object",
-      "properties": {
-        "products": {
-          "type": "array",
-          "items" : [
-              {"$ref": "/singleProduct"}
-          ],
-          "required": true
-        }
-      }
-    }
+    const productsSchema = {  "$schema": "http://json-schema.org/schema#"
+                            , "id": "/productsSchema"
+                            , "type": "object"
+                            , "properties": {
+                              "products": {  "type": "array"
+                                          ,   "items" : [
+                                                        { "$ref": "/singleProduct" }
+                                                        ]
+                                          , "required": true
+                              }
+                            }
+                          }
 
     v.addSchema(productsSchema, '/productsSchema') // schema for products object
     v.addSchema(this.schema, '/singleProduct')     // schema for individual product
@@ -157,7 +159,7 @@ class DynamicFilter {
       case 6: case 7: case 8:
         roundTo = 10; break
       case 9: case 10:
-        roundTo = 5; break
+        roundTo = 5;  break
     }
 
     buckets[0] = this.roundUpToNearest(roundTo, Math.floor(parseFloat(min)))
@@ -174,22 +176,22 @@ class DynamicFilter {
     // It is itself an array of objects. Each object in the array has a label,
     // which will be displayed in the list, and a "bucket",
     // which is an array of two numbers, the min and max price.
-    
+
     this.filterObject.price = []
     this.filterObject.price[0] = {
-      "label": `Under \$${buckets[0]}`,
-      "bucket": [0, buckets[0]]
-    }
+                                     "label": `Under \$${buckets[0]}`
+                                  ,  "bucket": [0, buckets[0]]
+                                  }
     for(let i=1; i < n - 1; i++) {
       this.filterObject.price[i] = {
-        "label": `\$${buckets[i-1]} to \$${buckets[i]}`,
-        "bucket": [buckets[i-1], buckets[i]]
-      }
+                                      "label": `\$${buckets[i-1]} to \$${buckets[i]}`
+                                    , "bucket": [buckets[i-1], buckets[i]]
+                                    }
     }
     this.filterObject.price[n - 1] = {
-      "label": `Over \$${buckets[n - 2]}`,
-      "bucket": [buckets[n - 2], buckets[n - 1]]
-    }
+                                        "label": `Over \$${buckets[n - 2]}`
+                                      , "bucket": [buckets[n - 2], buckets[n - 1]]
+                                      }
   }
 
   generateTagList() {
