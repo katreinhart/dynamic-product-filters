@@ -57,22 +57,17 @@ function displayFilterDetails(filterName, filterDetail, parentDiv) {
       listItem.addEventListener('click', e => {
         filters.activeFilter = filterName
 
-
         if(filters.activeFilter === 'price') {
           activeFilterDisplay.innerHTML += `<div class="btn-group btn-group-sm" id="filter-${filterName}"><button class="btn btn-default">${filters.activeFilter}: ${detailedFilter.label}</button><button class="btn" id="dismiss-${filterName}">&times;</button></div>`
           document.getElementById(`dismiss-${filterName}`).addEventListener("click", function () {
             document.getElementById(`filter-${filterName}`).remove()
-            // console.log('remover triggered')
           })
         } else {
           activeFilterDisplay.innerHTML += `<div class="btn-group btn-group-sm" id="filter-${filterName}"><button class="btn btn-default">${filters.activeFilter}: ${detailedFilter}</button><button class="btn" id="dismiss-${filterName}">&times;</button></div>`
           document.getElementById(`dismiss-${filterName}`).addEventListener("click", function () {
             document.getElementById(`filter-${filterName}`).remove()
-            // console.log('remover triggered')
           })
         }
-
-
 
         // filter the products and display the results
         filters.filteredProducts = products.filter(product => {
