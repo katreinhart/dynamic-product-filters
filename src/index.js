@@ -56,13 +56,30 @@ function displayFilterDetails(filterName, filterDetail, parentDiv) {
       // Each list item gets the click handler.
       listItem.addEventListener('click', e => {
         filters.activeFilter = filterName
-        activeFilterDisplay.textContent = `${filters.activeFilter}: ${detailedFilter}`
+
+
+        if(filters.activeFilter === 'price') {
+          activeFilterDisplay.innerHTML += `<div class="btn-group btn-group-sm" id="filter-${filterName}"><button class="btn btn-default">${filters.activeFilter}: ${detailedFilter.label}</button><button class="btn" id="dismiss-${filterName}">&times;</button></div>`
+          document.getElementById(`dismiss-${filterName}`).addEventListener("click", function () {
+            document.getElementById(`filter-${filterName}`).remove()
+            // console.log('remover triggered')
+          })
+        } else {
+          activeFilterDisplay.innerHTML += `<div class="btn-group btn-group-sm" id="filter-${filterName}"><button class="btn btn-default">${filters.activeFilter}: ${detailedFilter}</button><button class="btn" id="dismiss-${filterName}">&times;</button></div>`
+          document.getElementById(`dismiss-${filterName}`).addEventListener("click", function () {
+            document.getElementById(`filter-${filterName}`).remove()
+            // console.log('remover triggered')
+          })
+        }
+
+
+
         // filter the products and display the results
         filters.filteredProducts = products.filter(product => {
           // 3 options for filtering.
           // Price is filtered by "buckets", i.e. over X but under Y.
           if(filters.activeFilter === 'price') { // bucket filtering
-            activeFilterDisplay.textContent = `${filters.activeFilter}: ${detailedFilter.label}`
+            // activeFilterDisplay.textContent = `${filters.activeFilter}: ${detailedFilter.label}`
             return  ((parseFloat(product.price) >  detailedFilter.bucket[0])
                   && (parseFloat(product.price) <= detailedFilter.bucket[1]))
           } // Tags or keywords are "one-of-many" type, ie we want to filter for products
