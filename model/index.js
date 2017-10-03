@@ -1,8 +1,8 @@
 const Validator = require('jsonschema').Validator
 
 class DynamicFilter {
-  // Schema is the JSONSchema for the individual product. This gets plugged into a generic
-  // products object schema.
+  // Schema is the JSONSchema for the individual product.
+  // This gets plugged into a generic products object schema.
   constructor(schema, data, exclude, buckets) {
     if(!schema || !data) {
       throw new Error('Please provide schema and data')
@@ -92,14 +92,14 @@ class DynamicFilter {
     this.filterKeys.forEach(function(key) {
       tempFilterObject[key] = []
       _this.data.products.forEach(item => {
-        if(!tempFilterObject[key].includes(item[key])){
+        if (!tempFilterObject[key].includes(item[key])) {
           // if it isn't already in there, push it in there
           tempFilterObject[key].push(item[key])
         }
       })
     })
     this.filterKeys.forEach(function(key) {
-      if(tempFilterObject[key].length < 2) {
+      if (tempFilterObject[key].length < 2) {
         // don't display filters with 0 or 1 options
         _this.exclude.push(key)
       }
@@ -147,46 +147,48 @@ class DynamicFilter {
 
     const buckets = []
     let roundTo
-    
-    switch(this.priceBuckets) {
+    let n = this.priceBuckets // number of buckets to divide prices into
+
+    switch(n) {
       // These are somewhat arbitrary; however it is assumed that if you have more buckets
       // you will want more granularity, i.e. smaller buckets.
       case 3: case 4: case 5:
-        roundTo = 25
-        break
+        roundTo = 25; break
       case 6: case 7: case 8:
-        roundTo = 10
-        break
+        roundTo = 10; break
       case 9: case 10:
-        roundTo = 5
-        break
+        roundTo = 5; break
     }
 
     buckets[0] = this.roundUpToNearest(roundTo, Math.floor(parseFloat(min)))
 
-    for (let i=1; i < this.priceBuckets - 1; i++) {
-      buckets[i] = this.roundUpToNearest(roundTo, Math.floor((parseFloat(max) + parseFloat(min)) * (i + 1) / this.priceBuckets))
+    for (let i=1; i < n - 1; i++) {
+      buckets[i] = this.roundUpToNearest(roundTo,
+          Math.floor((parseFloat(max) + parseFloat(min)) * (i + 1)
+          / n ))
     }
 
-    buckets[this.priceBuckets - 1] = this.roundUpToNearest(roundTo, parseFloat(max))
+    buckets[n - 1] = this.roundUpToNearest(roundTo, parseFloat(max))
 
-    // this.filterObject.price will be the object exposed in the API. It is itself an array of objects.
-    // Each object in the array has a label, which will be displayed in the filter list,
-    // and a "bucket" ,which is an array of two numbers, the min and max price.
+    // this.filterObject.price will be the object exposed in the API.
+    // It is itself an array of objects. Each object in the array has a label,
+    // which will be displayed in the list, and a "bucket",
+    // which is an array of two numbers, the min and max price.
+    
     this.filterObject.price = []
     this.filterObject.price[0] = {
       "label": `Under \$${buckets[0]}`,
       "bucket": [0, buckets[0]]
     }
-    for(let i=1; i < this.priceBuckets - 1; i++) {
+    for(let i=1; i < n - 1; i++) {
       this.filterObject.price[i] = {
         "label": `\$${buckets[i-1]} to \$${buckets[i]}`,
         "bucket": [buckets[i-1], buckets[i]]
       }
     }
-    this.filterObject.price[this.priceBuckets - 1] = {
-      "label": `Over \$${buckets[this.priceBuckets - 2]}`,
-      "bucket": [buckets[this.priceBuckets - 2], buckets[this.priceBuckets - 1]]
+    this.filterObject.price[n - 1] = {
+      "label": `Over \$${buckets[n - 2]}`,
+      "bucket": [buckets[n - 2], buckets[n - 1]]
     }
   }
 

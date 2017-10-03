@@ -16,7 +16,6 @@ const productDiv = document.getElementById('products')
 const filtersList = document.createElement('ul')
 filtersList.className = "list-group" // bootstrap
 
-
 // Active Filter Display - holds the name of the currently active filter.
 const activeFilterDisplay = document.getElementById('activeFilterDisplay')
 // would be nice to eventually have dismissable pills with each filter on it
@@ -90,7 +89,6 @@ function collapseFilterDetails(name, listItem) {
   listItem.classList.remove('detail-opened')
 }
 
-
 // Display Filter Names generates the top-level filter list (ie. what is shown before any clicks.)
 function displayFilterNames() {
   // filters is the Object.keys from the filterObject.
@@ -112,7 +110,6 @@ function displayFilterNames() {
         displayFilterDetails(name, filterObject[name], listItem)
         e.target.classList.add("detail-opened")
       }
-
     })
     filtersList.append(listItem)
   })
@@ -120,8 +117,6 @@ function displayFilterNames() {
 }
 
 displayFilterNames()
-
-
 
 // apply products to page
 function displayProducts(productsToDisplay) {
