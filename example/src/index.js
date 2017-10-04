@@ -1,7 +1,7 @@
-const data = require ('../data/test-products.json')
+const data = require ('../data/products.json')
 const products = data.products
-const productSchema = require('../lib/product.schema.json')
-const DynamicFilter = require('../lib')
+const productSchema = require('../../lib/product.schema.json')
+const DynamicFilter = require('../../lib')
 
 const df = new DynamicFilter(productSchema, data, null, 5)
 

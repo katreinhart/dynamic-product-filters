@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha",
     "webpack": "webpack",
-    "watch": "webpack -w"
+    "watch": "webpack -w",
+    "webpack-example": "cd example && webpack -w",
+    "live-server-example": "cd example && live-server"
   },
   "repository": {
     "type": "git",
