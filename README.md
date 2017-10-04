@@ -51,10 +51,8 @@ The first time it is called, ```getFilters``` will call the validation & generat
 See the `example/src/index.js` for more information on how to implement in your project.
 
 #### Troubleshooting ####
-This skeleton index.js file will test to make sure everything is working properly.
-
+This skeleton index.js file will test to make sure everything is working properly:
 ```js
-const fs = require('fs')
 const DynamicFilter = require('dynamic-product-filter')
 const schema = require('dynamic-product-filter/lib/product.schema.json')
 const data = require('./products.json')
@@ -63,4 +61,4 @@ const df = new DynamicFilter(schema, data)
 const filterObject = df.getFilters()
 console.log(filterObject)
 ```
-If this file runs and outputs a filter object, you are good to go and use it in your project. 
+If this file runs and outputs a filter object, you are good to go and use it in your project.
