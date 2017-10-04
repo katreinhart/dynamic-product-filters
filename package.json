@@ -1,6 +1,6 @@
 {
   "name": "dynamic-product-filter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dynamically generated product filters for online shopping sites of all types.",
   "main": "lib/index.js",
   "scripts": {
