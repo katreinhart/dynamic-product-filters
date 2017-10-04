@@ -2,7 +2,7 @@
   "name": "dynamic-product-filter",
   "version": "1.0.0",
   "description": "Dynamically generated product filters for online shopping sites of all types.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha",
     "webpack": "webpack",

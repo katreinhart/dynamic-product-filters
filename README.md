@@ -1,18 +1,20 @@
-# Product Filter Utility #
+# Dynamic Product Filters #
+by: [katreinhart](mailto:kat@reinhart.digital)
 Dynamically generated product filters for online shopping sites of all types.
 
 ### Description ###
-
-What problem or need does your project solve?
-
-- Online shopping sites sometimes have problems with filtering. For example, on many online shopping sites, four filters are shown on every category page: e.g. Size, Color, Price, and Brand. However, for many categories of item, these categories are not relevant or not informative. For example, when I am shopping in the Home category, the Size filter usually only has "OS" (one size) which is not informative. What if these filters were populated dynamically, directly from the JSON file containing the products to be displayed on the page? This is a tool that will read in a JSON file of products, validate it against a JSONSchema (either provided by the user or the included boilerplate version), and dynamically append these filter categories to a page.
-
+- Online shopping sites sometimes have problems with filtering. For example, on many online shopping sites, the same 3 or 4 filters are shown on every category page: e.g. Size, Color, Price, and Brand. However, for many categories of item, these categories are not relevant or not informative. For example, when I am shopping in the Home category, the Size filter usually only has "OS" (one size) which is not informative. What if these filters were populated dynamically, directly from the JSON file containing the products to be displayed on the page? This is a tool that will read in a JSON file of products, validate it against a JSONSchema (either provided by the user or the included boilerplate version), and dynamically append these filter categories to a page.
 
 ## Installation ##
 
 ```
 npm install dynamic-product-filter
 ```
+or fork & clone [the repo](https://github.com/katreinhart/dynamic-product-filters) :)
+
+### Run the Example ###
+`npm run webpack-example` and (in a new terminal tab) `npm run live-server-example` (requires [live-server](https://www.npmjs.com/package/live-server) to be installed globally to work)
+
 #### Dependencies ####
 ```
 jsonschema
@@ -21,7 +23,7 @@ Additionally, use of this library requires a bundler - the example is running We
 
 #### Setup  ####
 ```
-const DynamicFilter = require('dynamic-filters')
+const DynamicFilter = require('dynamic-product-filter')
 const df = new DynamicFilter(productSchema, data[, exclude, priceBuckets])
 ```
 productSchema is a [JSON-schema](http://json-schema.org) describing the structure of your data. A default option is included in the example, which has ID, name, and price as required fields and an array of optional fields.
