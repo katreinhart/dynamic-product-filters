@@ -1,9 +1,12 @@
 # Dynamic Product Filters #
-by: [katreinhart](mailto:kat@reinhart.digital)
+by: [katreinhart](mailto:kat@reinhart.digital)  
 Dynamically generated product filters for online shopping sites of all types.
 
 ### Description ###
 - Online shopping sites sometimes have problems with filtering. For example, on many online shopping sites, the same 3 or 4 filters are shown on every category page: e.g. Size, Color, Price, and Brand. However, for many categories of item, these categories are not relevant or not informative. For example, when I am shopping in the Home category, the Size filter usually only has "OS" (one size) which is not informative. What if these filters were populated dynamically, directly from the JSON file containing the products to be displayed on the page? This is a tool that will read in a JSON file of products, validate it against a JSONSchema (either provided by the user or the included boilerplate version), and dynamically append these filter categories to a page.
+
+### Screenshot ###
+![screenshot of the project](http://katreinhart.com/img/filters-screenshot-1.png)
 
 ## Installation ##
 
