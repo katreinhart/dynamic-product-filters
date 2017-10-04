@@ -25,10 +25,10 @@ describe('DynamicFilter', function () {
     })
   })
 
-  describe('.validateData', function () {
+  describe('._validateData', function () {
     it('should return an empty error array for valid data', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
-      const valid = newFilter.validateData()
+      const valid = newFilter._validateData()
       expect(valid.errors.length).to.equal(0)
     })
 
@@ -41,10 +41,10 @@ describe('DynamicFilter', function () {
     })
   })
 
-  describe('.detectFields', function () {
+  describe('._detectAllFields', function () {
     it('should validate the data against the schema', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
-      const fields = newFilter.detectFields()
+      const fields = newFilter._detectAllFields()
       expect(fields).to.be.a('array')
       expect(fields).to.contain('price')
       expect(fields).to.contain('name')
@@ -55,21 +55,21 @@ describe('DynamicFilter', function () {
     })
   })
 
-  describe('.generateFilters', function () {
+  describe('._generateFilters', function () {
     it('should return an array', function () {
       const newFilter = new DynamicFilter(this.schema, this.products)
-      const filters = newFilter.generateFilters()
+      const filters = newFilter._generateFilters()
       expect(filters).to.be.a('array')
     })
     it('should contain expected items but not contain excluded items', function() {
       const newFilter = new DynamicFilter(this.schema, this.products)
-      const filters = newFilter.generateFilters()
+      const filters = newFilter._generateFilters()
       expect(filters).to.contain('price')
       expect(filters).not.to.contain('id')
     })
   })
 
-  describe('.filters', function () {
+  describe('.getFilters', function () {
     it('should return an object with all the keys of those properties that are filterable', function() {
       const newFilter = new DynamicFilter(this.schema, this.products)
       const filterObject = newFilter.getFilters()
